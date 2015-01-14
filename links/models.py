@@ -7,7 +7,7 @@ class Link(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now_add=True, editable=False)
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    url = models.URLField()
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links')
 
     class Meta:
