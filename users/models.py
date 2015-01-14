@@ -45,4 +45,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_superuser
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+
+    favorite_animal = models.CharField(max_length=30, default="shitty pig")
     

@@ -134,3 +134,4 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 # user model
 AUTH_USER_MODEL = 'users.User'
+AUTH_PROFILE_MODULE = 'line.UserProfile'

@@ -6,6 +6,6 @@ from . import views
 urlpatterns = patterns('',
 
      url(r'^register', views.UserRegisterView.as_view(), name="register"),
-#     url(r"^(?P<id>[\w-]+)/$", views.UserDetailView.as_view(), name="detail"),
+     url(r"^(?P<pk>\d+)/$", views.UserProfileView.as_view(), name="detail"),
 
 )
