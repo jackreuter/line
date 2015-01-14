@@ -1,0 +1,4 @@
+*.pyc
+microblog/settings/local.py
+.DS_Store
+
