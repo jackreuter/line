@@ -26,7 +26,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
-    '*.herokuapp.com',
+    'fast-peak-6430.herokuapp.com',
 ]
 
 # database
