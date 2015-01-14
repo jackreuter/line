@@ -1,4 +1,4 @@
 *.pyc
-microblog/settings/local.py
+line/settings/local.py
 .DS_Store
 
