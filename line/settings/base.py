@@ -50,7 +50,9 @@ THIRD_PARTY_APPS = (
     'storages',
 )
 
-LOCAL_APPS = ()
+LOCAL_APPS = (
+    'users',
+)
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -105,3 +107,6 @@ STATIC_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
 # Tell the staticfiles app to use S3Boto storage when writing the collected static files (when
 # you run `collectstatic`).
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+# user model
+AUTH_USER_MODEL = 'users.User'
