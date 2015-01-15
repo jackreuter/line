@@ -1,0 +1,8 @@
+{% extends "_layouts/base.html" %}
+
+{% block page_content %}
+<form action="" method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Add link to your line" />
+</form>
+{% endblock %}

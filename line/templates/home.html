@@ -1,0 +1,13 @@
+{% extends "_layouts/base.html" %}
+
+{% block page_content %}
+<h2>HOME<h2>
+
+<ul>
+  {% for link in link_list %}
+  <li><a href={{ link.url }}>{{ link.title }}</a> -- posted by {{ link.posted_by.name }} at {{ link.updated_at }}</li>
+  {% empty %}
+  <li>No links!</li>
+  {% endfor %}
+</ul>
+{% endblock %}
