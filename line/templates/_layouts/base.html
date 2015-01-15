@@ -9,6 +9,10 @@
     <div class="container">
       <h1><a href='/home/'>LINE</a></h1>
       {% block page_content %}{% endblock %}
+      <a href="/logout/">LOGOUT</a>
+      <a href='{{ user.get_profile_page_url }}'>PROFILE</a>
     </div>
   </body>
 </html>
+<a>Logged in as {{ user.name }}</a>
+

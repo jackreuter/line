@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from line.views import logout_page
 
 from . import views
 
@@ -8,9 +9,13 @@ urlpatterns = patterns('',
     # url(r'^$', 'line.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r"^$", views.HomepageView.as_view(), name="home"),
+    url(r"^$", views.WelcomeView.as_view(), name="welcome"),
+    url(r"^home/", views.HomeView.as_view(), name="home"),
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^register/', views.RegisterView.as_view(), name='register')
-
-    url(r'^users/', include("users.urls", namespace="users"))
+    url(r'^login/', 'django.contrib.auth.views.login'),
+    url(r'^logout/', logout_page),
+    url(r'^portal/', include('portal.urls')),
+    
+    url(r'^users/', include("users.urls", namespace="users")),
+    url(r'^links/', include("links.urls", namespace="links"))
 )

@@ -44,6 +44,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __unicode__(self):
         return self.email
 
+    def get_profile_page_url(self):
+        return '/users/%s' % self.pk
+
     @property
     def is_staff(self):
         return self.is_superuser

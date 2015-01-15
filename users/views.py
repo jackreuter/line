@@ -9,7 +9,10 @@ from links.models import Link
 class UserRegisterView(FormView):
     template_name = "users/user_register.html"
     form_class = UserCreationForm
-    success_url = '/'
+
+    def get_success_url(self):
+        user_id = self.request.user.pk
+        return '/users/%s' % user_id
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
@@ -29,7 +32,6 @@ class UserProfileView(ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
-        print "yoe"
         context = super(UserProfileView, self).get_context_data(**kwargs)
         user = User.objects.get(pk=self.kwargs['pk'])
         context['user_object'] = user

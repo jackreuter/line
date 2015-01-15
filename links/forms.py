@@ -3,16 +3,18 @@ from __future__ import absolute_import
 from django import forms
 
 from .models import Link
+from users.models import User
 
-class LinkCreationForm(forms.ModelForm):
+class LinkNewForm(forms.ModelForm):
     
     class Meta:
         model = Link
         fields = ('title', 'url')
 
-    def save(self, commit=True):
-        link = super(LinkCreationForm, self).save(commit=False)
-        user.is_active=True
+    def save(self, user, commit=True):
+        link = super(LinkNewForm, self).save(commit=False)
+        link.posted_by=user
+
         if commit:
             link.save()
         return link

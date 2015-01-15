@@ -1,10 +1,10 @@
 from django.contrib import admin
 
 from .models import Link
-from .forms import LinkCreationForm
+from .forms import LinkNewForm
 
 class LinkAdmin(admin.ModelAdmin):
-    add_form = LinkCreationForm
+    add_form = LinkNewForm
 
     date_heirarchy = 'created_at'
     fields = ('title', 'url', 'posted_by')
