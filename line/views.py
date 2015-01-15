@@ -26,9 +26,12 @@ class HomeView(ListView):
             queryset = super(HomeView, self).get_queryset()
         else:
             following = self.request.user.following.all()
-            queryset = chain()
-            for user in following:
-                queryset = chain(queryset,user.links.all())
+            if following is None:
+                queryset = super(HomeView, self).get_queryset()
+            else:
+                queryset = chain()
+                for user in following:
+                    queryset = chain(queryset,user.links.all())
         return sorted(queryset, key=lambda instance: instance.created_at)
 
     def get_context_data(self, **kwargs):
