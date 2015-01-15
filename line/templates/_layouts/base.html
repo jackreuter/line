@@ -11,8 +11,9 @@
       {% block page_content %}{% endblock %}
       <a href="/logout/">LOGOUT</a>
       <a href='{{ user.get_profile_page_url }}'>PROFILE</a>
+      <a href='/links/new/'>LINK</a>
     </div>
   </body>
 </html>
-<a>Logged in as {{ user.name }}</a>
+<p>Logged in as {{ user.name }}</p>
 
