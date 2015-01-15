@@ -1,0 +1,18 @@
+{% extends '_layouts/base.html' %}
+
+{% block page_title %}Links | {% endblock %}
+
+{% block page_content %}
+<h2>{{ user_object.name }}<h2>
+
+<ul>
+  {% for link in link_list %}
+  <li><a href={{ link.url }}>{{ link.title }}</a> -- {{ link.updated_at }}</li>
+  {% empty %}
+  <li>This guy hasn't posted a single link.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
