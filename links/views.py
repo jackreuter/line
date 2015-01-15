@@ -10,6 +10,10 @@ class LinkNewView(FormView):
     form_class = LinkNewForm
     success_url = '/'
 
+    def get_success_url(self):
+        user_id = self.request.user.pk
+        return '/users/%s' % user_id
+
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.

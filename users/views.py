@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.views.generic import ListView
+from django.contrib.auth import authenticate, login
 
-from users.forms import UserCreationForm
+from users.forms import UserSignUpForm
 from users.models import User
 from links.models import Link
 
 class UserRegisterView(FormView):
     template_name = "users/user_register.html"
-    form_class = UserCreationForm
+    form_class = UserSignUpForm
 
     def get_success_url(self):
         user_id = self.request.user.pk
@@ -18,6 +19,10 @@ class UserRegisterView(FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.save()
+        print self.request.POST['email']
+        new_user = authenticate(username=self.request.POST['email'],
+                                password=self.request.POST['password1'])
+        login(self.request, new_user)
         return super(UserRegisterView, self).form_valid(form)
 
 class UserProfileView(ListView):
