@@ -31,8 +31,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     name = models.CharField(max_length=255, blank=True, default='')
     is_active = models.BooleanField(default=False)
+    following = models.ManyToManyField('self', related_name='following')
+    followers = models.ManyToManyField('self', related_name='followers')
     objects = UserManager()
-    
+
     USERNAME_FIELD = 'email'
 
     def get_full_name(self):
@@ -51,8 +53,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_superuser
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
-
-    favorite_animal = models.CharField(max_length=30, default="shitty pig")
     

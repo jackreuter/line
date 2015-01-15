@@ -5,7 +5,7 @@
 
 <ul>
   {% for link in link_list %}
-  <li><a href={{ link.url }}>{{ link.title }}</a> -- posted by {{ link.posted_by.name }} at {{ link.updated_at }}</li>
+  <li><a href={{ link.url }}>{{ link.title }}</a> -- posted by <a href={{ link.posted_by.get_profile_page_url }}>{{ link.posted_by.name }}</a> at {{ link.updated_at }}</li>
   {% empty %}
   <li>No links!</li>
   {% endfor %}

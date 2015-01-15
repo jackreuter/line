@@ -4,6 +4,8 @@ from django.shortcuts import render_to_response
 from django.views.generic import TemplateView
 from django.views.generic import ListView
 
+from itertools import chain
+
 from users.models import User
 from links.models import Link
 
@@ -20,8 +22,14 @@ class HomeView(ListView):
     context_object_name = 'link_list'
 
     def get_queryset(self):
-        queryset = super(HomeView, self).get_queryset()
-        return queryset
+        if self.request.user.is_anonymous():
+            queryset = super(HomeView, self).get_queryset()
+        else:
+            following = self.request.user.following.all()
+            queryset = chain()
+            for user in following:
+                queryset = chain(queryset,user.links.all())
+        return sorted(queryset, key=lambda instance: instance.created_at)
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)

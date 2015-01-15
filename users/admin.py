@@ -17,7 +17,8 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': (
             'email', 'name', 'password', 'is_superuser', 'is_active'
         )}),
-        ('Groups', {'fields': ('groups',)})
+        ('Relationships', {'fields': ('followers', 'following',)}),
+        
     )
 
     add_fieldsets = (
