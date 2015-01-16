@@ -17,7 +17,7 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': (
             'email', 'name', 'password', 'is_superuser', 'is_active'
         )}),
-        ('Relationships', {'fields': ('followers', 'following',)}),
+#        ('Following', {'fields': ('following',)}),
         
     )
 
