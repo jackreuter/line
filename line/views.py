@@ -32,7 +32,7 @@ class HomeView(ListView):
                 queryset = chain()
                 for user in following:
                     queryset = chain(queryset,user.links.all())
-        return sorted(queryset, key=lambda instance: instance.created_at)
+        return sorted(queryset, key=lambda instance: -instance.created_at)
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
