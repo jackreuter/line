@@ -3,7 +3,13 @@
 {% block page_title %}Links | {% endblock %}
 
 {% block page_content %}
+
 <h2>{{ user_object.name }}<h2>
+
+<form action="#" method="get">
+  <input type="submit" class="btn" value="FOLLOW" name="follow-button">
+  <input type="submit" class="btn" value="UNFOLLOW" name="unfollow-button">
+</form>
 
 <ul>
   {% for link in link_list %}
@@ -16,3 +22,4 @@
 
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+

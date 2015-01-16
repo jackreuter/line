@@ -41,3 +41,19 @@ class UserProfileView(ListView):
         user = User.objects.get(pk=self.kwargs['pk'])
         context['user_object'] = user
         return context
+
+    def render_to_response(self, context):
+        if (self.request.GET.get('follow-button')):
+            if not self.request.user.is_anonymous():
+                user = User.objects.get(pk=self.kwargs['pk'])
+                self.request.user.following.add(user)
+        if (self.request.GET.get('unfollow-button')):
+            if not self.request.user.is_anonymous():
+                user = User.objects.get(pk=self.kwargs['pk'])
+                self.request.user.following.remove(user)
+        return super(UserProfileView, self).render_to_response(context)
+
+
+
+
+

@@ -31,8 +31,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     name = models.CharField(max_length=255, blank=True, default='')
     is_active = models.BooleanField(default=False)
-    following = models.ManyToManyField('self', related_name='following')
-    followers = models.ManyToManyField('self', related_name='followers')
+    following = models.ManyToManyField('self', related_name='followers')
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
