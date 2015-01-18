@@ -2,12 +2,13 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.template.defaultfilters import slugify
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, name='', password=''):
-        if not email:
-            raise ValueError('Users must have an email address')
-
+    def create_user(self, email, name, password=''):
+        if not name:
+            raise ValueError('Users must have a name')
+            
         user = self.model(
             email=self.normalize_email(email),
             name=name
@@ -18,7 +19,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password, name=''):
+    def create_superuser(self, name, password, email=''):
         user = self.create_user(email, name, password)
         user.is_active = True
         user.is_admin = True
@@ -29,12 +30,13 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
-    name = models.CharField(max_length=255, blank=True, default='')
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, unique=True)
     is_active = models.BooleanField(default=False)
     following = models.ManyToManyField('self', related_name='followers')
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'name'
 
     def get_full_name(self):
         return self.name if self.name else self.email
@@ -43,10 +45,15 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     def __unicode__(self):
-        return self.email
+        return self.name
 
     def get_profile_page_url(self):
-        return '/users/%s' % self.pk
+        return '/users/%s' % self.slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(User, self).save(*args, **kwargs)
 
     @property
     def is_staff(self):

@@ -12,15 +12,15 @@ class UserRegisterView(FormView):
     form_class = UserSignUpForm
 
     def get_success_url(self):
-        user_id = self.request.user.pk
-        return '/users/%s' % user_id
+        user_slug = self.request.user.slug
+        return '/users/%s' % user_slug
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.save()
         print self.request.POST['email']
-        new_user = authenticate(username=self.request.POST['email'],
+        new_user = authenticate(username=self.request.POST['name'],
                                 password=self.request.POST['password1'])
         login(self.request, new_user)
         return super(UserRegisterView, self).form_valid(form)
@@ -32,24 +32,24 @@ class UserProfileView(ListView):
 
     def get_queryset(self):
         queryset = super(UserProfileView, self).get_queryset()
-        user = User.objects.get(pk=self.kwargs['pk'])
+        user = User.objects.get(slug=self.kwargs['slug'])
         queryset = queryset.filter(posted_by=user)
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data(**kwargs)
-        user = User.objects.get(pk=self.kwargs['pk'])
+        user = User.objects.get(slug=self.kwargs['slug'])
         context['user_object'] = user
         return context
 
     def render_to_response(self, context):
         if (self.request.GET.get('follow-button')):
             if not self.request.user.is_anonymous():
-                user = User.objects.get(pk=self.kwargs['pk'])
+                user = User.objects.get(slug=self.kwargs['slug'])
                 self.request.user.following.add(user)
         if (self.request.GET.get('unfollow-button')):
             if not self.request.user.is_anonymous():
-                user = User.objects.get(pk=self.kwargs['pk'])
+                user = User.objects.get(slug=self.kwargs['slug'])
                 self.request.user.following.remove(user)
         return super(UserProfileView, self).render_to_response(context)
 

@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
 
     fieldsets = (
         (None, {'fields': (
-            'email', 'name', 'password', 'is_superuser', 'is_active'
+            'email', 'name', 'slug', 'is_superuser', 'is_active'
         )}),
 #        ('Following', {'fields': ('following',)}),
         
