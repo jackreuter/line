@@ -1,14 +1,27 @@
 {% extends "_layouts/base.html" %}
 
 {% block page_content %}
-<h2>HOME<h2>
-
-<ul>
-  {% for link in link_list %}
-  <li><a href={{ link.url }}>{{ link.title }}</a> -- posted by <a href={{ link.posted_by.get_profile_page_url }}>{{ link.posted_by.name }}</a> at {{ link.updated_at }}</li>
-  {% empty %}
-  <li>No links!</li>
-  {% endfor %}
-</ul>
+      {% for link in link_list %}
+			<div class="media">
+        <div class="span4">
+				  <a href={{ link.url }} class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt=""></a>
+				  <div class="media-body">
+					  <h4 class="media-heading">
+						  {{ link.title }}
+					  </h4> {{ link.url }}
+				  </div>
+			  </div>
+        <div class="span">
+          <div><button>LIKE</button></div>
+          <div><button>COMMENT</button></div>
+          <div><button>REPOST</button></div>
+        </div>
+      </div>
+      {% empty %}
+      <li>No links!</li>
+      {% endfor %}
 {% endblock %}
+
+<style>
+</style>
 

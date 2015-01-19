@@ -4,6 +4,8 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.template.defaultfilters import slugify
 
+from links.models import Link
+
 class UserManager(BaseUserManager):
     def create_user(self, email, name, password=''):
         if not name:
@@ -34,6 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     slug = models.SlugField(max_length=255, unique=True)
     is_active = models.BooleanField(default=False)
     following = models.ManyToManyField('self', related_name='followers')
+    likes = models.ManyToManyField(Link, related_name='liked_by')
     objects = UserManager()
 
     USERNAME_FIELD = 'name'
