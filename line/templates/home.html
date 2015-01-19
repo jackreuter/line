@@ -1,9 +1,11 @@
 {% extends "_layouts/base.html" %}
 
+<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+
 {% block page_content %}
       {% for link in link_list %}
 			<div class="media">
-        <div class="span4">
+        <div class="span4">aaaa
 				  <a href={{ link.url }} class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt=""></a>
 				  <div class="media-body">
 					  <h4 class="media-heading">

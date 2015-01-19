@@ -17,13 +17,11 @@ class UserManager(BaseUserManager):
         )
 
         user.set_password(password)
-        user.is_active=True
         user.save(using=self._db)
         return user
 
     def create_superuser(self, name, password, email=''):
         user = self.create_user(email, name, password)
-        user.is_active = True
         user.is_admin = True
         user.is_superuser = True
         user.save(using=self._db)
@@ -34,7 +32,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     likes = models.ManyToManyField(Link, related_name='liked_by')
     objects = UserManager()
@@ -52,6 +50,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_profile_page_url(self):
         return '/users/%s' % self.slug
+
+    def get_recommended_user(self):
+        recommended_users = []
+        for link in self.likes.all():
+            for related_user in link.liked_by.all():
+                if related_user is not self:
+                    recommended_users.append(related_user)
+        return User.objects.get(pk=1)
 
     def save(self, *args, **kwargs):
         if not self.slug:

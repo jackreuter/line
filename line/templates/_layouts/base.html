@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -79,21 +79,36 @@
 
 		<div class="col-md-3 column">
 			<div class="list-group">
-				 <a href="#" class="list-group-item active">Home</a>
-				<div class="list-group-item">
-					List header
-				</div>
+				 <a class="list-group-item active">Recommended Users</a>
+
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">
-						List group item heading
+						{{ user.get_recommended_user }}
 					</h4>
 					<p class="list-group-item-text">
 						...
 					</p>
 				</div>
+
 				<div class="list-group-item">
-					<span class="badge">14</span>Help
-				</div> <a class="list-group-item active"><span class="badge">14</span>Help</a>
+					<h4 class="list-group-item-heading">
+						{{ user.get_recommended_user }}
+					</h4>
+					<p class="list-group-item-text">
+						...
+					</p>
+				</div>
+
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">
+						{{ user.get_recommended_user }}
+					</h4>
+					<p class="list-group-item-text">
+						...
+					</p>
+				</div>
+
+				<a class="list-group-item active"><span class="badge">14</span>Help</a>
 			</div>
 		</div>
 	</div>
