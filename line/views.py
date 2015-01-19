@@ -37,3 +37,19 @@ class HomeView(ListView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         return context
+
+    def render_to_response(self, context):
+        if ("like-button" in self.request.GET.keys()[0]):
+            link_id = int(self.request.GET.keys()[0][-1:])
+            if not self.request.user.is_anonymous():
+                user = self.request.user
+                link = Link.objects.get(pk=link_id)
+                self.request.user.likes.add(link)
+        if ("unlike-button" in self.request.GET.keys()[0]):
+            link_id = int(self.request.GET.keys()[0][-1:])
+            if not self.request.user.is_anonymous():
+                user = self.request.user
+                link = Link.objects.get(pk=link_id)
+                self.request.user.likes.remove(link)
+        return super(HomeView, self).render_to_response(context)
+

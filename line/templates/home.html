@@ -12,9 +12,10 @@
 				  </div>
 			  </div>
         <div class="span">
-          <div><button>LIKE</button></div>
-          <div><button>COMMENT</button></div>
-          <div><button>REPOST</button></div>
+          <form>
+            <div><input type="submit" class="btn" value="LIKE" name={{ link.get_like_button_name }}></div>
+            <div><input type="submit" class="btn" value="UNLIKE" name={{ link.get_unlike_button_name }}></div>
+          </form>
         </div>
       </div>
       {% empty %}
