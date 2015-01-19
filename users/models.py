@@ -3,6 +3,7 @@ from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.conf import settings
 
 from links.models import Link
 
@@ -35,6 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     likes = models.ManyToManyField(Link, related_name='liked_by')
+    image = models.ImageField(default=settings.STATIC_URL+"img/rick.jpg")
     objects = UserManager()
 
     USERNAME_FIELD = 'name'
@@ -51,13 +53,22 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_profile_page_url(self):
         return '/users/%s' % self.slug
 
-    def get_recommended_user(self):
+    def get_recommended_users(self):
         recommended_users = []
         for link in self.likes.all():
             for related_user in link.liked_by.all():
                 if related_user is not self:
                     recommended_users.append(related_user)
-        return User.objects.get(pk=1)
+        while len(recommended_users) < 3:
+            recommended_users.append(User.objects.get(pk=1))
+        return recommended_users
+
+    def get_recommended_user_a(self):
+        return self.get_recommended_users()[0]
+    def get_recommended_user_b(self):
+        return self.get_recommended_users()[1]
+    def get_recommended_user_c(self):
+        return self.get_recommended_users()[2]
 
     def save(self, *args, **kwargs):
         if not self.slug:

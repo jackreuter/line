@@ -55,9 +55,17 @@
 						</li>
 						<li class="divider">
 						</li>
+
+{% if not user.is_anonymous %}
 						<li>
 							<a href="/logout/">Logout</a>
 						</li>
+{% else %}
+            <li>
+              <a href="/login/">Login</a>
+            </li>
+{% endif %}
+
 					</ul>
 				</li>
 				<li>
@@ -83,7 +91,7 @@
 
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">
-						{{ user.get_recommended_user }}
+						<a href={{ user.get_recommended_user_a.get_profile_page_url }}>{{ user.get_recommended_user_a }}</a>
 					</h4>
 					<p class="list-group-item-text">
 						...
@@ -92,7 +100,7 @@
 
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">
-						{{ user.get_recommended_user }}
+						<a href={{ user.get_recommended_user_b.get_profile_page_url }}>{{ user.get_recommended_user_b }}</a>
 					</h4>
 					<p class="list-group-item-text">
 						...
@@ -101,7 +109,7 @@
 
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">
-						{{ user.get_recommended_user }}
+						<a href={{ user.get_recommended_user_c.get_profile_page_url }}>{{ user.get_recommended_user_c }}</a>
 					</h4>
 					<p class="list-group-item-text">
 						...

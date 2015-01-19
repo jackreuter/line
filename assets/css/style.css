@@ -1,3 +1,7 @@
 body {
     background-color: #DCDCDC;
 }
+
+a.list-group-item.active {
+    background-color: black;
+}
