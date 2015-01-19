@@ -7,14 +7,29 @@
 				  <a href={{ link.url }} class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt=""></a>
 				  <div class="media-body">
 					  <h4 class="media-heading">
-						  {{ link.title }}
+						  {{ link.title }} posted by {{ link.posted_by }} from {{ link.reposted_from.posted_by }}
 					  </h4> {{ link.url }}
 				  </div>
 			  </div>
         <div class="span">
-          <form>
-            <div><input type="submit" class="btn" value="LIKE" name={{ link.get_like_button_name }}></div>
-            <div><input type="submit" class="btn" value="UNLIKE" name={{ link.get_unlike_button_name }}></div>
+          <form action="#" method="get">
+
+{% if link not in user.likes.all %}
+            <div>
+              {{ link.liked_by.all.count }}
+              <button type="submit" class="btn btn-default" name={{ link.get_like_button_name }}><span class="glyphicon glyphicon-heart-empty"></span></button>
+            </div> 
+{% else %}
+            <div>
+              {{ link.liked_by.all.count }}
+              <button type="submit" class="btn btn-default" name={{ link.get_unlike_button_name }}><span class="glyphicon glyphicon-heart"></span></button>
+            </div>
+{% endif %}
+            <div>
+              {{ link.reposts.all.count }}
+              <button type="submit" class="btn btn-default" name={{ link.get_repost_button_name }}><span class="glyphicon glyphicon-retweet"></span></button>
+            </div>
+
           </form>
         </div>
       </div>

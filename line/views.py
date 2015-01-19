@@ -39,17 +39,20 @@ class HomeView(ListView):
         return context
 
     def render_to_response(self, context):
-        if ("like-button" in self.request.GET.keys()[0]):
-            link_id = int(self.request.GET.keys()[0][-1:])
-            if not self.request.user.is_anonymous():
-                user = self.request.user
-                link = Link.objects.get(pk=link_id)
-                self.request.user.likes.add(link)
-        if ("unlike-button" in self.request.GET.keys()[0]):
-            link_id = int(self.request.GET.keys()[0][-1:])
-            if not self.request.user.is_anonymous():
-                user = self.request.user
-                link = Link.objects.get(pk=link_id)
-                self.request.user.likes.remove(link)
+        if bool(self.request.GET):
+            if ("like-button" in self.request.GET.keys()[0]):
+                link_id = int(self.request.GET.keys()[0][-1:])
+                if not self.request.user.is_anonymous():
+                    link = Link.objects.get(pk=link_id)
+                    self.request.user.likes.add(link)
+            if ("unlike-button" in self.request.GET.keys()[0]):
+                link_id = int(self.request.GET.keys()[0][-1:])
+                if not self.request.user.is_anonymous():
+                    link = Link.objects.get(pk=link_id)
+                    self.request.user.likes.remove(link)
+            if ("repost-button" in self.request.GET.keys()[0]):
+                link_id = int(self.request.GET.keys()[0][-1:])
+                if not self.request.user.is_anonymous():
+                    link = Link.objects.get(pk=link_id)
+                    Link.objects.create_repost(link, self.request.user)
         return super(HomeView, self).render_to_response(context)
-

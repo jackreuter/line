@@ -11,11 +11,19 @@ class LinkNewView(FormView):
     success_url = '/'
 
     def get_success_url(self):
-        user_slug = self.request.user.slug
-        return '/users/%s' % user_slug
+        if not self.request.user.is_anonymous():
+            user_slug = self.request.user.slug
+            return '/users/%s' % user_slug
+        else:
+            return '/home/'
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
-        form.save(self.request.user)
+        if not self.request.user.is_anonymous():
+            form.save(self.request.user)
+        else: 
+            print "Must be logged in to post links"
         return super(LinkNewView, self).form_valid(form)
+
+    
