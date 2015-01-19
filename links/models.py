@@ -13,6 +13,12 @@ class Link(models.Model):
     class Meta:
         ordering = ['-created_at', 'title']
 
+    def get_like_button_name(self):
+        return "like-button-%s" % self.pk
+
+    def get_unlike_button_name(self):
+        return "unlike-button-%s" % self.pk
+
     def __unicode__(self):
         return self.title
 

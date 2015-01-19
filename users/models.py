@@ -35,7 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     is_active = models.BooleanField(default=False)
-    following = models.ManyToManyField('self', related_name='followers')
+    following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     likes = models.ManyToManyField(Link, related_name='liked_by')
     objects = UserManager()
 
