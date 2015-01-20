@@ -3,4 +3,5 @@ dj-database-url==0.3.0
 Django==1.7.3
 django-searchbar==0.1.6
 django-storages==1.1.8
+Pillow==2.7.0
 psycopg2==2.5.4

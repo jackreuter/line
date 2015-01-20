@@ -5,3 +5,11 @@ body {
 a.list-group-item.active {
     background-color: black;
 }
+
+.nav.nav-tabs{
+    background-color: black;
+}
+
+.media {
+    background-color: white;
+}
