@@ -4,11 +4,11 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .models import User
-from .forms import UserCreationForm, UserChangeForm
+from .forms import UserSignUpForm, UserChangeForm
 
 class CustomUserAdmin(UserAdmin):
     form = UserChangeForm
-    add_form = UserCreationForm
+    add_form = UserSignUpForm
 
     list_display = ('email', 'name', 'is_superuser')
     list_filter = ('is_superuser',)

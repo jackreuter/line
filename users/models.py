@@ -36,15 +36,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     likes = models.ManyToManyField(Link, related_name='liked_by')
-    image = models.ImageField(default=settings.MEDIA_URL+"img/profile_pics/rick.jpg")
+    image = models.ImageField(upload_to=settings.MEDIA_URL+"img/profile_pics/", default=settings.MEDIA_URL+"img/profile_pics/rick.jpg")
     objects = UserManager()
 
     USERNAME_FIELD = 'name'
 
-    def get_full_name(self):
-        return self.name if self.name else self.email
-        
     def get_short_name(self):
+        return self.name
+
+    def get_long_name(self):
         return self.email
 
     def __unicode__(self):

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.views.generic import ListView
 from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
 
 from users.forms import UserSignUpForm
 from users.models import User
@@ -18,10 +19,9 @@ class UserRegisterView(FormView):
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
-        form.save()
-        print self.request.POST['email']
-        new_user = authenticate(username=self.request.POST['name'],
-                                password=self.request.POST['password1'])
+
+        form = UserSignUpForm(self.request.POST, self.request.FILES)
+        new_user = authenticate(username=self.request.POST['name'], password=self.request.POST['password1'])
         login(self.request, new_user)
         return super(UserRegisterView, self).form_valid(form)
 

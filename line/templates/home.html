@@ -1,6 +1,8 @@
 {% extends "_layouts/base.html" %}
 
-<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
+{% endblock %}
 
 {% block page_content %}
       {% for link in link_list %}
