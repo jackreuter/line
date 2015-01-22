@@ -64,6 +64,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'users',
     'links',
+    'notifications',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -110,7 +111,6 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     root("templates"),
 )
-
 
 # S3 config
 AWS_STORAGE_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')

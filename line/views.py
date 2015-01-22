@@ -8,6 +8,7 @@ from itertools import chain
 
 from users.models import User
 from links.models import Link
+from notifications.models import Notification
 
 def logout_page(request):
     logout(request)
@@ -55,4 +56,7 @@ class HomeView(ListView):
                 if not self.request.user.is_anonymous():
                     link = Link.objects.get(pk=link_id)
                     Link.objects.create_repost(link, self.request.user)
+
+                    repost_notification = Notification.objects.create_notification('Repost', link.posted_by, self.request.user)
+
         return super(HomeView, self).render_to_response(context)

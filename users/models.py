@@ -59,6 +59,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_profile_page_url(self):
         return '/users/%s' % self.slug
 
+    def get_active_notification_count(self):
+        return len(self.notifications.filter(is_active=True))
+
     def get_recommended_users(self):
         recommended_users = []
         for link in self.likes.all():

@@ -43,6 +43,13 @@
 				<li>
 					<a href="/home/">Home</a>
 				</li>
+
+{% if not user.is_anonymous %}
+        <li>
+          <a>{{ user.get_active_notification_count }}</a>
+        </li>
+{% endif %}
+
 				<li class="dropdown pull-right">
 					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{ user.name }}<strong class="caret"></strong></a>
 					<ul class="dropdown-menu">
