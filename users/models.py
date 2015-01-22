@@ -36,7 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     likes = models.ManyToManyField(Link, related_name='liked_by')
-    image = models.ImageField(upload_to=settings.MEDIA_URL+"img/profile_pics/", default=settings.MEDIA_URL+"img/profile_pics/rick.jpg")
+    image = models.ImageField(upload_to="img/profile_pics/")
     objects = UserManager()
 
     USERNAME_FIELD = 'name'
@@ -46,6 +46,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_long_name(self):
         return self.email
+
+    def get_image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+        else:
+            return settings.MEDIA_URL+'img/profile_pics/rick.jpg'
 
     def __unicode__(self):
         return self.name

@@ -20,7 +20,7 @@ class UserRegisterView(FormView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
 
-        form = UserSignUpForm(self.request.POST, self.request.FILES)
+        form.save()
         new_user = authenticate(username=self.request.POST['name'], password=self.request.POST['password1'])
         login(self.request, new_user)
         return super(UserRegisterView, self).form_valid(form)
