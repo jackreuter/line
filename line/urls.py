@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^logout/', logout_page),
     
     url(r'^users/', include("users.urls", namespace="users")),
-    url(r'^links/', include("links.urls", namespace="links"))
+    url(r'^links/', include("links.urls", namespace="links")),
+    url(r'^notifications/', include("notifications.urls", namespace="notifications"))
 )

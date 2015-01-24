@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from users.forms import UserSignUpForm
 from users.models import User
 from links.models import Link
+from notifications.models import Notification
 
 class UserRegisterView(FormView):
     template_name = "users/user_register.html"
@@ -47,10 +48,14 @@ class UserProfileView(ListView):
             if not self.request.user.is_anonymous():
                 user = User.objects.get(slug=self.kwargs['slug'])
                 self.request.user.following.add(user)
+                
+                follow_notification = Notification.objects.create_notification('is following', user, self.request.user)
+
         if (self.request.GET.get('unfollow-button')):
             if not self.request.user.is_anonymous():
                 user = User.objects.get(slug=self.kwargs['slug'])
                 self.request.user.following.remove(user)
+
         return super(UserProfileView, self).render_to_response(context)
 
 

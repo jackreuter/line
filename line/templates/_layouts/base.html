@@ -46,7 +46,7 @@
 
 {% if not user.is_anonymous %}
         <li>
-          <a>{{ user.get_active_notification_count }}</a>
+          <a href='/notifications'>{{ user.get_active_notification_count }}</a>
         </li>
 {% endif %}
 
@@ -96,7 +96,7 @@
 
 		<div class="col-md-3 column">
 			<div class="list-group">
-				 <a class="list-group-item active">Recommended Users</a>
+				 <a class="list-group-item active">Suggested Users</a>
 
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">

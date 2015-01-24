@@ -46,6 +46,9 @@ class HomeView(ListView):
                 if not self.request.user.is_anonymous():
                     link = Link.objects.get(pk=link_id)
                     self.request.user.likes.add(link)
+
+                    like_notification = Notification.objects.create_notification('likes', link.posted_by, self.request.user)
+
             if ("unlike-button" in self.request.GET.keys()[0]):
                 link_id = int(self.request.GET.keys()[0][-1:])
                 if not self.request.user.is_anonymous():
@@ -57,6 +60,6 @@ class HomeView(ListView):
                     link = Link.objects.get(pk=link_id)
                     Link.objects.create_repost(link, self.request.user)
 
-                    repost_notification = Notification.objects.create_notification('Repost', link.posted_by, self.request.user)
+                    repost_notification = Notification.objects.create_notification('reposted', link.posted_by, self.request.user)
 
         return super(HomeView, self).render_to_response(context)

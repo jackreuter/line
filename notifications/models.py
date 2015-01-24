@@ -25,6 +25,10 @@ class Notification(models.Model):
     class Meta:
         ordering = ['-created_at', 'title']
 
+    def set_inactive(self):
+        self.is_active=False
+        self.save()
+
     def __unicode__(self):
         return self.title
 
