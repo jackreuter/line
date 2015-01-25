@@ -13,3 +13,7 @@ a.list-group-item.active {
 .media {
     background-color: white;
 }
+
+#notifications {
+    color: red;
+}

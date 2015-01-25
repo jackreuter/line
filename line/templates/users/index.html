@@ -1,0 +1,18 @@
+{% extends '_layouts/base.html' %}
+
+{% block page_title %}Users | {% endblock %}
+
+{% block page_content %}
+
+<ul>
+  {% for user in user_list %}
+  <li><a href={{ user.get_profile_page_url }}>{{ user.name }}</a> -- {{ user.created_at }}</li>
+  {% empty %}
+  <li>No users.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+

@@ -58,7 +58,7 @@ class UserProfileView(ListView):
 
         return super(UserProfileView, self).render_to_response(context)
 
-
-
-
-
+class UsersIndexView(ListView):
+    model = User
+    template_name = "users/index.html"
+    context_object_name = 'user_list'

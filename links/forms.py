@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+from django.http import HttpResponse
 from django import forms
 
 from .models import Link
@@ -18,3 +19,7 @@ class LinkNewForm(forms.ModelForm):
         if commit:
             link.save()
         return link
+
+    def form_valid(self, form):
+        form.save()
+        return HttpResponse(render_to_string('/links/link_new_success.html'))

@@ -1,8 +1,25 @@
 {% extends "_layouts/base.html" %}
 
 {% block page_content %}
-<form action="" method="post">{% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Add link to your line" />
-</form>
+
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+      <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+    </div>
+    <div class="modal-body">
+      <h3>Modal Body</h3>
+      <form action="" method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add link to your line" />
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-primary" value="save">Save changes</button>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

@@ -41,12 +41,12 @@
 		<div class="col-md-12 column">
 			<ul class="nav nav-tabs">
 				<li>
-					<a href="/home/">Home</a>
+					<a class='btn btn-lg' href="/home/">Home</a>
 				</li>
 
 {% if not user.is_anonymous %}
         <li>
-          <a href='/notifications'>{{ user.get_active_notification_count }}</a>
+          <a id='notifications' class='btn btn-lg' href='/notifications'>{{ user.get_active_notification_count }}</a>
         </li>
 {% endif %}
 
@@ -78,7 +78,7 @@
 					</ul>
 				</li>
 				<li>
-					 <a href="#" class="btn btn-lg btn-success"
+					 <a href='/links/new/' class="btn btn-lg btn-success"
 	   				data-toggle="modal"
 	   				data-target="#basicModal">LINK</a>
 				</li>
@@ -130,23 +130,10 @@
 		</div>
 	</div>
 </div>
+
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <h3>Modal Body</h3>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-    </div>
-  </div>
 </div>
+
 </body>
 </html>
 
