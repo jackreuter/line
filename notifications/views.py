@@ -11,9 +11,7 @@ class NotificationsIndexView(ListView):
     context_object_name = 'notification_list'
 
     def get_queryset(self):
-        queryset = super(NotificationsIndexView, self).get_queryset()
-        if not self.request.user.is_anonymous:
-            queryset = queryset.filter(to_user=self.request.user)
+        queryset = Notification.objects.filter(to_user=self.request.user)
         return queryset
 
     def get_context_data(self, **kwargs):
