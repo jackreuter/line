@@ -20,13 +20,3 @@ class LinkNewForm(forms.ModelForm):
             link.save()
         return link
 
-    def form_valid(self, form):
-        link = super(LinkNewForm, self).save(commit=False)
-        link.posted_by=user
-
-        if commit:
-            link.save()
-        return link
-
-        form.save()
-        return HttpResponse(render_to_string('/links/link_new_success.html'))

@@ -24,6 +24,6 @@ class LinkNewView(FormView):
             form.save(self.request.user)
         else: 
             print "Must be logged in to post links"
-#        return super(LinkNewView, self).form_valid(form)
-        return HttpResponse(render_to_string('/links/link_new_success.html'))
+        return super(LinkNewView, self).form_valid(form)
+
     
