@@ -5,38 +5,53 @@
 {% endblock %}
 
 {% block page_content %}
-      {% for link in link_list %}
+      {% for post in post_list %}
+
+{% if post.is_link %}
 			<div class="media">
         <div class="span4">
-				  <a href={{ link.url }} class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt=""></a>
+				  <a href={{ post.url }} class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt=""></a>
 				  <div class="media-body">
 					  <h4 class="media-heading">
-						  {{ link.title }} posted by {{ link.posted_by }} from {{ link.reposted_from.posted_by }}
-					  </h4> {{ link.url }}
+						  {{ post.title }} posted by {{ post.posted_by }}
+					  </h4> {{ post.url }}
 				  </div>
 			  </div>
         <div class="span">
           <form action="#" method="get">
 
-{% if link not in user.likes.all %}
             <div>
-              {{ link.liked_by.all.count }}
-              <button type="submit" class="btn btn-default" name={{ link.get_like_button_name }}><span class="glyphicon glyphicon-heart-empty"></span></button>
-            </div> 
-{% else %}
-            <div>
-              {{ link.liked_by.all.count }}
-              <button type="submit" class="btn btn-default" name={{ link.get_unlike_button_name }}><span class="glyphicon glyphicon-heart"></span></button>
-            </div>
-{% endif %}
-            <div>
-              {{ link.reposts.all.count }}
-              <button type="submit" class="btn btn-default" name={{ link.get_repost_button_name }}><span class="glyphicon glyphicon-retweet"></span></button>
+              {{ post.reposts.all.count }}
+              <button type="submit" class="btn btn-default" name={{ post.get_repost_button_name }}><span class="glyphicon glyphicon-retweet"></span></button>
             </div>
 
           </form>
         </div>
       </div>
+
+{% else %}
+			<div class="media">
+        <div class="span4">
+				  <a href={{ post.original.url }} class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt=""></a>
+				  <div class="media-body">
+					  <h4 class="media-heading">
+						  {{ post.original.title }} reposted by {{ post.posted_by }} from {{ post.original.posted_by }}
+					  </h4> {{ post.original.url }}
+				  </div>
+			  </div>
+        <div class="span">
+          <form action="#" method="get">
+
+            <div>
+              <button type="submit" class="btn btn-default" name={{ post.get_repost_button_name }}><span class="glyphicon glyphicon-retweet"></span></button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+{% endif %}
+
       {% empty %}
       <li>No links!</li>
       {% endfor %}
