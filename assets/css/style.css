@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
 
 body {
-    background-color: #FCFCFC
+    background-color: #FCFCFC;
     font-family: 'Oswald', sans-serif;
 }
 
@@ -33,6 +33,7 @@ h4 {
 
 .centered {
   text-align: center;
+<<<<<<< HEAD
 }
 
 .post {
@@ -76,6 +77,47 @@ padding-bottom: -20px;
 
   padding-bottom:1000px;
 }
+=======
+}
+
+.post {
+  display: block;
+  padding-top:15px;
+  padding-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.left {
+  text-align: left;
+}
+
+.nopadding {
+margin-bottom: -20px;
+margin-top: 10px;
+padding-bottom: -20px;
+
+}
+
+.resize {
+    width:50px;
+    height:50px;
+}
+
+.resizeicon {
+    width:33px;
+    height:33px;
+    margin-bottom: -10px;
+    margin-top: -10px;
+}
+
+.eyeframe {
+  position:absolute;
+  margin-top: -100px;
+}
+
+>>>>>>> 81b58b601aada364057888987a9a8f7c950e1bfd
 
 
 

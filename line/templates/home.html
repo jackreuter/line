@@ -5,15 +5,11 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
 {% endblock %}
 {% block page_content %}
-      {% for link in link_list %}
 
-        
-      <div id="content" ></div>
-
-     <div class="container">
-
-
-       <div class="media">
+      {% for link in post_list %}
+      <div id="content"></div>
+      <div class="container">
+ 		    <div class="media">
 
     <!-- this is for the plus, when you click it, the link opens  ** need to center this --> 
           <a href={{ link.url}} target='testing'>
@@ -21,27 +17,23 @@
           </a>
 
       <!-- organization of the post in the center --> 
-  <div class="col-sm-3">
-                            <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90"> 
-  </div>
 
-  <div class="col-sm-6">
-                                 <div class ="post" >
-
-
-                            <h1 class="centered">
-                              {{ link.title }} 
-                            </h1> 
-
+      <div class="col-md-6 col-md-offset-3 site">
+                      
+                     <!-- the post itself --> 
+				             <div class ="post" >
+                            <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90">
+                            <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
+					                  <h1 class="centered">
+						                  {{ link.title }} 
+					                  </h1> 
                              <h2 class="centered">
                              {{ link.posted_by }} posted by 
                              </h2>
-
-
                               <h4 class="centered">
                                {{ link.reposted_from.posted_by }} something
                               </h4>
-                      </div>
+				              </div>
 
                         <!-- progress bar; need to add counting variable -->
                       <div class="progress">
@@ -49,20 +41,19 @@
                                       Smoking HOT  
                       </div>
                       </div>
-        
 
+			</div>
+        <div class="span">
+          <form action="#" method="get">
+          </form>
+        </div>
       </div>
 
-   <div class="col-sm-3">
-       <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
-  </div>
-
+    </div>
 
       {% empty %}
       <li>No links!</li>
       {% endfor %}
-
-        
 
     {% endblock %}
 
