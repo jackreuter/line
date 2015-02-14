@@ -64,6 +64,118 @@
 
                       <ul class="nav navbar-nav navbar-right">
 
+<<<<<<< HEAD
+
+{% if not user.is_anonymous %}
+
+                        
+                        <li class="dropdown">
+
+                          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                          <img src="{{ STATIC_URL }}img/notifications.png" class="center-block resizeicon ">
+                          </a>
+
+                            <ul class="dropdown-menu"> 
+
+                                    {% for notification in notification_list %}                            
+                                    {% if "is following" in notification.title %}                              
+
+                                    <li>
+                                      <a href={{ notification.from_user.get_profile_page_url }}>  {{ notification.from_user }} {{ notification.title }} you
+                                      </a> 
+                                    </li>
+
+                                    <li>
+                                    <a href="#"> {{ user_object.name }}
+                                    </a>
+                                    </li>
+
+
+                                    {% else %}
+                                      <li>
+                                        <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} {{ notification.title }} your link</a> -- {{ notification.created_at }}
+                                      </li>
+                                    {% endif %}
+
+                                    <p hidden>{{ notification.set_inactive }}</p>
+                                    {% empty %}
+                                    <li>No notifications.</li>
+
+                                    {% endfor %}
+
+                            </ul>
+                         
+                        </li>
+
+{% endif %}
+
+
+
+                        <li class="dropdown pull-right">
+
+                         <a href="#" data-toggle="dropdown" class="dropdown-toggle"> 
+                          <img src="{{ STATIC_URL }}img/profile_icon.png" class="center-block resizeicon">
+                         </a>
+
+                    <ul class="dropdown-menu">
+
+                           <li>
+                        <a href={{ user.get_profile_page_url }}>{{ user.name }}
+                        </a>
+                         </li>
+                                 <li>
+                                         <a href="#">Another action</a>
+                                    </li>
+                                 <li>
+                                   <a href="#">Something else here</a>
+                                       </li>
+                                    <li class="divider">
+                                          </li>
+
+                                    {% if not user.is_anonymous %}
+                                      <li>
+                                      <a href="/logout/">Logout</a>
+                                      </li>
+                                        {% else %}
+                                         <li>
+                                     <a href="/login/">Login</a>
+                                      </li>
+                                      {% endif %}
+
+                                        </ul>
+                        </li>
+
+
+
+
+
+                        <li>
+           <a href='/links/new/' class="btn btn-lg btn-success">
+            <img src="{{ STATIC_URL }}img/Link.png" class="center-block resizeicon">
+          </a>
+        </li>
+                        
+                      
+                      </ul>
+                    </div>
+
+                  </div>
+                </nav>
+                <!-- navbar end -->
+	
+<div class="tocenter">
+
+
+
+{% block page_content %}
+
+
+{% endblock %}
+
+
+</div>
+
+=======
 
                         {% if not user.is_anonymous %}
 
@@ -135,6 +247,7 @@
 {% block page_content %}{% endblock %}
 </div>
 
+>>>>>>> c72c19abae5d3d2d7538cf6db2d950ce9255b73d
               		
 		</div>
 
