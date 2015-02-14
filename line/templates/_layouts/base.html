@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
   <meta charset="utf-8">
   <title>LINE</title>
@@ -7,26 +9,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
-	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
-	<!--script src="js/less-1.3.3.min.js"></script-->
-	<!--append  #!watch  to the browser URL, then refresh the page. -->
+	
+	
+<script src="js/less-1.3.3.min.js"></script>
+	
 
   <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
   <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-  <![endif]-->
+ 
 
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ STATIC_URL }}img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ STATIC_URL }}img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ STATIC_URL }}img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.png">
+
   
   {% block stylesheets %}{% endblock %}
 
@@ -35,107 +29,124 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
 </head>
 
+
 <body>
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<ul class="nav nav-tabs">
-				<li>
-					<a class='btn btn-lg' href="/home/">Home</a>
-				</li>
+
+
+<!-- navbar start -->
+                <!-- ================ -->
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
+                  <div class="container-fluid">
+
+                    <!-- Toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                      </button>
+                    </div>
+
+
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
+                      
+                      <ul class="nav navbar-nav navbar-left">
+
+                        <li>
+
+                          <a href="/home">
+                            <img src="{{ STATIC_URL }}img/logo.png" class="center-block resizeicon">
+                          </a>
+
+                        </li>
+
+                      </ul>
+
+
+                      <ul class="nav navbar-nav navbar-right">
+
+
+                        {% if not user.is_anonymous %}
+
+                        
+                        <li>
+
+                          <a href="/notifications">
+                          <img src="{{ STATIC_URL }}img/notifications.png" class="center-block resizeicon ">
+                          </a>
+                          {% endif %}
+
+                        </li>
+
+
+                        <li class="dropdown pull-right">
+
+                         <a href="#" data-toggle="dropdown" class="dropdown-toggle"> 
+                          <img src="{{ STATIC_URL }}img/profile_icon.png" class="center-block resizeicon">
+                         </a>
+
+                    <ul class="dropdown-menu">
+
+                           <li>
+                        <a href={{ user.get_profile_page_url }}>{{ user.name }}
+                        </a>
+                         </li>
+                                 <li>
+                                         <a href="#">Another action</a>
+                                    </li>
+                                 <li>
+                                   <a href="#">Something else here</a>
+                                       </li>
+                                    <li class="divider">
+                                          </li>
 
 {% if not user.is_anonymous %}
-        <li>
-          <a id='notifications' class='btn btn-lg' href='/notifications'>{{ user.get_active_notification_count }}</a>
-        </li>
-{% endif %}
-
-				<li class="dropdown pull-right">
-					 <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{ user.name }}<strong class="caret"></strong></a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href={{ user.get_profile_page_url }}>Profile</a>
-						</li>
-						<li>
-							<a href="#">Another action</a>
-						</li>
-						<li>
-							<a href="#">Something else here</a>
-						</li>
-						<li class="divider">
-						</li>
-
-{% if not user.is_anonymous %}
-						<li>
-							<a href="/logout/">Logout</a>
-						</li>
+            <li>
+              <a href="/logout/">Logout</a>
+            </li>
 {% else %}
             <li>
               <a href="/login/">Login</a>
             </li>
 {% endif %}
 
-					</ul>
-				</li>
-				<li>
-					 <a href='/links/new/' class="btn btn-lg btn-success">
-<!--	   				data-toggle="modal"
-	   				data-target="#basicModal"-->
-                                        LINK</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-2 column">
-		</div>
-		<div class="col-md-7 column">
+          </ul>
+        </li>
+
+                        <li>
+           <a href='/links/new/' class="btn btn-lg btn-success">
+            <img src="{{ STATIC_URL }}img/Link.png" class="center-block resizeicon">
+          </a>
+
+
+        </li>
+                        
+                      
+                      </ul>
+                    </div>
+
+                  </div>
+                </nav>
+                <!-- navbar end -->
+	
+<div class="tocenter">
+
+
 
 {% block page_content %}{% endblock %}
-		
+</div>
+
+              		
 		</div>
 
-		<div class="col-md-3 column">
-			<div class="list-group">
-				 <a class="list-group-item active">Suggested Users</a>
-
-				<div class="list-group-item">
-					<h4 class="list-group-item-heading">
-						<a href={{ user.get_recommended_user_a.get_profile_page_url }}>{{ user.get_recommended_user_a }}</a>
-					</h4>
-					<p class="list-group-item-text">
-						...
-					</p>
-				</div>
-
-				<div class="list-group-item">
-					<h4 class="list-group-item-heading">
-						<a href={{ user.get_recommended_user_b.get_profile_page_url }}>{{ user.get_recommended_user_b }}</a>
-					</h4>
-					<p class="list-group-item-text">
-						...
-					</p>
-				</div>
-
-				<div class="list-group-item">
-					<h4 class="list-group-item-heading">
-						<a href={{ user.get_recommended_user_c.get_profile_page_url }}>{{ user.get_recommended_user_c }}</a>
-					</h4>
-					<p class="list-group-item-text">
-						...
-					</p>
-				</div>
-
-				<a class="list-group-item active"><span class="badge">14</span>Help</a>
-			</div>
-		</div>
 	</div>
 </div>
 
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+
 
 </div>
 
-</body>
-</html>
 
+
+</body>
+
+</html>
