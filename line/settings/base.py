@@ -38,6 +38,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
     '.herokuapp.com',
+    '.myline.io',
 ]
 
 # database
