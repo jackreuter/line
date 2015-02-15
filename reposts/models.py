@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from links.models import Link
+from links.models import Link, LinkManager
 
 class RepostManager(models.Manager):
     def create_repost(self, original, posted_by, reposted_from=None):
@@ -23,6 +23,14 @@ class Repost(models.Model):
         
     class Meta:
         ordering = ['-created_at']
+
+    def get_hotness_percent(self):
+        lm = LinkManager()
+        maxh = lm.get_max_hotness()
+        if (maxh==0):
+            return 0
+        else:
+            return float(self.original.hotness) / float(maxh) * 100
 
     def is_link(self):
         return False

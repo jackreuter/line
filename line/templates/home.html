@@ -13,12 +13,12 @@
 
     <!-- this is for the plus, when you click it, the link opens  ** need to center this --> 
     <form action="#" method="get">
-    <button type="submit" class="btn btn-default" name={{ post.get_repost_button_name }}><span class="glyphicon glyphicon-retweet"></span></button>
-    <form>
     
-    <!--<a href={{ post.get_url }} target='testing'>
-      <img src="{{ STATIC_URL }}img/Plus.png" class="center-block resize nopadding">
-    </a>-->
+    <a>
+      <button class="btn btn-default center-block resize nopadding" name={{ post.get_repost_button_name }}>
+      </button>
+    </a>
+    <form>
 
     <!-- organization of the post in the center --> 
 
@@ -31,7 +31,7 @@
 
         {% if post.is_link %}
 				<h1 class="centered">
-					{{ post.title }} 
+					<a href={{ post.get_url }}>{{ post.title }}</a>
 				</h1> 
         <h2 class="centered">
           posted by {{ post.posted_by }} 
@@ -39,7 +39,7 @@
 
         {% else %}
      		<h1 class="centered">
-					{{ post.original.title }} 
+					<a href={{ post.get_url }}>{{ post.original.title }}</a>
 				</h1> 
         <h2 class="centered">
           reposted by {{ post.posted_by }}
@@ -52,10 +52,10 @@
 
       <!-- progress bar; need to add counting variable -->
       <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-          Smoking HOT  
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ post.get_hotness_percent }}%;">
         </div>
       </div>
+      {{ post.get_hotness_percent }} {{ post.hotness }}
 
 		</div>
     <div class="span">

@@ -15,6 +15,7 @@ class LinkNewForm(forms.ModelForm):
     def save(self, user, commit=True):
         link = super(LinkNewForm, self).save(commit=False)
         link.posted_by=user
+        link.hotness=0
 
         if commit:
             link.save()
