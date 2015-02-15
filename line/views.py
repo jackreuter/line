@@ -55,8 +55,9 @@ class HomeView(ListView):
                 repost_id = int(self.request.GET.keys()[0][21:])
                 if not self.request.user.is_anonymous():
                     repost = Repost.objects.get(pk=repost_id)
-                    Repost.objects.create_repost(repost.original, self.request.user)
+                    Repost.objects.create_repost(repost.original, self.request.user, repost)
 
                     repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
 
+            
         return super(HomeView, self).render_to_response(context)

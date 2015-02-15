@@ -29,6 +29,9 @@ class Link(models.Model):
     def is_link(self):
         return True
 
+    def get_url(self):
+        return self.url
+
     def get_repost_button_name(self):
         return "link-repost-button-%s" % self.pk
 
