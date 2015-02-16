@@ -6,68 +6,6 @@
 {% endblock %}
 {% block page_content %}
 
-<<<<<<< HEAD
-      {% for link in link_list %}
-
-        
-      <div id="content" ></div>
-
-     <div class="container">
-
-
-       <div class="media">
-
-    <!-- this is for the plus, when you click it, the link opens  ** need to center this --> 
-          <a href={{ link.url}} target='testing'>
-            <img src="{{ STATIC_URL }}img/Plus.png" class="center-block resize nopadding">
-          </a>
-
-      <!-- organization of the post in the center --> 
-  <div class="col-sm-3">
-                            <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90"> 
-  </div>
-
-
-
-
-
-
-  <div class="col-sm-6">
-                                 <div class ="post" >
-
-
-                            <h1 class="centered">
-                              {{ link.title }} 
-                            </h1> 
-
-                             <h2 class="centered">
-                             {{ link.posted_by }} posted by 
-                             </h2>
-
-
-                              <h4 class="centered">
-                               {{ link.reposted_from.posted_by }} something
-                              </h4>
-                      </div>
-
-                        <!-- progress bar; need to add counting variable -->
-                      <div class="progress">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                      Smoking HOT  
-                      </div>
-                      </div>
-        
-
-      </div>
-
-   <div class="col-sm-3">
-       <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
-  </div>
-
-    <div class="span">
-          <form action="#" method="get">
-          </form>
-=======
 {% for post in post_list %}
 
 <div id="content"></div>
@@ -116,12 +54,7 @@
       <!-- progress bar; need to add counting variable -->
       <div class="progress">
         <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ post.get_hotness_percent }}%;">
->>>>>>> f7aa4178ac2a639a7f73aa54b1e394481280337c
-        </div>
 
-
-      </div>
-<<<<<<< HEAD
     </div>
 
 
@@ -132,7 +65,6 @@
         
 
     {% endblock %}
-=======
       {{ post.get_hotness_percent }} {{ post.hotness }}
 
 		</div>
@@ -149,7 +81,6 @@
 {% endfor %}
 
 {% endblock %}
->>>>>>> f7aa4178ac2a639a7f73aa54b1e394481280337c
 
 <style>
 </style>
