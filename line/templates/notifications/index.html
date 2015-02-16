@@ -1,29 +1,21 @@
 {% extends '_layouts/base.html' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/notifications.css">
+{% endblock %}
 
 {% block page_title %}Notifications | {% endblock %}
 
 {% block page_content %}
+<div class="col-sm-2">
+<h1> 9:15 pm</h1>
+</div>
+<div class="col-sm-2">
+            <img src="{{ STATIC_URL }}img/profile_icon.png" class="center-block resize nopadding">
+</div>
 
-<h2>{{ user_object.name }}<h2>
-
-<ul>
-  {% for notification in notification_list %}
-
-  {% if "is following" in notification.title %}
-  <li><a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} {{ notification.title }} you</a> -- {{ notification.created_at }}</li>
-  {% else %}
-  <li><a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} {{ notification.title }} your link</a> -- {{ notification.created_at }}</li>
-  {% endif %}
-
-  <p hidden>{{ notification.set_inactive }}</p>
-  {% empty %}
-  <li>No notifications.</li>
-
-  {% endfor %}
-</ul>
-
+<div class="col-sm-8">
+<h3>Dag Reuter is following you.</h3>
+</div>
 {% endblock %}
-
-
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 

@@ -4,23 +4,114 @@
 
 {% block page_content %}
 
-<h2>{{ user_object.name }}<h2>
-<img src={{ user_object.get_image_url }}><img>
+	
+<h3 class="centered">
 
-<form action="#" method="get">
+  {{ user_object.name }}
+
+</h3>
+
+  <div class="centered">
+       <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle" width="200">
+  </div>
+
+<h1 class="centered" style="color:#BABABA;">
+Young adult novel enthusiast
+</h1>
+
+
+
+<div style="height:75px;" class="centered">
+<img src="{{ STATIC_URL }}img/Plus.png" class="resize nopadding">
+</div>
+
+
+<!--
+<form action="#" method="get" class="centered">
   <input type="submit" class="btn" value="FOLLOW" name="follow-button">
   <input type="submit" class="btn" value="UNFOLLOW" name="unfollow-button">
 </form>
+-->
 
-<ul>
-  {% for link in link_list %}
-  <li><a href={{ link.url }}>{{ link.title }}</a> -- {{ link.updated_at }}</li>
-  {% empty %}
-  <li>This guy hasn't posted a single link.</li>
-  {% endfor %}
-</ul>
-{% endblock %}
+<div>
+<img src="{{ STATIC_URL }}img/Tag.png" class="resize" style="margin-left:85%; margin-bottom:20px;">
+</div>
+
+<div class="horizontalline centered" style="margin-left:130px; margin-bottom:20px;">
+
+</div>
+
+
+ {% for link in link_list %}
+
+     <div class="container">
+
+
+       <div class="media">
+
+      <!-- organization of the post in the center --> 
+  <div class="col-sm-3">
+  <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90"> 
+  </div>
+
+
+
+
+
+
+  <div class="col-sm-6">
+                                 <div class ="post" >
+
+
+                            <h1 class="centered">
+                              {{ link.title }} 
+                            </h1> 
+
+                             <h2 class="centered">
+                             {{ link.posted_by }} posted by 
+                             </h2>
+
+
+                              <h4 class="centered">
+                               {{ link.reposted_from.posted_by }} something
+                              </h4>
+                      </div>
+
+                        <!-- progress bar; need to add counting variable -->
+                      <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                      Smoking HOT  
+                      </div>
+                      </div>
+        
+
+      </div>
+
+   <div class="col-sm-3">
+       <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
+  </div>
+
+    <div class="span">
+          <form action="#" method="get">
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+
+
+      {% empty %}
+      <li>No links!</li>
+      {% endfor %}
+
+        
+
+    {% endblock %}
 
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+
 
