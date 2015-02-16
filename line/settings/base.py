@@ -38,6 +38,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
     '.herokuapp.com',
+    '.myline.io',
 ]
 
 # database
@@ -65,6 +66,7 @@ LOCAL_APPS = (
     'users',
     'links',
     'notifications',
+    'reposts',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
