@@ -29,7 +29,7 @@ class UserRegisterView(FormView):
 class UserProfileView(ListView):
     model = Link
     template_name = "users/user_profile.html"
-    context_object_name = 'link_list'
+    context_object_name = 'post_list'
 
     def get_queryset(self):
         queryset = super(UserProfileView, self).get_queryset()

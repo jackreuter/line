@@ -14,11 +14,17 @@
 
     <!-- this is for the plus, when you click it, the link opens  ** need to center this --> 
     <form action="#" method="get">
-    
-    <a>
-      <button class="btn btn-default center-block resize nopadding" name={{ post.get_repost_button_name }}>
-      </button>
-    </a>
+      
+      <a>
+        <button class="btn btn-default center-block resize nopadding" name="{{ post.get_repost_button_name }}" id="plus">
+        </button>
+        <style>
+          #plus{
+          background-image: url({{ STATIC_URL }}img/Plus.png);
+          background-size: 100%;
+          }
+        </style>
+      </a>
     </form>
 
     <!-- organization of the post in the center --> 
@@ -27,7 +33,7 @@
       
       <!-- the post itself --> 
 			<div class ="post" >
-        <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90">
+        <img src="{{ post.posted_by.get_image_url }}" class="img-circle pull-left" width="90">
         <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
 
         {% if post.is_link %}
@@ -55,13 +61,10 @@
       <div class="progress">
         <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ post.get_hotness_percent }}%;">
 
+        </div>
+		  </div>
     </div>
-
-      {{ post.get_hotness_percent }} {{ post.hotness }}
-
-		</div>
   </div>
-
 </div>
 
 {% empty %}
