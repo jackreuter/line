@@ -68,7 +68,7 @@
 
                             <ul class="dropdown-menu"> 
 
-                                    {% for notification in notification_list %}                            
+                                    {% for notification in user.get_notification_list %}                            
                                     {% if "is following" in notification.title %}                              
 
                                     <li>

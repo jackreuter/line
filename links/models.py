@@ -27,6 +27,7 @@ class Link(models.Model):
     url = models.URLField()
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links')
     hotness = models.IntegerField()
+    tags = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='linkds_tagged_in')
     objects = LinkManager()
     
     class Meta:

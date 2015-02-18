@@ -7,16 +7,28 @@
 
 {% block page_content %}
 
+{% for notification in notification_list %}
+<div class="col-sm-10">
 <div class="col-sm-2">
-<h1> 9:15 pm</h1>
+  <h1>{{ notification.created_at }}</h1>
 </div>
 <div class="col-sm-2">
-            <img src="{{ STATIC_URL }}img/profile_icon.png" class="center-block resize nopadding">
+  {% if 'following' in notification.title %}
+  <img src="{{ STATIC_URL }}img/profile_icon.png" class="center-block resize nopadding">
+  {% else %}
+  {% endif %}
 </div>
 
 <div class="col-sm-8">
-<h3>Dag Reuter is following you.</h3>
+  {% if 'following' in notification.title %}
+  <h3>{{ notification.from_user }} is following you.</h3>
+  {% else %}
+  {% endif %}
 </div>
+</div>
+{% empty %}
+<li>No notifications</li>
+{% endfor %}
 
 {% endblock %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

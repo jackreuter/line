@@ -10,8 +10,8 @@ class LinkNewForm(forms.ModelForm):
     
     class Meta:
         model = Link
-        fields = ('title', 'url')
-
+        fields = ('title', 'url', 'tags')
+        
     def save(self, user, commit=True):
         link = super(LinkNewForm, self).save(commit=False)
         link.posted_by=user
