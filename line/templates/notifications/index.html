@@ -22,7 +22,10 @@
 <div class="col-sm-8">
   {% if 'following' in notification.title %}
   <h3>{{ notification.from_user }} is following you.</h3>
+  {% elif 'repost' in notification.title %}
+  <h3>{{ notification.from_user }} reposted your link.</h3>
   {% else %}
+  <h3>{{ notification.from_user }} tagged you in a link.</h3>
   {% endif %}
 </div>
 </div>

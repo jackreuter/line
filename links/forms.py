@@ -5,6 +5,7 @@ from django import forms
 
 from .models import Link
 from users.models import User
+from notifications.models import Notification
 
 class LinkNewForm(forms.ModelForm):
     
@@ -21,6 +22,9 @@ class LinkNewForm(forms.ModelForm):
             link.save()
 
         self.save_m2m()
+        
+        for tag in link.tags.all():
+            Notification.objects.create_notification('tagged', user, tag)
 
         return link
 

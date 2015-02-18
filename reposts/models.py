@@ -19,10 +19,18 @@ class Repost(models.Model):
     original = models.ForeignKey(Link, related_name='reposts')
     reposted_from = models.ForeignKey('self', related_name='reposts', null=True)
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='reposts')
+    tags = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='reposts_tagged_in')
     objects = RepostManager()
         
     class Meta:
         ordering = ['-created_at']
+
+    def get_first_tag_image_url(self):
+        tags = self.tags.all()
+        if tags:
+            return tags[0].get_image_url()
+        else:
+            return settings.STATIC_URL+"img/Profile_Pic.png"
 
     def get_hotness_percent(self):
         lm = LinkManager()
