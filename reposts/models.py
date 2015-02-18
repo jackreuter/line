@@ -8,6 +8,7 @@ class RepostManager(models.Manager):
             original=original,
             posted_by=posted_by,
             reposted_from=reposted_from,
+            tags=[],
         )
         
         repost.save(using=self._db)
