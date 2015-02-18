@@ -12,7 +12,7 @@
 </h3>
 
   <div class="centered">
-       <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle" width="200">
+       <img src="{{ user_object.get_image_url }}" class="img-circle" width="200">
   </div>
 
 <h1 class="centered" style="color:#BABABA;">
@@ -34,7 +34,7 @@ Young adult novel enthusiast
 -->
 
 <div>
-<img src="{{ STATIC_URL }}img/Tag.png" class="resize" style="margin-left:85%; margin-bottom:20px;">
+<img src="{{ STATIC_URL }}img/tag_icon.png" class="resize" style="margin-left:85%; margin-bottom:20px;">
 </div>
 
 <div class="horizontalline centered" style="margin-left:130px; margin-bottom:20px;">

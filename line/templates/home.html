@@ -4,8 +4,8 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
 {% endblock %}
-{% block page_content %}
 
+{% block page_content %}
 {% for post in post_list %}
 
 <div id="content"></div>
@@ -19,7 +19,7 @@
       <button class="btn btn-default center-block resize nopadding" name={{ post.get_repost_button_name }}>
       </button>
     </a>
-    <form>
+    </form>
 
     <!-- organization of the post in the center --> 
 
@@ -57,21 +57,9 @@
 
     </div>
 
-
-      {% empty %}
-      <li>No links!</li>
-      {% endfor %}
-
-        
-
-    {% endblock %}
       {{ post.get_hotness_percent }} {{ post.hotness }}
 
 		</div>
-    <div class="span">
-      <form action="#" method="get">
-      </form>
-    </div>
   </div>
 
 </div>
@@ -82,9 +70,4 @@
 
 {% endblock %}
 
-<style>
-</style>
-</body>
-
-</body>
 
