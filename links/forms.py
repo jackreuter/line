@@ -19,5 +19,8 @@ class LinkNewForm(forms.ModelForm):
 
         if commit:
             link.save()
+
+        self.save_m2m()
+
         return link
 

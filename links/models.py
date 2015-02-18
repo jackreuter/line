@@ -33,6 +33,13 @@ class Link(models.Model):
     class Meta:
         ordering = ['-created_at', 'title']
 
+    def get_first_tag_image_url(self):
+        tags = self.tags.all()
+        if tags:
+            return tags[0].get_image_url()
+        else:
+            return settings.STATIC_URL+"img/Profile_Pic.png"
+
     def get_hotness_percent(self):
         lm = LinkManager()
         maxh = lm.get_max_hotness()

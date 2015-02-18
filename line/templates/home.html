@@ -34,7 +34,7 @@
       <!-- the post itself --> 
 			<div class ="post" >
         <img src="{{ post.posted_by.get_image_url }}" class="img-circle pull-left" width="90">
-        <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
+        <img src="{{ post.get_first_tag_image_url }}" class="img-circle pull-right" width="90">
 
         {% if post.is_link %}
 				<h1 class="centered">
