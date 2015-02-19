@@ -50,6 +50,7 @@ class UserProfileView(ListView):
                 self.request.user.following.add(user)
                 
                 follow_notification = Notification.objects.create_notification('is following', user, self.request.user)
+                follow_notification.save()
 
         if (self.request.GET.get('unfollow-button')):
             if not self.request.user.is_anonymous():

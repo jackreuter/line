@@ -52,6 +52,8 @@ class HomeView(ListView):
                     Repost.objects.create_repost(link, self.request.user)
 
                     repost_notification = Notification.objects.create_notification('reposted', link.posted_by, self.request.user)
+                    repost_notification.save()
+
 
             if ("repost-repost-button" in self.request.GET.keys()[0]):
                 repost_id = int(self.request.GET.keys()[0][21:])
@@ -62,6 +64,7 @@ class HomeView(ListView):
                     Repost.objects.create_repost(repost.original, self.request.user, repost)
 
                     repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
+                    repost_notification.save()
 
             
         return super(HomeView, self).render_to_response(context)

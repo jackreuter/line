@@ -8,11 +8,29 @@ from users.models import User
 from notifications.models import Notification
 
 class LinkNewForm(forms.ModelForm):
-    
+    tag1 = forms.CharField(required=False)
+    tag2 = forms.CharField(required=False)
+    tag3 = forms.CharField(required=False)
+    tag4 = forms.CharField(required=False)
+    tag5 = forms.CharField(required=False)
+    tag6 = forms.CharField(required=False)
     class Meta:
         model = Link
-        fields = ('title', 'url', 'tags')
-        
+        fields = ('title', 'url', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6')
+
+    def clean(self):
+        cleaned_data = super(LinkNewForm, self).clean()
+        for x in range(1,7):
+            tag_field='tag'+str(x)
+            if cleaned_data[tag_field] != "":
+                users = User.objects.filter(name=cleaned_data[tag_field])
+                if users.count() > 0:
+                    cleaned_data[tag_field]=users[0]
+                else:
+                    print 'dag'
+            else:
+                cleaned_data[tag_field]=None
+
     def save(self, user, commit=True):
         link = super(LinkNewForm, self).save(commit=False)
         link.posted_by=user
@@ -21,10 +39,25 @@ class LinkNewForm(forms.ModelForm):
         if commit:
             link.save()
 
-        self.save_m2m()
-        
-        for tag in link.tags.all():
-            Notification.objects.create_notification('tagged', user, tag)
+        if link.tag1:
+            tag_notification = Notification.objects.create_notification('tagged', link.tag1, user)
+            tag_notification.save()
+        if link.tag2:
+            tag_notification = Notification.objects.create_notification('tagged', link.tag2, user)
+            tag_notification.save()
+        if link.tag3:
+            tag_notification = Notification.objects.create_notification('tagged', link.tag3, user)
+            tag_notification.save()
+        if link.tag4:
+            tag_notification = Notification.objects.create_notification('tagged', link.tag4, user)
+            tag_notification.save()
+        if link.tag5:
+            tag_notification = Notification.objects.create_notification('tagged', link.tag5, user)
+            tag_notification.save()
+        if link.tag6:
+            tag_notification = Notification.objects.create_notification('tagged', link.tag6, user)
+            tag_notification.save()
+
 
         return link
 

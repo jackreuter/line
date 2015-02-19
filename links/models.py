@@ -27,16 +27,20 @@ class Link(models.Model):
     url = models.URLField()
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links')
     hotness = models.IntegerField()
-    tags = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='links_tagged_in')
+    tag1 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_1', null=True)
+    tag2 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_2', null=True)
+    tag3 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_3', null=True)
+    tag4 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_4', null=True)
+    tag5 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_5', null=True)
+    tag6 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_6', null=True)
     objects = LinkManager()
     
     class Meta:
         ordering = ['-created_at', 'title']
 
     def get_first_tag_image_url(self):
-        tags = self.tags.all()
-        if tags:
-            return tags[0].get_image_url()
+        if self.tag1:
+            return self.tag1.get_image_url()
         else:
             return settings.STATIC_URL+"img/Profile_Pic.png"
 
