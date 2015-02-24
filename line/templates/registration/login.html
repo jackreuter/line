@@ -3,38 +3,70 @@
   Main page to authenticate users.
 {% endcomment %}
 
-{% block page_title %}
-  <title>Django Consultants | Login</title>
-{% endblock %}
-
 {% block page_content %}
-  <header>
-    <h1>Django Consultants</h1>
-    <h2>Login Page</h2>
-  </header>
 
-  <section>
+
+<section class="">
     {% if form.errors %}
       <p>Your username and password didn't match, please try again.</p>
     {% endif %}
 
+ <div class="grey" style="margin-left:500px;">
+
     <form method="post" action=".">
       {% csrf_token %}
       <p>
-        <label for="id_username">Username:</label>
-        {{ form.username }}
-      </p>
-      <p>
-        <label for="id_password">Password:</label>
-        {{ form.password }}
-      </p>
+
+        <div style="height:25px;">
+
+    </div>
+
+
+        <div class="input-group input-group-lg" style="margin-left:42px;" >
+  <input type="text" for="id_username"class="form-control" placeholder="USERNAME" aria-describedby="basic-addon2">
+</div>
+
+    <div style="height:25px;">
+
+    </div>
+        <div class="input-group input-group-lg" style="margin-left:42px;">
+  <input type="text" for="id_password" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
+</div>
+ 
+<div style="height:10px;">
+
+    </div>
+
+<div class="btn-group"style="margin-left:80px;" role="group" aria-label="...">
+  <button type="button" class="btn btn-default btn-group-lg">LOGIN</button>
+  </div>
+
+<div style="height:15px;">
+
+    </div >
+     <h2  style="margin-left:1000px;">
+  Don't have an account? Sign up
+
+<a href="#"> here </a>
+   </h2>  
+
+   </div>
+
+
+
+
+
+
       {% if next %}
-        <input type="hidden" name="next" value="{{ next }}" />
+        
       {% else %}
-        <input type="hidden" name="next" value="/home/" />
+      
       {% endif %}
-      <input type="submit" value="login" />
+
     </form>
   </section>
 {% endblock %}
+  
+
+ 
 

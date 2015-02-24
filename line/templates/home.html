@@ -1,47 +1,93 @@
 {% extends "_layouts/base.html" %}
 
+
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
 {% endblock %}
-
 {% block page_content %}
+
       {% for link in link_list %}
-			<div class="media">
-        <div class="span4">
-				  <a href={{ link.url }} class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt=""></a>
-				  <div class="media-body">
-					  <h4 class="media-heading">
-						  {{ link.title }} posted by {{ link.posted_by }} from {{ link.reposted_from.posted_by }}
-					  </h4> {{ link.url }}
-				  </div>
-			  </div>
-        <div class="span">
-          <form action="#" method="get">
 
-{% if link not in user.likes.all %}
-            <div>
-              {{ link.liked_by.all.count }}
-              <button type="submit" class="btn btn-default" name={{ link.get_like_button_name }}><span class="glyphicon glyphicon-heart-empty"></span></button>
-            </div> 
-{% else %}
-            <div>
-              {{ link.liked_by.all.count }}
-              <button type="submit" class="btn btn-default" name={{ link.get_unlike_button_name }}><span class="glyphicon glyphicon-heart"></span></button>
-            </div>
-{% endif %}
-            <div>
-              {{ link.reposts.all.count }}
-              <button type="submit" class="btn btn-default" name={{ link.get_repost_button_name }}><span class="glyphicon glyphicon-retweet"></span></button>
-            </div>
+        
+      <div id="content" ></div>
 
-          </form>
-        </div>
-      </div>
+     <div class="container">
+
+
+       <div class="media">
+       
+       <!-- EVEN MORE RIGHT -->
+                              <div div class="col-sm-1" style="margin-left:-10px; margin-top:10px; padding-bottom:80px;">
+                                       <span style="margin-left:50px; padding-top:90px;">
+                                           <img src="{{ STATIC_URL }}img/Reline.png" class="resizeicon"> 
+                                      </span>
+
+                                    <img src="{{ STATIC_URL }}img/Pate_lol.png" class="img-circle"  width="40">
+
+                              </div>
+
+      <!-- RIGHT --> 
+                            <div class="col-sm-2">
+                              
+                                      <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90"> 
+
+
+                                <span>
+                                       <h4>
+                                           6 mins
+                                        </h4>
+                                </span>
+
+                            </div>
+
+  <!--CENTER --> 
+                             <div class="col-sm-6" style="margin-left:-80px; margin-top:10px; padding-bottom:80px;">
+                               
+                                     <h1 style="margin-top:10px;" >
+                                     {{ link.title }} 
+                                    </h1> 
+                        <!-- progress bar; need to add counting variable -->
+                    
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+                                      Smokin'''''  
+                                   </div>
+
+                            </div>
+
+
+  <!-- LEFT--> 
+                            <div class="col-sm-3">
+
+
+                                    <div style="margin-top:30px;">
+                                            <img src="{{ STATIC_URL }}img/Dag_lol.png" class="img-circle pull-right" width="40" style="margin-left:20px;">
+                                             <img src="{{ STATIC_URL }}img/Pate_lol.png" class="img-circle pull-right" width="40" style="margin-left:20px;">
+                                             <img src="{{ STATIC_URL }}img/Dag_lol.png" class="img-circle pull-right" width="40" style="margin-left:20px;">
+                                             <img src="{{ STATIC_URL }}img/Ani_lol.png" class="img-circle pull-right" width="40" style="margin-left:20px;">
+                                    </div>
+                                              <a href={{ link.url}} target='testing'>
+                                               <img src="{{ STATIC_URL }}img/Plus.png" class="resize" style="margin-left:-130px; margin-top:px;">
+                                                </a>
+                                     </div>
+
+                            <div class="span">
+                                        <form action="#" method="get">
+                                        </form>
+                            </div>
+
+
+       </div>
+    </div>
+
+
       {% empty %}
       <li>No links!</li>
       {% endfor %}
-{% endblock %}
 
-<style>
-</style>
+        
+
+    {% endblock %}
+
+
+</body>
 
