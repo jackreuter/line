@@ -33,11 +33,12 @@ import dj_database_url
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
     '.herokuapp.com',
+    '.myline.io',
 ]
 
 # database
@@ -65,6 +66,7 @@ LOCAL_APPS = (
     'users',
     'links',
     'notifications',
+    'reposts',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -100,7 +102,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-MEDIA_ROOT = root("..", "uploads")
+MEDIA_ROOT = root("..", "media")
 
 STATIC_ROOT = root("..", "static")
 

@@ -42,6 +42,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'name'
 
+    def get_notification_list(self):
+        return sorted(self.notifications.all(), key=lambda instance: instance.created_at, reverse=True)
+
     def get_short_name(self):
         return self.name
 

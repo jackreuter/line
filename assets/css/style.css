@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald:400,300,700);
 
 body {
-    background-color: #FCFCFC
+    background-color: #FCFCFC;
     font-family: 'Oswald', sans-serif;
 }
 
@@ -12,12 +12,10 @@ a.list-group-item.active {
 h1 {
   font-family: 'Oswald', sans-serif;
   font-size: 20px;
-    margin-top: 0px;
+  margin-top: 0px;
   margin-bottom: 5px;
 
 }
-
-
 
 h2 {
  font-family: 'Oswald',;

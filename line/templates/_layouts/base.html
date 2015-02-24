@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
   <meta charset="utf-8">
   <title>LINE</title>
@@ -124,8 +123,61 @@
             </li>
 {% else %}
             <li>
-              <a href="/login/">Login</a>
+
+              <a href="/home">
+                <img src="{{ STATIC_URL }}img/logo.png" class="center-block resizeicon">
+              </a>
+
             </li>
+
+          </ul>
+
+
+          <ul class="nav navbar-nav navbar-right">
+
+            {% if not user.is_anonymous %}
+
+            
+            <li class="dropdown">
+
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <img src="{{ STATIC_URL }}img/notifications.png" class="center-block resizeicon ">
+              </a>
+
+              <ul class="dropdown-menu"> 
+
+                {% for notification in user.get_notification_list %}                            
+                {% if "following" in notification.title %}
+                <li>
+                  <a href={{ notification.from_user.get_profile_page_url }}>  {{ notification.from_user }} is following you.
+                  </a> 
+                </li>
+
+                {% elif "repost" in notification.title %}
+                <li>
+                  <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} reposted your link</a>
+                </li>
+
+                {% else %}
+                <li>
+                  <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} tagged you in a link</a>
+                </li>
+                {% endif %}
+
+                <p hidden>{{ notification.set_inactive }}</p>
+                {% empty %}
+                <li>No notifications.</li>
+
+                {% endfor %}
+                
+                <li>
+                  <a href="/notifications/">See all</a>
+                </li>
+
+              </ul>
+              
+            </li>
+
 {% endif %}
 
                   </ul>
@@ -174,13 +226,16 @@
 
 	</div>
 </div>
+</nav>
+<!-- navbar end -->
 
+
+<div class="belownavbar">
+</div>
 
 
 </div>
 </body>
-
-
 
 
 </html>
