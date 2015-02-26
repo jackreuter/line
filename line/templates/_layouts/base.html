@@ -29,7 +29,7 @@
 <body>
 
 
-<!-- navbar start -->
+                                            <!-- navbar start -->
                 <!-- ================ -->
                 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
                   <div class="container-fluid">
@@ -55,13 +55,13 @@
 
                                                           <!-- LINKS -->
                         <li>
-                         <a href='/links/new/' class="btn" style="padding-left:100px;" >
+                         <a href='/links/new/' class="btn" style="margin-left:100px;" >
                          <img src="{{ STATIC_URL }}img/Link.png" class="center-block resizeicon" >
                         </a>
                        </li>              
                       
                       </ul>
-
+                                                            <!-- SEARCH -->
                        <form class="navbar-form navbar-left centered" role="search" style="padding-left:200px;">
                        <div class="form-group">
                         <input type="text" class="form-control" placeholder="search">
@@ -74,17 +74,18 @@
                       <ul class="nav navbar-nav navbar-right">
 
 
-                        {% if not user.is_anonymous %}
-
-                        
+        
                         <li>
                                                         <!-- NOTIFICATIONS -->
-                          <a href="/notifications" class="btn">
+                          <a href="/notifications/index.html" class="btn">
                           <img src="{{ STATIC_URL }}img/notifications.png" class="center-block resizeicon ">
                           </a>
-                          {% endif %}
+                   
 
                         </li>
+
+
+                
 
                                                            <!-- HOTPAGE -->
                          <li>
@@ -102,104 +103,52 @@
                           <img src="{{ STATIC_URL }}img/profile_icon.png" class="center-block resizeicon">
                          </a>
                                                            
-                    <ul class="dropdown-menu">
+                                <ul class="dropdown-menu">
 
-                           <li>
-                        <a href={{ user.get_profile_page_url }}>{{ user.name }}
-                        </a>
-                         </li>
-                                 <li>
-                                         <a href="#">Followers</a>
+                                   <li>
+                                      <a href={{ user.get_profile_page_url }}>{{ user.name }}
+                                      </a>
                                     </li>
                                  <li>
-                                   <a href="#">Following</a>
-                                       </li>
+                                         <a href="#">Followers</a>
+                                         </li>
+                                 <li>
+                                          <a href="#">Following</a>
+                                          </li>
                                     <li class="divider">
                                           </li>
 
-{% if not user.is_anonymous %}
-            <li>
-              <a href="/logout/">Logout</a>
-            </li>
+      {% if not user.is_anonymous %}
+                                     <li>
+                                      <a href="/logout/">Logout</a>
+                                        </li>
 {% else %}
-            <li>
 
-              <a href="/home">
-                <img src="{{ STATIC_URL }}img/logo.png" class="center-block resizeicon">
-              </a>
-
-            </li>
-
-          </ul>
-
-
-          <ul class="nav navbar-nav navbar-right">
-
-            {% if not user.is_anonymous %}
-
-            
-            <li class="dropdown">
-
-              <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                <img src="{{ STATIC_URL }}img/notifications.png" class="center-block resizeicon ">
-              </a>
-
-              <ul class="dropdown-menu"> 
-
-                {% for notification in user.get_notification_list %}                            
-                {% if "following" in notification.title %}
-                <li>
-                  <a href={{ notification.from_user.get_profile_page_url }}>  {{ notification.from_user }} is following you.
-                  </a> 
-                </li>
-
-                {% elif "repost" in notification.title %}
-                <li>
-                  <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} reposted your link</a>
-                </li>
-
-                {% else %}
-                <li>
-                  <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} tagged you in a link</a>
-                </li>
-                {% endif %}
-
-                <p hidden>{{ notification.set_inactive }}</p>
-                {% empty %}
-                <li>No notifications.</li>
-
-                {% endfor %}
-                
-                <li>
-                  <a href="/notifications/">See all</a>
-                </li>
-
-              </ul>
-              
-            </li>
+                                </ul>
+                          </li>
 
 {% endif %}
-{% endif %}
+                                                                <!-- SETTINGS-->
 
-                  </ul>
-
-                         
-
-
-                     </li>
-
-                                                          <!-- SETTINGS-->
-
-                         <li>
+                          <li>
                          <a href='#' class="btn" >
                          <img src="{{ STATIC_URL }}img/Settings.png" class="center-block resizeicon" >
                          </a>
                         </li> 
+
+
+                        </ul>
+
+                         
+
+
+            
+
+                                                          <!-- SETTINGS-->
+
+                       
                       
                       </ul>
-
-
-
 
                     </div>
 
@@ -211,11 +160,6 @@
 	
 
 
-<div class="belownavbar">
-</div>
-
-
-
 
 <div class="tocenter">
 {% block page_content %}{% endblock %}
@@ -223,19 +167,11 @@
 
 
              		
-		</div>
-
-	</div>
-</div>
-</nav>
-<!-- navbar end -->
 
 
-<div class="belownavbar">
-</div>
 
 
-</div>
+
 </body>
 
 

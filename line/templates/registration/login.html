@@ -6,49 +6,33 @@
 {% block page_content %}
 
 
-<section class="">
-    {% if form.errors %}
-      <p>Your username and password didn't match, please try again.</p>
-    {% endif %}
+<section>
+          {% if form.errors %}
+             <p>Your username and password didn't match, please try again.</p>
+           {% endif %}
 
- <div class="grey" style="margin-left:500px;">
+    <div class="grey" style="margin-left:40%; margin-top:10%;">
 
-    <form method="post" action=".">
-      {% csrf_token %}
-      <p>
-
-        <div style="height:25px;">
-
-    </div>
-
-
-        <div class="input-group input-group-lg" style="margin-left:42px;" >
-  <input type="text" for="id_username"class="form-control" placeholder="USERNAME" aria-describedby="basic-addon2">
-</div>
-
-    <div style="height:25px;">
-
-    </div>
-        <div class="input-group input-group-lg" style="margin-left:42px;">
-  <input type="text" for="id_password" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
-</div>
- 
-<div style="height:10px;">
-
-    </div>
-
-<div class="btn-group"style="margin-left:80px;" role="group" aria-label="...">
-  <button type="button" class="btn btn-default btn-group-lg">LOGIN</button>
-  </div>
-
-<div style="height:15px;">
-
-    </div >
-     <h2  style="margin-left:1000px;">
-  Don't have an account? Sign up
-
-<a href="#"> here </a>
-   </h2>  
+  <form method="post" action=".">
+    {% csrf_token %}
+       
+<!-- USERNAME-->
+        <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:8%;" >
+            <input type="text" for="id_username"class="form-control" placeholder="USERNAME" aria-describedby="basic-addon2">
+        </div>
+<!-- PASSWORD -->
+        <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
+          <input type="text" for="id_password" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
+        </div>
+<!-- LOGIN BUTTON -->
+        <div class="btn-group"style="margin-left:10%;margin-top:5%" role="group" aria-label="...">
+        <button type="button" class="btn btn-default btn-group-lg">LOGIN</button>
+        </div>
+<!-- SIGN UP HYPERLINK-->
+        <h2  style="margin-left:10%; padding-top:5%;">
+        Don't have an account? Sign up
+          <a href="#"> here </a>
+        </h2>  
 
    </div>
 
@@ -63,8 +47,8 @@
       
       {% endif %}
 
-    </form>
-  </section>
+  </form>
+</section>
 {% endblock %}
   
 

@@ -4,24 +4,24 @@
 
 {% block page_content %}
 	
-<h3 class="centered">
+      <h3 class="centered">
 
-  {{ user_object.name }}
+          {{ user_object.name }}
 
-</h3>
+      </h3>
 
-  <div class="centered">
+<div class="centered">
        <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle" width="200">
-  </div>
+</div>
 
-<h1 class="centered" style="color:#BABABA;">
-Young adult novel enthusiast
-</h1>
+      <h1 class="centered" style="color:#BABABA;">
+        Young adult novel enthusiast
+      </h1>
 
 
 
 <div style="height:75px;" class="centered">
-<img src="{{ STATIC_URL }}img/Plus.png" class="resize nopadding">
+      <img src="{{ STATIC_URL }}img/Plus.png" class="resize nopadding">
 </div>
 
 
@@ -33,7 +33,7 @@ Young adult novel enthusiast
 -->
 
 <div>
-<img src="{{ STATIC_URL }}img/Tag.png" class="resize" style="margin-left:85%; margin-bottom:20px;">
+      <img src="{{ STATIC_URL }}img/Tag.png" class="resize" style="margin-left:85%; margin-bottom:20px;">
 </div>
 
 <div class="horizontalline centered" style="margin-left:130px; margin-bottom:20px;">
@@ -45,58 +45,48 @@ Young adult novel enthusiast
 
      <div class="container">
 
-
-       <div class="media">
+        <div class="media">
 
       <!-- organization of the post in the center --> 
-  <div class="col-sm-3">
-  <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90"> 
-  </div>
+          <div class="col-sm-3">
+            <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90"> 
+          </div>
+
+          <div class="col-sm-6">
+            <div class ="post" >
+              <h1 class="centered">
+                {{ link.title }} 
+              </h1> 
+
+              <h2 class="centered">
+              {{ link.posted_by }} posted by 
+              </h2>
 
 
-
-
-
-
-  <div class="col-sm-6">
-                                 <div class ="post" >
-
-
-                            <h1 class="centered">
-                              {{ link.title }} 
-                            </h1> 
-
-                             <h2 class="centered">
-                             {{ link.posted_by }} posted by 
-                             </h2>
-
-
-                              <h4 class="centered">
-                               {{ link.reposted_from.posted_by }} something
-                              </h4>
-                      </div>
+              <h4 class="centered">
+              {{ link.reposted_from.posted_by }} something
+              </h4>
+            </div>
 
                         <!-- progress bar; need to add counting variable -->
-                      <div class="progress">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+              <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
                                       Smoking HOT  
-                      </div>
-                      </div>
-        
+              </div>
+              </div>
+          </div>
 
-      </div>
+           <div class="col-sm-3">
+             <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
+          </div>
 
-   <div class="col-sm-3">
-       <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
-  </div>
-
-    <div class="span">
+          <div class="span">
           <form action="#" method="get">
           </form>
+          </div>
+
+
         </div>
-
-
-      </div>
     </div>
 
 
