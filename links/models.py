@@ -16,9 +16,6 @@ class LinkManager(models.Manager):
         link.save(using=self._db)
         return link
 
-    def get_max_hotness(self):
-        links = sorted(Link.objects.all(), key=lambda instance: instance.hotness, reverse=True)
-        return links[0].hotness
 
 class Link(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
@@ -26,7 +23,7 @@ class Link(models.Model):
     title = models.CharField(max_length=255)
     url = models.URLField()
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links')
-    hotness = models.IntegerField()
+    hotness = 60
     tag1 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_1', null=True)
     tag2 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_2', null=True)
     tag3 = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='links_tagged_in_3', null=True)
@@ -44,13 +41,7 @@ class Link(models.Model):
         else:
             return settings.STATIC_URL+"img/Profile_Pic.png"
 
-    def get_hotness_percent(self):
-        lm = LinkManager()
-        maxh = lm.get_max_hotness()
-        if (maxh==0):
-            return 0
-        else:
-            return float(self.hotness) / float(maxh) * 100
+    
 
     def is_link(self):
         return True
