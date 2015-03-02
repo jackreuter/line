@@ -1,0 +1,29 @@
+{% extends '_layouts/base.html' %}
+
+{% block page_title %}Notifications | {% endblock %}
+
+{% block page_content %}
+
+<h2>{{ user_object.name }}<h2>
+
+<ul>
+  {% for notification in notification_list %}
+
+  {% if "is following" in notification.title %}
+  <li><a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} {{ notification.title }} you</a> -- {{ notification.created_at }}</li>
+  {% else %}
+  <li><a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} {{ notification.title }} your link</a> -- {{ notification.created_at }}</li>
+  {% endif %}
+
+  <p hidden>{{ notification.set_inactive }}</p>
+  {% empty %}
+  <li>No notifications.</li>
+
+  {% endfor %}
+</ul>
+
+{% endblock %}
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
