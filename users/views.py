@@ -22,7 +22,7 @@ class UserRegisterView(FormView):
         # It should return an HttpResponse.
 
         form.save()
-        new_user = authenticate(username=self.request.POST['name'], password=self.request.POST['password1'])
+        new_user = authenticate(username=self.request.POST['username'], password=self.request.POST['password1'])
         login(self.request, new_user)
         return super(UserRegisterView, self).form_valid(form)
 

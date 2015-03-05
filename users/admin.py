@@ -10,12 +10,12 @@ class CustomUserAdmin(UserAdmin):
     form = UserChangeForm
     add_form = UserSignUpForm
 
-    list_display = ('email', 'name', 'is_superuser')
+    list_display = ('email', 'username', 'is_superuser')
     list_filter = ('is_superuser',)
 
     fieldsets = (
         (None, {'fields': (
-            'email', 'name', 'slug', 'is_superuser', 'is_active'
+            'email', 'username', 'slug', 'is_superuser', 'is_active'
         )}),
 #        ('Following', {'fields': ('following',)}),
         
@@ -24,11 +24,11 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': {'email', 'name', 'password1', 'password2'}
+            'fields': {'email', 'username', 'password1', 'password2'}
         }),
     )
 
-    search_fields = ('email', 'name')
+    search_fields = ('email', 'username')
     ordering = ('email',)
     filter_horizontal = ('groups',)
 

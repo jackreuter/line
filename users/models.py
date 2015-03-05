@@ -8,21 +8,21 @@ from django.conf import settings
 from links.models import Link
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, name, password=''):
-        if not name:
-            raise ValueError('Users must have a name')
+    def create_user(self, email, username, password=''):
+        if not username:
+            raise ValueError('Users must have a username')
             
         user = self.model(
             email=self.normalize_email(email),
-            name=name
+            username=username
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, name, password, email=''):
-        user = self.create_user(email, name, password)
+    def create_superuser(self, username, password, email=''):
+        user = self.create_user(email, username, password)
         user.is_admin = True
         user.is_superuser = True
         user.save(using=self._db)
@@ -32,23 +32,24 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    name = models.CharField(max_length=255, unique=True)
+    first_name = models.CharField(max_length=255, unique=True)
+    username = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     image = models.ImageField(upload_to="img/profile_pics/")
     objects = UserManager()
 
-    USERNAME_FIELD = 'name'
+    USERNAME_FIELD = 'username'
 
     def get_notification_list(self):
         return sorted(self.notifications.all(), key=lambda instance: instance.created_at, reverse=True)
 
     def get_short_name(self):
-        return self.name
+        return self.first_name
 
     def get_long_name(self):
-        return self.email
+        return self.username
 
     def get_image_url(self):
         if self.image and hasattr(self.image, 'url'):
@@ -57,7 +58,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             return settings.MEDIA_URL+'img/profile_pics/rick.jpg'
 
     def __unicode__(self):
-        return self.name
+        return self.username
 
     def get_profile_page_url(self):
         return '/users/%s' % self.slug
@@ -84,7 +85,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.username)
         super(User, self).save(*args, **kwargs)
 
     @property
