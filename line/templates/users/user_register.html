@@ -26,14 +26,16 @@
        
 <!-- EMAIL-->
               <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%;" >
-                  <input type="text" for="id_username"class="form-control" placeholder="EMAIL" aria-describedby="basic-addon2">
+                  <input type="email" id="email" max_length="100" name="email" class="form-control" placeholder="EMAIL" aria-describedby="basic-addon2">
             </div>
 <!-- PASSWORD --> 
             <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:5%">
-                <input type="text" for="id_password" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
+                <input type="password" id="id_password1" name="password1" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
+                <input type="password" id="id_password2" name="password2" class="form-control" placeholder="REPEAT PASSWORD"  aria-describedby="basic-addon2">
             </div>
 <!-- USERNAME -->
             <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
+              {{form.username}}
                 <input type="text" for="id_password" class="form-control" placeholder="USERNAME"  aria-describedby="basic-addon2">
             </div>
 <!-- FIRST NAME -->
