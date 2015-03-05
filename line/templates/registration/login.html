@@ -18,15 +18,22 @@
        
 <!-- USERNAME-->
         <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:8%;" >
-            <input type="text" for="id_username"class="form-control" placeholder="USERNAME" aria-describedby="basic-addon2">
+            <input type="text" id="id_username" maxlength="254" name="username" class="form-control" placeholder="USERNAME" aria-describedby="basic-addon2">
         </div>
 <!-- PASSWORD -->
         <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
-          <input type="text" for="id_password" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
+          <input type="password" id="id_password" name="password" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
         </div>
+
+        {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        {% else %}
+        <input type="hidden" name="next" value="/home/" />
+        {% endif %}
+
 <!-- LOGIN BUTTON -->
         <div class="btn-group"style="margin-left:10%;margin-top:5%" role="group" aria-label="...">
-        <button type="button" class="btn btn-default btn-group-lg">LOGIN</button>
+        <button type="submit" value="login" class="btn btn-default btn-group-lg">LOGIN</button>
         </div>
 <!-- SIGN UP HYPERLINK-->
         <h2  style="margin-left:10%; padding-top:5%;">
@@ -35,18 +42,6 @@
         </h2>  
 
    </div>
-
-
-
-
-
-
-      {% if next %}
-        
-      {% else %}
-      
-      {% endif %}
-
   </form>
 </section>
 {% endblock %}

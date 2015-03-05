@@ -36,7 +36,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     slug = models.SlugField(max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
-    likes = models.ManyToManyField(Link, related_name='liked_by')
     image = models.ImageField(upload_to="img/profile_pics/")
     objects = UserManager()
 
