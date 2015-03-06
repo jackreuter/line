@@ -25,11 +25,11 @@ class HomeView(ListView):
     
     def get_queryset(self):
         if self.request.user.is_anonymous():
-            queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
+            queryset = chain(Link.objects.all(),Repost.objects.all())
         else:
             following = self.request.user.following.all()
             if following is None:
-                queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
+                queryset = chain(Link.objects.all(),Repost.objects.all())
             else:
                 queryset = chain()
                 for user in following:
@@ -66,5 +66,22 @@ class HomeView(ListView):
                     repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
                     repost_notification.save()
 
-            
         return super(HomeView, self).render_to_response(context)
+
+class HotView(HomeView):
+
+    def get_queryset(self):
+        hotness_threshold = 90
+
+        queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
+        hot_queryset = []
+        for post in queryset:
+            if post.get_hotness_percent() > hotness_threshold:
+                hot_queryset  = chain(hot_queryset, [post])
+        return hot_queryset
+
+class AllView(HomeView):
+    def get_queryset(self):
+        queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
+
+        return queryset
