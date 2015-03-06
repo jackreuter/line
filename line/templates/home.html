@@ -1,5 +1,6 @@
 {% extends "_layouts/base.html" %}
 
+
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
 {% endblock %}
@@ -43,14 +44,9 @@
         {{ post.title }} 
       </h1> 
       
-      <div id="summary">
         <blockquote class="embedly-card">
-          <h4><a href="{{ post.get_url }}">Documentation</a></h4>
-          <p>
-            Embedly's Documentation is the best.
-          </p>
+          <h4><a href="{{ post.get_url }}"></a></h4>
         </blockquote>
-      </div>
 
       <!-- progress bar; need to add counting variable -->
       
