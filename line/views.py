@@ -68,3 +68,15 @@ class HomeView(ListView):
 
             
         return super(HomeView, self).render_to_response(context)
+
+class HotView(HomeView):
+    def get_queryset(self):
+        queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
+
+        return sorted(queryset, key=lambda instance: instance.created_at, reverse=True)
+
+class AllView(HomeView):
+    def get_queryset(self):
+        queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
+
+        return sorted(queryset, key=lambda instance: instance.created_at, reverse=True)

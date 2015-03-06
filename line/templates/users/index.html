@@ -4,6 +4,7 @@
 
 {% block page_content %}
 
+<div style="padding-top: 5%">
 <ul>
   {% for user in user_list %}
   <li><a href={{ user.get_profile_page_url }}>{{ user.name }}</a> -- {{ user.created_at }}</li>
@@ -11,6 +12,7 @@
   <li>No users.</li>
   {% endfor %}
 </ul>
+</div>
 {% endblock %}
 
 
