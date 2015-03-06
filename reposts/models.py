@@ -24,6 +24,9 @@ class Repost(models.Model):
     class Meta:
         ordering = ['-created_at']
 
+    def get_title(self):
+        return self.original.title
+
     def get_first_tag_image_url(self):
         return settings.STATIC_URL+"img/Profile_Pic.png"
 
