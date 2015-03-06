@@ -48,10 +48,8 @@
 
       <!-- progress bar; need to add counting variable -->
       
-      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
-        Smokin'''''  
+      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
       </div>
-
     </div>
 
 
@@ -74,9 +72,18 @@
         {% endif %}
 
       </div>
-      <a href={{ post.url}} target='testing'>
-        <img src="{{ STATIC_URL }}img/Plus.png" class="resize" style="margin-left:-130px; margin-top:px;">
+      <form>
+      <a>
+        <button class="btn btn-default center-block resize nopadding" name="{{ post.get_repost_button_name }}" id="plus">
+        </button>
+        <style>
+          #plus{
+          background-image: url({{ STATIC_URL }}img/Plus.png);
+          background-size: 100%;
+          }
+        </style>
       </a>
+      </form>
     </div>
 
     <div class="span">
