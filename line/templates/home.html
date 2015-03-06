@@ -20,7 +20,7 @@
       <span style="margin-left:50px; padding-top:90px;">
         <img src="{{ STATIC_URL }}img/Reline.png" class="resizeicon"> 
       </span>
-      <img src={{ post.original.posted_by.get_image_url }} class="img-circle"  width="40">
+      <img id="profile" src={{ post.original.posted_by.get_image_url }} class="img-circle"  width="40">
     {% endif %}
     </div>
 
@@ -41,19 +41,33 @@
     <div class="col-sm-6" style="margin-left:-80px; margin-top:10px; padding-bottom:80px;">
       
       <h1 style="margin-top:10px;" >
-        {{ post.get_title }} 
+      <a href="{{ post.get_url }}">  {{ post.get_title }} 
+      </a>
       </h1> 
       
-        <blockquote class="embedly-card">
-          <h4><a href="{{ post.get_url }}"></a></h4>
-        </blockquote>
+<a href="{{ post.get_url }}" class="embedly-card"></a>    
 
       <!-- progress bar; need to add counting variable -->
-      
-      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
+      <div>
+      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="90" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
+      </div>
+       <form>
+      <a>
+        <button class="btn btn-default center-block resize nopadding pull-right" name="{{ post.get_repost_button_name }}" id="plus">
+        </button>
+        <style>
+          #plus{
+          background-image: url({{ STATIC_URL }}img/Plus.png);
+          background-size: 100%;
+          pull-image:right;
+          }
+        </style>
+      </a>
+      </form>
+
       </div>
     </div>
-
+ 
 
     <!-- LEFT--> 
     <div class="col-sm-3">
@@ -74,18 +88,7 @@
         {% endif %}
 
       </div>
-      <form>
-      <a>
-        <button class="btn btn-default center-block resize nopadding" name="{{ post.get_repost_button_name }}" id="plus">
-        </button>
-        <style>
-          #plus{
-          background-image: url({{ STATIC_URL }}img/Plus.png);
-          background-size: 100%;
-          }
-        </style>
-      </a>
-      </form>
+     
     </div>
 
     <div class="span">
