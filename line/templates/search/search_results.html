@@ -1,0 +1,27 @@
+{% extends "_layouts/base.html" %}
+
+
+{% block page_content %}
+
+<div style="padding-top:10%;">
+<h1>Search Results</h1>
+
+{% for item in search_results %}
+{% if item.is_user %}
+<li>
+  <a href={{ item.get_profile_page_url }}>{{ item.username }}</a> -- user
+</li>
+{% elif item.is_link %}
+<li>
+  <a href={{ item.url }}>{{ item.title }}</a> -- link posted by {{ item.posted_by }}
+</li>
+{% else %}
+<li>
+  <a href={{ item.url }}>{{ item.title }}</a> -- repost posted by {{ item.posted_by }}
+</li>
+{% endif %}
+
+{% endfor %}
+</div>
+
+{% endblock %}
