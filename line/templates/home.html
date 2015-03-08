@@ -44,12 +44,14 @@
       <a href="{{ post.get_url }}">  {{ post.get_title }} 
       </a>
       </h1> 
-      
+      <a id="summary"></a>
 <a href="{{ post.get_url }}" class="embedly-card"></a>    
 
       <!-- progress bar; need to add counting variable -->
       <div>
+      <div width="90%;">
       <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="90" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
+      </div>
       </div>
        <form>
       <a>
