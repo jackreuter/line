@@ -6,6 +6,7 @@ from django.views.generic import ListView
 
 from itertools import chain
 
+from search.forms import SearchForm
 from users.models import User
 from links.models import Link, LinkManager
 from reposts.models import Repost
@@ -38,6 +39,7 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
+        context['form']=SearchForm
         return context
 
     def render_to_response(self, context):
@@ -69,6 +71,7 @@ class HomeView(ListView):
         return super(HomeView, self).render_to_response(context)
 
 class HotView(HomeView):
+    template_name = "hot.html"
 
     def get_queryset(self):
         hotness_threshold = 90
