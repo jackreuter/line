@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     
     url(r'^users/', include("users.urls", namespace="users")),
     url(r'^links/', include("links.urls", namespace="links")),
-    url(r'^notifications/', include("notifications.urls", namespace="notifications"))
+    url(r'^notifications/', include("notifications.urls", namespace="notifications")),
+    url(r'^search/', include("search.urls", namespace="search"))
                 
 )

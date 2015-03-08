@@ -8,6 +8,7 @@ class RepostManager(models.Manager):
             original=original,
             posted_by=posted_by,
             reposted_from=reposted_from,
+            title=original.title,
         )
         
         repost.save(using=self._db)
@@ -16,6 +17,7 @@ class RepostManager(models.Manager):
 class Repost(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now_add=True, editable=False)
+    title = models.CharField(max_length=255)
     original = models.ForeignKey(Link, related_name='reposts')
     reposted_from = models.ForeignKey('self', related_name='reposts', null=True)
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='reposts')
@@ -23,9 +25,6 @@ class Repost(models.Model):
         
     class Meta:
         ordering = ['-created_at']
-
-    def get_title(self):
-        return self.original.title
 
     def get_first_tag_image_url(self):
         return settings.STATIC_URL+"img/Profile_Pic.png"

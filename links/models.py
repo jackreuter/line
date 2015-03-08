@@ -38,9 +38,6 @@ class Link(models.Model):
     class Meta:
         ordering = ['-created_at', 'title']
 
-    def get_title(self):
-        return self.title
-
     def get_first_tag_image_url(self):
         if self.tag1:
             return self.tag1.get_image_url()

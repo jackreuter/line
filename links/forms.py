@@ -23,7 +23,7 @@ class LinkNewForm(forms.ModelForm):
         for x in range(1,7):
             tag_field='tag'+str(x)
             if cleaned_data[tag_field] != "":
-                users = User.objects.filter(name=cleaned_data[tag_field])
+                users = User.objects.filter(username=cleaned_data[tag_field])
                 if users.count() > 0:
                     cleaned_data[tag_field]=users[0]
                 else:

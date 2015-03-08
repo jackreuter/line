@@ -34,16 +34,6 @@
   </form>
 </div>
 
-
-<!--
-<form action="#" method="get" class="centered">
-  <input type="submit" class="btn" value="FOLLOW" name="follow-button">
-  <input type="submit" class="btn" value="UNFOLLOW" name="unfollow-button">
-</form>
--->
-
-
-
 <div class="horizontalline centered" style="margin-left:130px; margin-bottom:20px;">
 
 </div>
@@ -59,8 +49,8 @@
         <div class="media">
 
       <!-- organization of the post in the center --> 
-          <div class="col-sm-3">
-            <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-left" width="90"> 
+      <div class="col-sm-3">
+            <img src={{ user_object.get_image_url }} class="img-circle pull-left" width="90"> 
           </div>
 
           <div class="col-sm-6">
@@ -80,14 +70,13 @@
 
                         <!-- progress bar; need to add counting variable -->
               <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                      Smoking HOT  
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ post.get_hotness_percent }}%;">
               </div>
               </div>
           </div>
 
            <div class="col-sm-3">
-             <img src="{{ STATIC_URL }}img/Profile_Pic.png" class="img-circle pull-right" width="90">
+             <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="90">
           </div>
 
           <div class="span">

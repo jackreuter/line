@@ -41,11 +41,11 @@
     <div class="col-sm-6" style="margin-left:-80px; margin-top:10px; padding-bottom:80px;">
       
       <h1 style="margin-top:10px;" >
-      <a href="{{ post.get_url }}">  {{ post.get_title }} 
+      <a href="{{ post.get_url }}">  {{ post.title }} 
       </a>
       </h1> 
       
-<a href="{{ post.get_url }}" class="embedly-card"></a>    
+<a href="{{ post.get_url }}" class="embedly-card"></a>
 
       <!-- progress bar; need to add counting variable -->
       <div>
@@ -77,25 +77,19 @@
         {% if post.tag1 %}
         <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag2 %}
+        <img src={{ post.tag2.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag3 %}
+        <img src={{ post.tag3.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag4 %}
+        <img src={{ post.tag4.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
         {% endif %}
 
       </div>
      
     </div>
-
-    <div class="span">
-      <form action="#" method="get">
-      </form>
-    </div>
-
 
   </div>
 </div>

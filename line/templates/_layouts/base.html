@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>LINE</title>
+    <title>Line.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -24,6 +24,7 @@
 
     <script src="js/less-1.3.3.min.js"></script>
 	  
+    <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/img/favicon.ico"/>
 
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
@@ -74,11 +75,12 @@
             
           </ul>
           <!-- SEARCH -->
-          <!--<form class="navbar-form navbar-left centered" role="search" style="padding-left:200px;">
+          <form action="/search/" class="navbar-form navbar-left centered" role="search" style="padding-left:200px;">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="search">
+              <input type="text" id="id_text" maxlength="255" name="text" class="form-control" placeholder="search">
             </div>
-          </form>-->
+              <button type="submit" style="display: none"></button>
+          </form>
 
 
 

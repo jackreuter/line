@@ -2,6 +2,9 @@ $(document).ready(function() {
 	$('#trigger-title').click(function() {
 		$('#input-title').slideToggle('slow');
 	});
+	$('#trigger-share-0').click(function() {
+		$('#share-post-0').slideToggle('slow');
+	});
 	$('#trigger-share-1').click(function() {
 		$('#share-post-1').slideToggle('slow');
 	});
@@ -16,8 +19,5 @@ $(document).ready(function() {
 	});
 	$('#trigger-share-5').click(function() {
 		$('#share-post-5').slideToggle('slow');
-	});
-	$('#trigger-share-6').click(function() {
-		$('#share-post-6').slideToggle('slow');
 	});
 	});
