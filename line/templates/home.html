@@ -24,15 +24,19 @@
       <span style="margin-left:50px; padding-top:90px;">
         <img src="{{ STATIC_URL }}img/Reline.png" class="resizeicon"> 
       </span>
-      <img id="profile" src={{ post.original.posted_by.get_image_url }} class="img-circle"  width="40">
+        <!--change href to link to user's profile, change title to short_name when implemented -->
+        <a href="#" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
+      <img  src={{ post.original.posted_by.get_image_url }} class="img-circle"  width="40">
+      </a>  
     {% endif %}
     </div>
 
     <!-- RIGHT --> 
     <div class="col-sm-2" id="hide">
-      
-      <img src={{ post.posted_by.get_image_url }} class="img-circle pull-left" width="90"> 
-
+     <!--change href to link to user's profile, change title to short_name when implemented -->
+       <a href="#" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
+      <img src={{ post.posted_by.get_image_url }} class="img-circle" width="90"> 
+        </a>
       <span>
         <h4>
           {{ post.created_at }}
@@ -43,11 +47,12 @@
 
     <!--CENTER --> 
     <div class="col-sm-6" style="margin-left:-80px; margin-top:10px; padding-bottom:80px;">
-      
       <h1 style="margin-top:10px;" >
       <a href="{{ post.get_url }}">  {{ post.get_title }} 
       </a>
       </h1>
+       <!--For some reason this only works for the first post --> 
+
       <a id="summary-button">
       <button class="pull-right" >
       <img src="{{ STATIC_URL }}img/summary_arrow.png" class="resizeicon">
@@ -64,10 +69,15 @@
        <div class="span1">
        <form>
       <a>
-        <button class="btn btn-default   nopadding pull-right" name="{{ post.get_repost_button_name }}" id="plus">
-        <img src="{{ STATIC_URL }}img/Plus.png" class="resizeicon">
+        <button class="btn btn-default center-block resize nopadding pull-right" name="{{ post.get_repost_button_name }}" id="plus">
         </button>
-       
+        <style>
+          #plus{
+          background-image: url({{ STATIC_URL }}img/Plus.png);
+          background-size: 100%;
+          pull-image:right;
+          }
+        </style>
       </a>
       </form>
       </span>
