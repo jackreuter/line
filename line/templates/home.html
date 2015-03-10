@@ -69,16 +69,21 @@
       </div>
        <div class="span1">
        <form>
-      <a>
-        <button class="btn btn-default center-block resize nopadding pull-right" name="{{ post.get_repost_button_name }}" id="plus">
+      <a >
+        <button id="plus" class="btn btn-default center-block resize nopadding pull-right" name="{{ post.get_repost_button_name }}"  data-toggle="modal" data-target="#tagfriends">
         </button>
+<div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <!--INSERT TAGGING FRIENDS CODE HERE-->
+  </div>
+</div>
         <style>
-          #plus{
-          background-image: url({{ STATIC_URL }}img/Plus.png);
+        #plus{
+  background-image: url({{ STATIC_URL }}img/Plus.png);
           background-size: 100%;
           pull-image:right;
-          }
-        </style>
+}
+</style>
       </a>
       </form>
       </span>

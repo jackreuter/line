@@ -13,8 +13,8 @@ h1{
 	background-size:100%;
 }
 
- #plus{
-          background-image: url({{ STATIC_URL }}img/Plus.png);
+#plus{
+	background-image: url({{ STATIC_URL }}img/summary_arrow.png);
           background-size: 100%;
           pull-image:right;
-          }
+}
