@@ -19,17 +19,22 @@ class LinkNewForm(forms.ModelForm):
         fields = ('title', 'url', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6')
 
     def clean(self):
-        cleaned_data = super(LinkNewForm, self).clean()
+        data = self.data
+        cleaned_data = {}
+        cleaned_data['title'] = data['title']
+        cleaned_data['url'] = data['url']
+        
         for x in range(1,7):
             tag_field='tag'+str(x)
-            if cleaned_data[tag_field] != "":
-                users = User.objects.filter(username=cleaned_data[tag_field])
+            if data[tag_field] != "":
+                users = User.objects.filter(username=data[tag_field])
                 if users.count() > 0:
                     cleaned_data[tag_field]=users[0]
                 else:
-                    print 'dag'
+                    self.add_error(tag_field, "User not found")
             else:
                 cleaned_data[tag_field]=None
+        return cleaned_data
 
     def save(self, user, commit=True):
         link = super(LinkNewForm, self).save(commit=False)
@@ -57,7 +62,6 @@ class LinkNewForm(forms.ModelForm):
         if link.tag6:
             tag_notification = Notification.objects.create_notification('tagged', link.tag6, user)
             tag_notification.save()
-
 
         return link
 
