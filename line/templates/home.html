@@ -25,7 +25,7 @@
         <img src="{{ STATIC_URL }}img/Reline.png" class="resizeicon"> 
       </span>
         <!--change href to link to user's profile, change title to short_name when implemented -->
-        <a href="#" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
+        <a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
       <img  src={{ post.original.posted_by.get_image_url }} class="img-circle"  width="40">
       </a>  
     {% endif %}
@@ -34,7 +34,7 @@
     <!-- RIGHT --> 
     <div class="col-sm-2" id="hide">
      <!--change href to link to user's profile, change title to short_name when implemented -->
-       <a href="#" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
+       <a href="{{ post.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.posted_by.get_long_name }}" data-placement="bottom">
       <img src={{ post.posted_by.get_image_url }} class="img-circle" width="90"> 
         </a>
       <span>
@@ -48,7 +48,9 @@
     <!--CENTER --> 
     <div class="col-sm-6" style="margin-left:-80px; margin-top:10px; padding-bottom:80px;">
       <h1 style="margin-top:10px;" >
-      <a href="{{ post.get_url }}">  {{ post.get_title }} 
+      <a href="{{ post.get_url }}">  
+      <!--This doesn't pull from the DB properly or load-->
+      {{ post.title }} 
       </a>
       </h1>
        <!--For some reason this only works for the first post --> 
@@ -74,7 +76,9 @@
         </button>
 <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
-  <!--INSERT TAGGING FRIENDS CODE HERE-->
+  <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
+  <button name="{{ post.get_repost_button_name }}"></button>
+
   </div>
 </div>
         <style>
@@ -98,18 +102,35 @@
 
       <div style="margin-top:30px;">
         {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+          <a href="post.tag1.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag1.username }}" data-placement="bottom" id="tag">
+        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+        </a>
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag2 %}
+         <a href="post.tag2.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag2.username }}" data-placement="bottom" id="tag">
+        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+        </a>
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag3 %}
+        <a href="post.tag3.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag3.username }}" data-placement="bottom" id="tag">
+        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+        </a>
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag4 %}
+         <a href="post.tag4.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag4.username }}" data-placement="bottom" id="tag">
+        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+        </a>
         {% endif %}
-
+         {% if post.tag5 %}
+         <a href="post.tag5.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag5.username }}" data-placement="bottom" id="tag">
+        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+        </a>
+        {% endif %}
+         {% if post.tag5 %}
+         <a href="post.tag6.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag6.username }}" data-placement="bottom" id="tag">
+        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+        </a>
+        {% endif %}
       </div>
      
     </div>

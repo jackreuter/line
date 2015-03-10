@@ -18,3 +18,8 @@ h1{
           background-size: 100%;
           pull-image:right;
 }
+
+#tag{
+	padding-left: 10px;
+	padding-right:10px;
+}
