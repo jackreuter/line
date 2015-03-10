@@ -14,6 +14,7 @@ class LinkNewForm(forms.ModelForm):
     tag4 = forms.CharField(required=False)
     tag5 = forms.CharField(required=False)
     tag6 = forms.CharField(required=False)
+
     class Meta:
         model = Link
         fields = ('title', 'url', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6')

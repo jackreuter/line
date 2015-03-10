@@ -3,151 +3,166 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/link_new.css">
 {% endblock %}
 {% block page_content %}
-<head>
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/link_new.js"></script>
-<script>try{Typekit.load();}catch(e){}</script>
+<head>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/link_new.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
 </head>
 
 <body> 
-<form action="" method="post">{% csrf_token %}
+  <form action="" method="post">{% csrf_token %}
 
-<!-- POST A LINK -->
-<div style="padding-top:10%;">
-</div>
+    <!-- POST A LINK -->
+    <div style="padding-top:10%;">
+    </div>
 
-{{ form.url.errors }}
-      <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; padding-bottom:1%;">
+    {{ form.url.errors }}
+    <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; padding-bottom:1%;">
+      <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1">
+      <span class="input-group-addon" id="sizing-addon1"> 
+        <button type="button" id="trigger-title" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+          <img src="{{ STATIC_URL }}img/Add_Link.png" width="20x";>
+        </button>
+      </span>
+    </div>
 
-                <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1">
-            <span class="input-group-addon" id="sizing-addon1"> 
+    <!-- INCLUDE CUSTOM TITLE  -->
+    {% if form.errors %}
+    <div>
+      {% else %}
+      <div id="input-title">
+        {% endif %}
 
+        <div style="margin-right:360px; margin-left:85px; margin-top:3%;">
+          {{ form.title.errors }}
+        </div>
 
-                <a id="trigger-title" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-                  <img src="{{ STATIC_URL }}img/Add_Link.png" width="20x";>
-                  </a>
+        <div class="input-group" style="margin-right:360px; margin-left:85px; margin-top:3%;">
+          <input type="text" id="id_title" maxlength="255" name="title" class="form-control" placeholder="Input a Custom Title" aria-describedby="sizing-addon2">
+          <span class="input-group-addon" id="sizing-addon2">
+            <button type="button" id="trigger-share-0" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+              <img src="{{ STATIC_URL }}img/Add_Link.png" width="18px";>
+            </button>
+          </span>
+        </div>
+      </div>
+      
+      <!-- SHARE THE FUCKING THING -->                         
+      <!-- {% for i in "xxxxxx" %} -->
+      <!-- <div id="share-post-{{ forloop.counter0 }}"> -->
+
+      <!-- {{ form.tag1.errors }} -->
+
+      <!-- <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;"> -->
+      <!--             <input type="text" id="id_tag{{ forloop.counter }}" name="tag{{ forloop.counter }}" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px"> -->
+      <!--             <span class="input-group-addon" id="sizing-addon3"> -->
+
+      <!--            <a id="trigger-share-{{ forloop.counter }}" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;"> -->
+      <!--                     <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";> -->
+      <!--                 </a> -->
+      <!--            </span> -->
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- {% endfor %} -->
+
+      {% if form.errors %}
+      <div>
+        {% else %}
+        <div id="share-post-0">
+          {% endif %}
+          <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+            {{ form.tag1.errors }}
+            <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+            <span class="input-group-addon" id="sizing-addon3">
+              <button type="button" id="trigger-share-1" style="margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
+              </button>
             </span>
-  </div>
+          </div>
+        </div>
 
-<!-- INCLUDE CUSTOM TITLE  -->
-{% if form.title.errors %}
-<div>
-{% else %}
-<div id="input-title">
-{% endif %}
+        {% if form.errors %}
+        <div>
+          {% else %}
+          <div id="share-post-1">
+            {% endif %}
+            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+              {{ form.tag2.errors }}
+              <input type="text" id="id_tag2" name="tag2" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+              <span class="input-group-addon" id="sizing-addon3">
+                <button type="button" id="trigger-share-2" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                  <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
+                </button>
+              </span>
+            </div>
+          </div>
 
-<div style="margin-right:360px; margin-left:85px; margin-top:3%;">
-  {{ form.title.errors }}
-</div>
-
-<div class="input-group" style="margin-right:360px; margin-left:85px; margin-top:3%;">
-            <input type="text" id="id_title" maxlength="255" name="title" class="form-control" placeholder="Input a Custom Title" aria-describedby="sizing-addon2">
-               <span class="input-group-addon" id="sizing-addon2">
-               
-
-                <a id="trigger-share-0" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-                    <img src="{{ STATIC_URL }}img/Add_Link.png" width="18px";>
-                </a>
-
-            
+          {% if form.errors %}
+          <div>
+            {% else %}
+            <div id="share-post-2">
+              {% endif %}
+              <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+                {{ form.tag3.errors }}
+                <input type="text" id="id_tag3" name="tag3" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                <span class="input-group-addon" id="sizing-addon3">
+                  <button type="button" id="trigger-share-3" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                    <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
+                  </button>
                 </span>
-</div>
-</div>
- 
-                           
-                           <!-- SHARE THE FUCKING THING -->                         
-<!-- {% for i in "xxxxxx" %} -->
-<!-- <div id="share-post-{{ forloop.counter0 }}"> -->
+              </div>
+            </div>
 
-<!-- {{ form.tag1.errors }} -->
+            {% if form.errors %}
+            <div>
+              {% else %}
+              <div id="share-post-3">
+                {% endif %}
+                <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+                  {{ form.tag4.errors }}
+                  <input type="text" id="id_tag4" name="tag4" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                  <span class="input-group-addon" id="sizing-addon3">
+                    <button type="button" id="trigger-share-4" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                      <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
+                    </button>
+                  </span>
+                </div>
+              </div>
 
-<!-- <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;"> -->
-<!--             <input type="text" id="id_tag{{ forloop.counter }}" name="tag{{ forloop.counter }}" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px"> -->
-<!--             <span class="input-group-addon" id="sizing-addon3"> -->
+              {% if form.errors %}
+              <div>
+                {% else %}
+                <div id="share-post-4">
+                  {% endif %}
+                  <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+                    {{ form.tag5.errors }}
+                    <input type="text" id="id_tag5" name="tag5" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                    <span class="input-group-addon" id="sizing-addon3">
+                      <button type="button" id="trigger-share-5" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                        <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
+                      </button>
+                    </span>
+                  </div>
+                </div>
 
-<!--            <a id="trigger-share-{{ forloop.counter }}" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;"> -->
-<!--                     <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";> -->
-<!--                 </a> -->
-<!--            </span> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- {% endfor %} -->
+                {% if form.errors %}
+                <div>
+                  {% else %}
+                  <div id="share-post-5">
+                    {% endif %}
+                    <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+                      {{ form.tag6.errors }}
+                      <input type="text" id="id_tag6" name="tag6" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                      <span class="input-group-addon" id="sizing-addon3">
+                        <button type="button" id="trigger-share-6" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                          <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                  <button type="submit">SUBMIT</button>
 
-<div id="share-post-0">
-  <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
-    {{ form.tag1.errors }}
-    <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-    <span class="input-group-addon" id="sizing-addon3">
-      <a id="trigger-share-1" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-        <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
-      </a>
-    </span>
-  </div>
-</div>
-
-<div id="share-post-1">
-  <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
-  {{ form.tag2.errors }}
-    <input type="text" id="id_tag2" name="tag2" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-    <span class="input-group-addon" id="sizing-addon3">
-      <a id="trigger-share-2" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-        <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
-      </a>
-    </span>
-  </div>
-</div>
-
-<div id="share-post-2">
-  <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
-  {{ form.tag3.errors }}
-    <input type="text" id="id_tag3" name="tag3" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-    <span class="input-group-addon" id="sizing-addon3">
-      <a id="trigger-share-3" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-        <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
-      </a>
-    </span>
-  </div>
-</div>
-
-<div id="share-post-3">
-  <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
-  {{ form.tag4.errors }}
-    <input type="text" id="id_tag4" name="tag4" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-    <span class="input-group-addon" id="sizing-addon3">
-      <a id="trigger-share-4" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-        <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
-      </a>
-    </span>
-  </div>
-</div>
-
-<div id="share-post-4">
-  <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
-  {{ form.tag5.errors }}
-    <input type="text" id="id_tag5" name="tag5" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-    <span class="input-group-addon" id="sizing-addon3">
-      <a id="trigger-share-5" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-        <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
-      </a>
-    </span>
-  </div>
-</div>
-
-<div id="share-post-5">
-  <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
-  {{ form.tag6.errors }}
-    <input type="text" id="id_tag6" name="tag6" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-    <span class="input-group-addon" id="sizing-addon3">
-      <a id="trigger-share-6" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-        <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";>
-      </a>
-    </span>
-  </div>
-</div>
-
-<button type="submit">SUBMIT</button>
-
-</form>
+  </form>
 </body>
 
 {% endblock %}
