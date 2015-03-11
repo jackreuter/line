@@ -18,24 +18,28 @@
 
   <div class="media">
     
-    <!-- EVEN MORE RIGHT -->
+    <!-- EVEN MORE left-->
     <div div class="col-sm-1" style="margin-left:-10px; margin-top:10px; padding-bottom:80px;">
     {% if not post.is_link %}
-      <span style="margin-left:50px; padding-top:90px;">
+      <span style="margin-left:42px;">
         <img src="{{ STATIC_URL }}img/Reline.png" class="resizeicon"> 
       </span>
+
+
         <!--change href to link to user's profile, change title to short_name when implemented -->
         <a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
-      <img  src={{ post.original.posted_by.get_image_url }} class="img-circle"  width="40">
+      <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40">
       </a>  
+
+
     {% endif %}
     </div>
 
-    <!-- RIGHT --> 
+    <!-- LEFT --> 
     <div class="col-sm-2" id="hide">
      <!--change href to link to user's profile, change title to short_name when implemented -->
        <a href="{{ post.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.posted_by.get_long_name }}" data-placement="bottom">
-      <img src={{ post.posted_by.get_image_url }} class="img-circle" width="90"> 
+      <img src="{{ post.posted_by.get_image_url }}" class="img-circle" width="90">
         </a>
       <span>
         <h4>
@@ -46,57 +50,72 @@
     </div>
 
     <!--CENTER --> 
-    <div class="col-sm-6" style="margin-left:-80px; margin-top:10px; padding-bottom:80px;">
-      <h1 style="margin-top:10px;" >
+
+<div class="col-sm-8" style="margin-left:-5%;"> 
+       <!--For some reason this only works for the first post --> 
+
+      <a id="summary-button">
+      <button class="pull-right" style="margin-top:10px; margin-right:3%;" >
+        ↓
+      </button>
+      </a>
+      
+      <div id="summary">
+      <a href="{{ post.get_url }}" class="embedly-card"></a>    
+      </div>
+
+
+     <!--Link name --> 
+    <div>
+      <h1 style="margin-top:10px; margin-right:80%;" >
       <a href="{{ post.get_url }}">  
       <!--This doesn't pull from the DB properly or load-->
       {{ post.title }} 
       </a>
       </h1>
-       <!--For some reason this only works for the first post --> 
 
-      <a id="summary-button">
-      <button class="pull-right" >
-      <img src="{{ STATIC_URL }}img/summary_arrow.png" class="resizeicon">
-      </button>
-      </a>
-<div id="summary">
-<a href="{{ post.get_url }}" class="embedly-card"></a>    
-</div>
       <!-- progress bar; need to add counting variable -->
 
+<span>
       <div style="width: {{ post.get_hotness_percent }}%;">
-      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="90" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
+          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="90" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
+          </div>
       </div>
-      </div>
-       <div class="span1">
-       <form>
-      <a >
-        <button id="plus" class="btn btn-default center-block resize nopadding pull-right" name="{{ post.get_repost_button_name }}"  data-toggle="modal" data-target="#tagfriends">
-        </button>
-<div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-  <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
-  <button name="{{ post.get_repost_button_name }}"></button>
 
-  </div>
-</div>
-        <style>
+
+      <div>
+       <form>
+            <a >
+                  <button id="plus" class="btn btn-default" name="{{ post.get_repost_button_name }}"  data-toggle="modal" data-target="#tagfriends" style="margin-left:100%; margin-top:-7%;">
+                  +
+                  </button>
+          <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+  <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
+                 <button name="{{ post.get_repost_button_name }}">
+                </button>
+
+          </div>
+          </div>
+       <!--  <style>
         #plus{
   background-image: url({{ STATIC_URL }}img/Plus.png);
           background-size: 100%;
           pull-image:right;
 }
-</style>
-      </a>
+</style> --> 
+           </a>
       </form>
-      </span>
-
-      </div>
     </div>
+</span>
+
+
+    </div>
+
+</div>
  
 
-    <!-- LEFT--> 
+    <!-- RIGHT--> 
     <div class="col-sm-3">
 
 
