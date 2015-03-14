@@ -5,6 +5,8 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.conf import settings
 
+from random import randint
+
 from links.models import Link
 
 class UserManager(BaseUserManager):
@@ -71,20 +73,27 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_recommended_users(self):
         recommended_users = []
-        for link in self.likes.all():
-            for related_user in link.liked_by.all():
-                if related_user is not self:
-                    recommended_users.append(related_user)
+        for sibling in self.following.all():
+            for cousin in sibling.following.all():
+                if cousin is not self:
+                    recommended_users.append(cousin)
         while len(recommended_users) < 3:
-            recommended_users.append(User.objects.get(pk=1))
+            i = 1
+            recommended_users.append(User.objects.get(pk=i))
+            i = i+1
         return recommended_users
 
-    def get_recommended_user_a(self):
-        return self.get_recommended_users()[0]
-    def get_recommended_user_b(self):
-        return self.get_recommended_users()[1]
-    def get_recommended_user_c(self):
-        return self.get_recommended_users()[2]
+    def get_recommended_user(self):
+        users = self.get_recommended_users()
+        i = randint(0, len(users)-1)
+        return users[i]
+
+    def get_number_of_recs_as_str(self):
+        x = len(self.get_recommended_users())
+        s = ""
+        for i in range(0,x):
+            s = s+"x"
+        return s
 
     def save(self, *args, **kwargs):
         if not self.slug:

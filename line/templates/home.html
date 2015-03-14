@@ -13,6 +13,11 @@
 
 <div class="followbox" style="margin-top:5%; margin-left:80%;">
   <h2 class="centered">People to follow</h2>
+  {% for x in user.get_number_of_recs_as_str %}
+  {% with user.get_recommended_user as recommended_user %}
+  <li><a href="{{ recommended_user.get_profile_page_url }}">{{ recommended_user }}</a></li>
+  {% endwith %}
+  {% endfor %}
 </div>
 
 <div style="padding-top:7%;">
@@ -134,33 +139,33 @@
 
       <div style="margin-top:30px;">
         {% if post.tag1 %}
-          <a href="post.tag1.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag1.username }}" data-placement="bottom" id="tag">
-        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+          <a href="{{ post.tag1.get_profile_page_url}}" data-toggle="tooltip" title="{{ post.tag1.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
         </a>
         {% endif %}
         {% if post.tag2 %}
-         <a href="post.tag2.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag2.username }}" data-placement="bottom" id="tag">
-        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+         <a href="{{ post.tag2.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag2.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
         </a>
         {% endif %}
         {% if post.tag3 %}
-        <a href="post.tag3.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag3.username }}" data-placement="bottom" id="tag">
-        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+        <a href="{{ post.tag3.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag3.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
         </a>
         {% endif %}
         {% if post.tag4 %}
-         <a href="post.tag4.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag4.username }}" data-placement="bottom" id="tag">
-        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+         <a href="{{ post.tag4.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag4.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
         </a>
         {% endif %}
          {% if post.tag5 %}
-         <a href="post.tag5.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag5.username }}" data-placement="bottom" id="tag">
-        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+         <a href="{{ post.tag5.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag5.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
         </a>
         {% endif %}
          {% if post.tag5 %}
-         <a href="post.tag6.get_profile_page_url" data-toggle="tooltip" title="{{ post.tag6.username }}" data-placement="bottom" id="tag">
-        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+         <a href="{{ post.tag6.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag6.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
         </a>
         {% endif %}
       </div>
