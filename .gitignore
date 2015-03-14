@@ -1,4 +1,5 @@
 *.pyc
 line/settings/local.py
 .DS_Store
+*~
 

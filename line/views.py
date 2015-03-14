@@ -6,7 +6,6 @@ from django.views.generic import ListView
 
 from itertools import chain
 
-from search.forms import SearchForm
 from users.models import User
 from links.models import Link, LinkManager
 from reposts.models import Repost
@@ -36,11 +35,6 @@ class HomeView(ListView):
                 for user in following:
                     queryset = chain(queryset,user.links.all(),user.reposts.all())
         return sorted(queryset, key=lambda instance: instance.created_at, reverse=True)
-
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        context['form']=SearchForm
-        return context
 
     def render_to_response(self, context):
         if bool(self.request.GET):
@@ -75,7 +69,6 @@ class HotView(HomeView):
 
     def get_queryset(self):
         hotness_threshold = 90
-
         queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
         hot_queryset = []
         for post in queryset:
@@ -86,5 +79,4 @@ class HotView(HomeView):
 class AllView(HomeView):
     def get_queryset(self):
         queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
-
         return queryset
