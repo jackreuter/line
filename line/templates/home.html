@@ -11,6 +11,8 @@
 </head>
 
 
+
+
 <div class="followbox" style="margin-top:5%; margin-left:80%;">
   <h2 class="centered">People to follow</h2>
 </div>
@@ -96,16 +98,26 @@
                   </button>
           <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
-  <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
-                 <button name="{{ post.get_repost_button_name }}">
 
-                  <!-- this is the code for the 'tag your friends box' on the 'add new link page'
+  <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
+
+                              <!-- this is the code for the 'tag your friends box' on the 'add new link page' it doesn't work as is and needs to be re-appropriated 
+           <div id="share-post-0">
+            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+              {{ form.tag2.errors }}
+              <input type="text" id="id_tag2" name="tag2" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
               <span class="input-group-addon" id="sizing-addon3">
-              <button type="button" id="trigger-share-1" style="margin-top:-50px; margin-left:-20px; margin-right:-20px; margin-bottom:-20px;">
-               >
-              </button>
-            </span>
+                <button type="button" id="trigger-share-2" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                 >
+                </button>
+              </span>
+            </div>
+          </div>
           -->
+
+
+                 <button name="{{ post.get_repost_button_name }}">
+                    REPOST
                 </button>
 
           </div>
