@@ -5,15 +5,21 @@
 {% block page_content %}
 
 <div style="padding-top: 10%">
+
+<!-- ADD funtionality to buttons --> 
+<button type="submit" style="font-size:10px; margin-left:5%;">Upload Picture</button>
+<button type="submit" style="font-size:10px; margin-left:1%;">Edit Caption</button>
+
 <h3 class="centered">
-
   {{ user_object.first_name }}
-
 </h3>
 
 <div class="centered">
   <img src={{ user_object.get_image_url }} class="img-circle" width="200">
 </div>
+
+
+
 
 <h1 class="centered" style="color:#BABABA;">
   Young adult novel enthusiast
