@@ -10,11 +10,16 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/home.js"></script>
 </head>
 
-<div style="padding-top:10%;">
+
+<div class="followbox" style="margin-top:5%; margin-left:80%;">
+  <h2 class="centered">People to follow</h2>
+</div>
+
+<div style="padding-top:7%;">
 {% for post in post_list %}
 
-<div id="content" ></div>
-<div class="container">
+
+<div class="container col-sm-12">
 
   <div class="media">
     
@@ -51,7 +56,7 @@
 
     <!--CENTER --> 
 
-<div class="col-sm-8" style="margin-left:-5%;"> 
+<div class="col-sm-6" style="margin-left:-5%;"> 
        <!--For some reason this only works for the first post --> 
 
       <a id="summary-button">
@@ -124,7 +129,7 @@
  
 
     <!-- RIGHT--> 
-    <div class="col-sm-4" style="margin-left:86%; margin-top:-8%; margin-bottom:5%;">
+    <div class="col-sm-2" style="margin-left:66%; margin-top:-8%; margin-bottom:5%;">
 
 
       <div style="margin-top:30px;">
@@ -162,6 +167,8 @@
      
     </div>
 
+  
+
     <div class="span">
       <form action="#" method="get">
       </form>
@@ -169,6 +176,10 @@
 
 
   </div>
+
+
+
+
 </div>
 
 

@@ -6,26 +6,30 @@
 {% block page_title %}Notifications | {% endblock %}
 
 {% block page_content %}
+<div class="container col-sm-12">
 
 {% for notification in notification_list %}
-<div class="col-sm-10">
+<div class="col-sm-8">
 <div class="col-sm-2">
-        <h1>{{ notification.created_at }}</h1>
+        <h2>{{ notification.created_at }}</h2>
 </div>
-<div class="col-sm-2">
+<div class="col-sm-1">
   {% if 'following' in notification.title %}
-          <img src="{{ STATIC_URL }}img/profile_icon.png" class="center-block resize nopadding">
+          <img src="{{ STATIC_URL }}img/profile_icon.png" class="center-block notificationresize nopadding">
+  {% elif 'repost' in notification.title %}
+          <img src="{{ STATIC_URL }}img/Reline.png" class="center-block notificationresize nopadding">
   {% else %}
+          <img src="{{ STATIC_URL }}img/Plus.png" class="center-block notificationresize nopadding">
   {% endif %}
 </div>
 
-<div class="col-sm-8">
+<div class="col-sm-5">
   {% if 'following' in notification.title %}
-        <h3>{{ notification.from_user }} is following you.</h3>
+        <h1>{{ notification.from_user }} is following you.</h1>
   {% elif 'repost' in notification.title %}
-        <h3>{{ notification.from_user }} reposted your link.</h3>
+        <h1>{{ notification.from_user }} reposted your link.</h1>
   {% else %}
-        <h3>{{ notification.from_user }} tagged you in a link.</h3>
+        <h1>{{ notification.from_user }} tagged you in a link.</h1>
   {% endif %}
 </div>
 </div>
@@ -35,4 +39,5 @@
 
 {% endblock %}
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+</div>
 
