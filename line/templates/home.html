@@ -95,13 +95,43 @@
       </div>
 
 
+<!--- PATE this is where the plus options starts; this is what you should dropdown -->
       <div>
        <form>
             <a >
                   <button id="plus" class="btn btn-default" name="{{ post.get_repost_button_name }}"  data-toggle="modal" data-target="#tagfriends" style="margin-left:100%; margin-top:-7%;">
                   +
                   </button>
-          <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
+
+                    <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                </button>
+
+
+
+
+    {% if form.errors %}
+        
+            {% else %}
+          <div id="share-post-0">
+          {% endif %}
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+                              {{ form.tag3.errors }}
+
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+              
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>
+              
+            </div>
+
+
+          </div>
+
+        <!-- and this is where it ends --> 
+
+          <!-- <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
 
   <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
@@ -121,12 +151,9 @@
           -->
 
 
-                 <button name="{{ post.get_repost_button_name }}">
-                    REPOST
-                </button>
+               
 
-          </div>
-          </div>
+       
        <!--  <style>
         #plus{
   background-image: url({{ STATIC_URL }}img/Plus.png);
