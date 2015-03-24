@@ -4,7 +4,8 @@ from django.conf import settings
 class QueryManager(models.Manager):
     def create_query(self, text, searched_by):
 
-        if searched_by.is_anonymous:
+        if searched_by.is_anonymous():
+            print searched_by
             query = self.model(
                 text=text,
             )

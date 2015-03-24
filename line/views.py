@@ -16,7 +16,7 @@ def logout_page(request):
     return HttpResponseRedirect('/')
 
 class WelcomeView(TemplateView):
-    template_name = "index.html"
+    template_name = "landing_page.html"
 
 class HomeView(ListView):
     model = Link
