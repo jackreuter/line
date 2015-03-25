@@ -11,21 +11,16 @@ f{% extends "_layouts/base.html" %}
 
 <body> 
 
-<div class="greyboxaddlink" style="margin-left:10%; margin-top:5%;">
+<div class="greyboxaddlink" style="margin-left:18%; margin-top:5%;">
   <form action="" method="post">{% csrf_token %}
 
- <button type="submit" style="margin-left:70%;margin-top:15%; font-size:35px;">SUBMIT</button>
+
 
     <!-- POST A LINK -->
 
     {{ form.url.errors }}
-    <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; padding-bottom:1%; margin-top:-10%;">
-      <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1">
-      <span class="input-group-addon" id="sizing-addon1"> 
-        <button type="button" id="trigger-title" style=" margin-top:-70px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-          <img src="{{ STATIC_URL }}img/Add_Link.png" width="45x"; style="margin-bottom:8%;">
-        </button>
-      </span>
+    <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; margin-top:5%;">
+      <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1"  style="width:890px;">
     </div>
 
     <!-- INCLUDE CUSTOM TITLE  -->
@@ -39,15 +34,10 @@ f{% extends "_layouts/base.html" %}
           {{ form.title.errors }}
         </div>
 
-        <div class="input-group" style="margin-right:360px; margin-left:150px; margin-top:3%;">
-          <input type="text" id="id_title" maxlength="255" name="title" class="form-control" placeholder="Input a Custom Title" aria-describedby="sizing-addon2">
+      <div class="input-group" style="margin-right:360px; margin-left:50px; margin-top:5%;">
+          <input type="text" id="id_title" maxlength="255" name="title" class="form-control" placeholder="Input a Custom Title" aria-describedby="sizing-addon2" style="width:890px;">
              <!-- there is currently a space inbetween the box and the arrow; i think it has something to do with the id or type assigned to the button because i can't seem to do anything with style manipulation --> 
-          <span class="input-group-addon" id="sizing-addon2">
-            <button type="button" id="trigger-share-0" style=" margin-top:-50px; margin-left:-40px; margin-right:-20px; margin-bottom:-20px;">
-              <img src="{{ STATIC_URL }}img/Add_Link.png" width="35px";>
-            </button>
-          </span>
-        </div>
+      </div>
       </div>
 
 
@@ -70,19 +60,14 @@ f{% extends "_layouts/base.html" %}
       <!-- </div> -->
       <!-- {% endfor %} -->
 
-      {% if form.errors %}
+     {% if form.errors %}
       
         {% else %}
        <div id="share-post-0">
             {% endif %}
-            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:50px; margin-top:5%;">
               {{ form.tag2.errors }}
-              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-              <span class="input-group-addon" id="sizing-addon3">
-                <button type="button" id="trigger-share-1" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
-                 >
-                </button>
-              </span>
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 890px">
             </div>
           </div>
 
@@ -165,6 +150,11 @@ f{% extends "_layouts/base.html" %}
                       </span>
                     </div>
                   </div>
+
+
+                   <button type="submit" style="margin-left:45%;margin-top:5%; font-size:35px;">
+  SUBMIT
+</button>
 
   </form>
 </body>
