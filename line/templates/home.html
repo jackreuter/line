@@ -13,11 +13,14 @@
 
 
 
-<div class="followbox" style="margin-top:5%; margin-left:80%;">
+<div class="followbox" style="margin-top:5%; margin-left:83%;">
   <h2 class="centered">People to follow</h2>
   {% for x in user.get_number_of_recs_as_str %}
   {% with user.get_recommended_user as recommended_user %}
-  <li><a href="{{ recommended_user.get_profile_page_url }}">{{ recommended_user }}</a></li>
+  <li>
+    <a href="{{ recommended_user.get_profile_page_url }}">{{ recommended_user }}
+    </a>
+  </li>
   {% endwith %}
   {% endfor %}
 </div>
@@ -65,12 +68,13 @@
 
 <div class="col-sm-6" style="margin-left:-5%;"> 
        <!--For some reason this only works for the first post --> 
-
+       <div style="margin-top:10px; margin-left:7%;"> 
       <a id="summary-button">
-      <button class="pull-right" style="margin-top:10px; margin-right:3%;" >
+      <button class="pull-right"  >
         ↓
       </button>
       </a>
+      </div>
       
       <div id="summary">
       <a href="{{ post.get_url }}" class="embedly-card"></a>    
@@ -79,7 +83,7 @@
 
      <!--Link name --> 
     <div>
-      <h1 style="margin-top:10px;" >
+      <h1 style="margin-top:10px;">
       <a href="{{ post.get_url }}">  
       <!--This doesn't pull from the DB properly or load-->
       {{ post.title }} 
@@ -99,8 +103,8 @@
       <div>
       
             
-                  <button id="plus" class="btn btn-default" style="margin-left:100%; margin-top:-7%;" >
-                  +
+                  <button id="plus" class="btn btn-default resizeplus" style="margin-left:94.5%; margin-top:-7%;">
+                  <img src="{{ STATIC_URL }}img/Plus.png" class="resizeicon"> 
                   </button>
               
       </div>
@@ -123,59 +127,44 @@
 
 
           </div>
+
+
          
           <div id="share-post-1">
                      <button name="{{ post.get_repost_button_name }}">
                     REPOST
                     </button>
             <div class="input-group input-group-sm" style="margin-right:50%;">
-                              
-
-              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-              
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">     
                 <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
                  >
-                </button>
-              
+                </button>    
             </div>
+        </div>
 
-
-          </div>
 
            <div id="share-post-2">
                      <button name="{{ post.get_repost_button_name }}">
                     REPOST
                     </button>
             <div class="input-group input-group-sm" style="margin-right:50%;">
-                              
-
-              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-              
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">              
                 <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
                  >
-                </button>
-              
+                </button>           
             </div>
-
-
           </div>
 
- <div id="share-post-3">
+          <div id="share-post-3">
                      <button name="{{ post.get_repost_button_name }}">
                     REPOST
                     </button>
             <div class="input-group input-group-sm" style="margin-right:50%;">
-                              
-
-              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-              
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">    
                 <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
                  >
-                </button>
-              
+                </button>             
             </div>
-
-
           </div>
 
            <div id="share-post-4">
@@ -183,38 +172,26 @@
                     REPOST
                     </button>
             <div class="input-group input-group-sm" style="margin-right:50%;">
-                              
-
-              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-              
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">        
                 <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
                  >
-                </button>
-              
+                </button>              
             </div>
-
-
           </div>
+
 
            <div id="share-post-5">
                      <button name="{{ post.get_repost_button_name }}">
                     REPOST
                     </button>
             <div class="input-group input-group-sm" style="margin-right:50%;">
-                              
-
               <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
-              
                 <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
                  >
                 </button>
-              
             </div>
 
-
-          </div>
-
-    </div>
+       </div>
         <!-- and this is where it ends --> 
 
           <!-- <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">

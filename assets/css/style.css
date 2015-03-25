@@ -73,6 +73,14 @@ padding-bottom: -20px;
   margin-top: -2px;
 }
 
+.resizeplus {
+   width:37px;
+  height:35px;
+  margin-top: -7px;
+  padding:0px;
+  padding-top:-10px;
+}
+
 .resizeicon {
     width:33px;
     height:33px;
