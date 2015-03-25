@@ -1,10 +1,14 @@
 
 $(document).ready(function() {
-  $('#summary-button').click(function() {
+  $(".summary-button").each(function(){
+  $(this).click(function() {
     $(this).next('#summary').slideToggle('slow');
   });
-  $('#plus').click(function() {
+});
+  $('.plus').click(function() {
+    $(this).click(function() {
   	$('#share-post-0').slideToggle('slow');
+  });
   });
    $('#share-post-0').click(function() {
   	$('#share-post-1').slideToggle('slow');
