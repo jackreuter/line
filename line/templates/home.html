@@ -66,8 +66,8 @@
 <div class="col-sm-6" style="margin-left:-5%;"> 
        <!--For some reason this only works for the first post --> 
 
-      <a id="summary-button">
-      <button class="pull-right" style="margin-top:10px; margin-right:3%;" >
+      <a id="summary-button" class="summary-button">
+      <button class="pull-right"  style="margin-top:10px; margin-right:3%;" >
         ↓
       </button>
       </a>
@@ -98,11 +98,12 @@
 <!--- PATE this is where the plus options starts; this is what you should dropdown -->
       <div>
       
-            
-                  <button id="plus" class="btn btn-default" style="margin-left:100%; margin-top:-7%;" >
+            	<a class="plus" id="plus{{ forloop.counter }}">
+                  <button  class="btn btn-default" style="margin-left:100%; margin-top:-7%;" >
                   +
                   </button>
-              
+              	</a>
+
       </div>
 
 
