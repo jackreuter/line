@@ -2,59 +2,46 @@
 
 {% block page_content %}
 
-<!-- not sure if important python code 
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-</form>
---> 
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8">
     <script src="js/prefixfree.min.js"></script>
-</head>
-
-<body>
-
+  </head>
+  <body>
     <div class="greybox" style="margin-left:40%; margin-top:10%;">
 
-        <form action="." method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-<!-- EMAIL-->
-              <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%;" >
-                  <input type="email" id="email" max_length="100" name="email" class="form-control" placeholder="EMAIL" aria-describedby="basic-addon2">
-            </div>
-<!-- PASSWORD --> 
-            <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:5%">
-                <input type="password" id="id_password1" name="password1" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
-                <input type="password" id="id_password2" name="password2" class="form-control" placeholder="REPEAT PASSWORD"  aria-describedby="basic-addon2">
-            </div>
-<!-- USERNAME -->
-            <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
-                <input type="text" id="id_username" maxlength="255" name="username" class="form-control" placeholder="USERNAME"  aria-describedby="basic-addon2">
-            </div>
-<!-- FIRST NAME -->
-            <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
-                <input type="text" id="id_password" maxlength="255" name="first_name" class="form-control" placeholder="FIRST NAME"  aria-describedby="basic-addon2">
-            </div>
-            {{ form.image }}
-<!-- LOGIN CODE -->
-<!--            <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
-                <input type="text" for="id_password" class="form-control" placeholder="LOGIN CODE"  aria-describedby="basic-addon2">
-            </div>-->
-<!-- SING UP BUTTON -->
-            <div class="btn-group"style="margin-left:10%;margin-top:5%" role="group" aria-label="...">
-                <button type="submit" class="btn btn-default btn-group-lg" value="Sign up">Sign up</button>
-            </div>
-
-   </div>
-
-</body>
-
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- EMAIL-->
+        <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%;" >
+          <input type="email" id="id_email" max_length="100" name="email" class="form-control" placeholder="EMAIL" aria-describedby="basic-addon2">
+        </div>
+        <!-- PASSWORD --> 
+        <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:5%">
+          <input type="password" id="id_password1" name="password1" class="form-control" placeholder="PASSWORD"  aria-describedby="basic-addon2">
+          <input type="password" id="id_password2" name="password2" class="form-control" placeholder="REPEAT PASSWORD"  aria-describedby="basic-addon2">
+        </div>
+        <!-- USERNAME -->
+        <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
+          <input type="text" id="id_username" maxlength="255" name="username" class="form-control" placeholder="USERNAME"  aria-describedby="basic-addon2">
+        </div>
+        <!-- FIRST NAME -->
+        <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
+          <input type="text" id="id_first_name" maxlength="255" name="first_name" class="form-control" placeholder="FIRST NAME"  aria-describedby="basic-addon2">
+        </div>
+        {{ form.image }}
+        <!-- LOGIN CODE -->
+        <!--            <div class="input-group input-group-lg" style="margin-left:10%; margin-right:7%; margin-bottom:1%">
+                        <input type="text" for="id_password" class="form-control" placeholder="LOGIN CODE"  aria-describedby="basic-addon2">
+        </div>-->
+        <!-- SING UP BUTTON -->
+        <div class="btn-group"style="margin-left:10%;margin-top:5%" role="group" aria-label="...">
+          <button type="submit" class="btn btn-default btn-group-lg" value="Sign up">Sign up</button>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
 
 {% endblock %}
-
-
