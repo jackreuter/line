@@ -68,7 +68,7 @@
 
             <!-- LINKS -->
             <li>
-              <a href='/links/new/' class="btn" style="margin-left:100px;" >
+              <a data-toggle="modal" data-target="#myModal" class="btn" style="margin-left:100px;" >
                 <img src="{{ STATIC_URL }}img/Link.png" class="center-block resizeicon" >
               </a>
             </li>              
@@ -211,7 +211,155 @@
 <!-- navbar end -->
 
 
+<div class="modal fade" id="myModal">
+<div class="greyboxaddlink" style="margin-left:18%; margin-top:5%;">
+  <form action="" method="post">{% csrf_token %}
 
+
+
+    <!-- POST A LINK -->
+
+    {{ form.url.errors }}
+    <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; margin-top:5%;">
+      <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1"  style="width:890px;">
+    </div>
+
+    <!-- INCLUDE CUSTOM TITLE  -->
+    {% if form.errors %}
+    <div>
+      {% else %}
+      <div id="input-title">
+        {% endif %}
+
+        <div style="margin-right:360px; margin-left:85px; margin-top:3%;">
+          {{ form.title.errors }}
+        </div>
+
+      <div class="input-group" style="margin-right:360px; margin-left:50px; margin-top:5%;">
+          <input type="text" id="id_title" maxlength="255" name="title" class="form-control" placeholder="Input a Custom Title" aria-describedby="sizing-addon2" style="width:890px;">
+             <!-- there is currently a space inbetween the box and the arrow; i think it has something to do with the id or type assigned to the button because i can't seem to do anything with style manipulation --> 
+      </div>
+      </div>
+
+
+      
+      <!-- SHARE THE FUCKING THING -->                         
+      <!-- {% for i in "xxxxxx" %} -->
+      <!-- <div id="share-post-{{ forloop.counter0 }}"> -->
+
+      <!-- {{ form.tag1.errors }} -->
+
+      <!-- <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;"> -->
+      <!--             <input type="text" id="id_tag{{ forloop.counter }}" name="tag{{ forloop.counter }}" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px"> -->
+      <!--             <span class="input-group-addon" id="sizing-addon3"> -->
+
+      <!--            <a id="trigger-share-{{ forloop.counter }}" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;"> -->
+      <!--                     <img src="{{ STATIC_URL }}img/Add_Link.png" width="13px";> -->
+      <!--                 </a> -->
+      <!--            </span> -->
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- {% endfor %} -->
+
+     {% if form.errors %}
+      
+        {% else %}
+       <div id="share-post-0">
+            {% endif %}
+            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:50px; margin-top:5%;">
+              {{ form.tag2.errors }}
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 890px">
+            </div>
+          </div>
+
+
+        {% if form.errors %}
+      
+          {% else %}
+          <div id="share-post-1">
+            {% endif %}
+            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+              {{ form.tag2.errors }}
+              <input type="text" id="id_tag2" name="tag2" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+              <span class="input-group-addon" id="sizing-addon3">
+                <button type="button" id="trigger-share-2" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                 >
+                </button>
+              </span>
+            </div>
+          </div>
+
+          {% if form.errors %}
+        
+            {% else %}
+            <div id="share-post-2">
+              {% endif %}
+              <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+                {{ form.tag3.errors }}
+                <input type="text" id="id_tag3" name="tag3" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                <span class="input-group-addon" id="sizing-addon3">
+                  <button type="button" id="trigger-share-3" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                   >
+                  </button>
+                </span>
+              </div>
+            </div>
+
+            {% if form.errors %}
+         
+              {% else %}
+              <div id="share-post-3">
+                {% endif %}
+                <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+                  {{ form.tag4.errors }}
+                  <input type="text" id="id_tag4" name="tag4" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                  <span class="input-group-addon" id="sizing-addon3">
+                    <button type="button" id="trigger-share-4" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                     >
+                    </button>
+                  </span>
+                </div>
+              </div>
+
+              {% if form.errors %}
+                {% else %}
+                <div id="share-post-4">
+                  {% endif %}
+                  <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+                    {{ form.tag5.errors }}
+                    <input type="text" id="id_tag5" name="tag5" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                    <span class="input-group-addon" id="sizing-addon3">
+                      <button type="button" id="trigger-share-5" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                       >
+                      </button>
+                    </span>
+                  </div>
+                </div>
+
+                {% if form.errors %}
+              
+                  {% else %}
+                  <div id="share-post-5">
+                    {% endif %}
+                    <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+                      {{ form.tag6.errors }}
+                      <input type="text" id="id_tag6" name="tag6" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                      <span class="input-group-addon" id="sizing-addon3">
+                        <button type="button" id="trigger-share-6" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                        >
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+
+
+                   <button type="submit" style="margin-left:45%;margin-top:5%; font-size:35px;">
+  SUBMIT
+</button>
+
+  </form>
+  </div>
+</div>
 
 <div class="tocenter">
   {% block page_content %}{% endblock %}

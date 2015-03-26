@@ -1,7 +1,9 @@
 #summary{
 	display: none;
 }
-
+.repost-tags{
+	display:none;
+}
 h1{
 	text-align:center;
 	font-family:"Helvetica", neue light;
@@ -24,21 +26,19 @@ h1{
 	padding-right:10px;
 }
 
-#share-post-0{
+
+.share-post-1{
 	display:none;
 }
-#share-post-1{
+.share-post-2{
 	display:none;
 }
-#share-post-2{
+.share-post-3{
 	display:none;
 }
-#share-post-3{
+.share-post-4{
 	display:none;
 }
-#share-post-4{
-	display:none;
-}
-#share-post-5{
+.share-post-5{
 	display:none;
 }
