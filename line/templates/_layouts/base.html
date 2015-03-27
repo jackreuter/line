@@ -211,21 +211,21 @@
 <!-- navbar end -->
 
 
-<div class="modal fade" id="myModal">
+<!-- <div class="modal fade" id="myModal">
 <div class="greyboxaddlink" style="margin-left:18%; margin-top:5%;">
   <form action="" method="post">{% csrf_token %}
 
 
 
     <!-- POST A LINK -->
-
+<!-- <!-- 
     {{ form.url.errors }}
     <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; margin-top:5%;">
       <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1"  style="width:890px;">
     </div>
 
     <!-- INCLUDE CUSTOM TITLE  -->
-    {% if form.errors %}
+ <!--    {% if form.errors %}
     <div>
       {% else %}
       <div id="input-title">
@@ -238,9 +238,9 @@
       <div class="input-group" style="margin-right:360px; margin-left:50px; margin-top:5%;">
           <input type="text" id="id_title" maxlength="255" name="title" class="form-control" placeholder="Input a Custom Title" aria-describedby="sizing-addon2" style="width:890px;">
              <!-- there is currently a space inbetween the box and the arrow; i think it has something to do with the id or type assigned to the button because i can't seem to do anything with style manipulation --> 
-      </div>
-      </div>
-
+    <!--   </div>
+      </div> -->
+ -->
 
       
       <!-- SHARE THE FUCKING THING -->                         
@@ -261,7 +261,7 @@
       <!-- </div> -->
       <!-- {% endfor %} -->
 
-     {% if form.errors %}
+   <!--   {% if form.errors %}
       
         {% else %}
        <div id="share-post-0">
@@ -359,8 +359,10 @@
 
   </form>
   </div>
-</div>
+</div> -->
 
+<div style="padding-top:3%;">
+</div>
 <div class="tocenter">
   {% block page_content %}{% endblock %}
 </div>
