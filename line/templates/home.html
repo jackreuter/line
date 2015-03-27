@@ -13,17 +13,17 @@
 
 
 
-<!-- <div class="followbox" style="margin-top:5%; margin-left:83%;"> -->
-<!--   <h2 class="centered">People to follow</h2> -->
-<!--   {% for x in user.get_number_of_recs_as_str %} -->
-<!--   {% with user.get_recommended_user as recommended_user %} -->
-<!--   <li> -->
-<!--     <a href="{{ recommended_user.get_profile_page_url }}">{{ recommended_user }} -->
-<!--     </a> -->
-<!--   </li> -->
-<!--   {% endwith %} -->
-<!--   {% endfor %} -->
-<!-- </div> -->
+<div class="followbox" style="margin-top:5%; margin-left:83%;">
+  <h2 class="centered">People to follow</h2>
+  {% for x in user.get_number_of_recs_as_str %}
+  {% with user.get_recommended_user as recommended_user %}
+  <li>
+    <a href="{{ recommended_user.get_profile_page_url }}">{{ recommended_user }}
+    </a>
+  </li>
+  {% endwith %}
+  {% endfor %}
+</div>
 
 {% for post in post_list %}
 
@@ -69,7 +69,7 @@
 
        <div class="summary-button" id="summary-button{{ forloop.counter }}" style="margin-top:10px; margin-left:10%;margin-bottom:5%;"> 
             
-      <button class="pull-right">
+      <button style="margin-left:90.5%; margin-top:-7%;">
         ↓
       </button>
       </div>
@@ -91,7 +91,7 @@
       <!-- progress bar; need to add counting variable -->
 
 <span>
-      <div style="width: {{ post.get_hotness_percent }}%;">
+      <div style="width:90%;">
           <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="90" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
           </div>
       </div>
@@ -100,7 +100,7 @@
 <!--- PATE this is where the plus options starts; this is what you should dropdown -->
       <div id="plus{{ forloop.counter }}"class="plus">
  				<a>
-                  <button class="btn btn-default resizeplus" style="margin-left:94.5%; margin-top:-7%;">
+                  <button class="btn btn-default resizeplus" style="margin-left:90.5%; margin-top:-7%;">
                   <img src="{{ STATIC_URL }}img/Plus.png" class="resizeicon"> 
 
                   </button>
@@ -226,9 +226,8 @@
           pull-image:right;
 }
 </style> --> 
-  </div>       
 </span>
-
+</div>
 
     </div>
 </div>
@@ -238,10 +237,10 @@
     <div class="col-sm-2" style="margin-left:66%; margin-top:-8%; margin-bottom:5%;">
 
 
-      <div style="margin-top:30px;">
+      <div style="margin-top:30px; margin-left:100px;">
         {% if post.tag1 %}
           <a href="{{ post.tag1.get_profile_page_url}}" data-toggle="tooltip" title="{{ post.tag1.username }}" data-placement="bottom" id="tag">
-        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="margin-left:10%;" >
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="margin-left:10" >
         </a>
         {% endif %}
         {% if post.tag2 %}
