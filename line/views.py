@@ -62,8 +62,8 @@ class HomeView(ListView):
                         print users
 
                         if users:
-                            Repost.objects.create_repost(repost.original, self.request.user, users[0], repost)
-                            repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
+                            Repost.objects.create_repost(link, self.request.user, users[0])
+                            repost_notification = Notification.objects.create_notification('reposted', link.posted_by, self.request.user)
                             repost_notification.save()
                             tag_notification = Notification.objects.create_notification('tagged', users[0], self.request.user)
                             tag_notification.save()
@@ -71,7 +71,7 @@ class HomeView(ListView):
                             print "dag"
                             #insert error message user not found
                     else:
-                        Repost.objects.create_repost(repost.original, self.request.user, repost)
+                        Repost.objects.create_repost(link, self.request.user)
                         repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
                         repost_notification.save()                        
 
