@@ -9,23 +9,23 @@ from notifications.models import Notification
 
 class LinkNewForm(forms.ModelForm):
     tag1 = forms.CharField(required=False)
-    tag2 = forms.CharField(required=False)
-    tag3 = forms.CharField(required=False)
-    tag4 = forms.CharField(required=False)
-    tag5 = forms.CharField(required=False)
-    tag6 = forms.CharField(required=False)
+    # tag2 = forms.CharField(required=False)
+    # tag3 = forms.CharField(required=False)
+    # tag4 = forms.CharField(required=False)
+    # tag5 = forms.CharField(required=False)
+    # tag6 = forms.CharField(required=False)
 
     class Meta:
         model = Link
-        fields = ('title', 'url', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6')
+        fields = ('title', 'url', 'tag1')
 
     def clean(self):
         data = self.data
         cleaned_data = {}
         cleaned_data['title'] = data['title']
         cleaned_data['url'] = data['url']
-        
-        for x in range(1,7):
+
+        for x in range(1,2):
             tag_field='tag'+str(x)
             if data[tag_field] != "":
                 users = User.objects.filter(username=data[tag_field])
