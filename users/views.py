@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 
+from line.views import BasicLinkListView
 from users.forms import UserSignUpForm
 from users.models import User
 from links.models import Link
@@ -26,8 +27,7 @@ class UserRegisterView(FormView):
         login(self.request, new_user)
         return super(UserRegisterView, self).form_valid(form)
 
-class UserProfileView(ListView):
-    model = Link
+class UserProfileView(BasicLinkListView):
     template_name = "users/user_profile.html"
     context_object_name = 'post_list'
 

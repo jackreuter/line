@@ -15,21 +15,11 @@ def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-class WelcomeView(TemplateView):
-    template_name = "landing_page.html"
-    def render_to_response(self, context):
-        if not self.request.user.is_anonymous():
-            return HttpResponseRedirect('/home')
-        else:
-            return super(WelcomeView, self).render_to_response(context)
-
-class HomeView(ListView):
+class BasicLinkListView(ListView):
     model = Link
-    template_name = "home.html"
     context_object_name = 'post_list'
-
     def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
+        context = super(BasicLinkListView, self).get_context_data(**kwargs)
             
         if bool(self.request.GET):
             button = 1
@@ -91,7 +81,18 @@ class HomeView(ListView):
                     context['repost_message']="must be logged in to repost"
 
         return context
-    
+
+class WelcomeView(TemplateView):
+    template_name = "landing_page.html"
+    def render_to_response(self, context):
+        if not self.request.user.is_anonymous():
+            return HttpResponseRedirect('/home')
+        else:
+            return super(WelcomeView, self).render_to_response(context)
+
+class HomeView(BasicLinkListView):
+    template_name = "home.html"
+
     def get_queryset(self):
         if self.request.user.is_anonymous():
             queryset = chain(Link.objects.all(),Repost.objects.all())
