@@ -15,6 +15,73 @@ def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+class BasicLinkListView(ListView):
+    model = Link
+    context_object_name = 'post_list'
+    def get_context_data(self, **kwargs):
+        context = super(BasicLinkListView, self).get_context_data(**kwargs)
+            
+        if bool(self.request.GET):
+            button = 1
+            if ('button' in self.request.GET.keys()[0]):
+                button = 0
+
+            if ("link-repost-button" in self.request.GET.keys()[button]):
+                link_id = int(self.request.GET.keys()[button][19:])
+                username = self.request.GET['tag1']
+                users = User.objects.filter(username=username)
+
+                if not self.request.user.is_anonymous():
+                    link = Link.objects.get(pk=link_id)
+                    link.hotness = link.hotness + 1
+                    link.save()
+
+                    if username != "":
+                        users = User.objects.filter(username=username)
+                        if users:
+                            Repost.objects.create_repost(link, self.request.user, users[0]).save()
+                            Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
+                            Notification.objects.create_notification('tagged', users[0], self.request.user).save()
+                            context['repost_message']="successfully reposted :)"
+                        else:
+                            context['repost_message']="user not found"
+                    else:
+                        Repost.objects.create_repost(link, self.request.user).save()
+                        Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
+                        context['repost_message']="successfully reposted :)"
+                else:
+                    context['repost_message']="must be logged in to repost"
+
+
+            if ("repost-repost-button" in self.request.GET.keys()[button]):
+                repost_id = int(self.request.GET.keys()[button][21:])
+                username = self.request.GET['tag1']
+
+                if not self.request.user.is_anonymous():
+                    repost = Repost.objects.get(pk=repost_id)
+                    repost.original.hotness = repost.original.hotness + 1
+                    repost.original.save()
+
+                    if username != "":
+                        users = User.objects.filter(username=username)
+                        print users
+
+                        if users:
+                            Repost.objects.create_repost(repost.original, self.request.user, users[0], repost).save()
+                            Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user).save()
+                            Notification.objects.create_notification('tagged', users[0], self.request.user).save()
+                            context['repost_message']="successfully reposted :)"
+                        else:
+                            context['repost_message']="user not found"
+                    else:
+                        Repost.objects.create_repost(repost.original, self.request.user, None, repost).save()
+                        Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user).save()
+                        context['repost_message']="successfully reposted :)"
+                else:
+                    context['repost_message']="must be logged in to repost"
+
+        return context
+
 class WelcomeView(TemplateView):
     template_name = "landing_page.html"
     def render_to_response(self, context):
@@ -23,11 +90,9 @@ class WelcomeView(TemplateView):
         else:
             return super(WelcomeView, self).render_to_response(context)
 
-class HomeView(ListView):
-    model = Link
+class HomeView(BasicLinkListView):
     template_name = "home.html"
-    context_object_name = 'post_list'
-    
+
     def get_queryset(self):
         if self.request.user.is_anonymous():
             queryset = chain(Link.objects.all(),Repost.objects.all())
@@ -42,69 +107,7 @@ class HomeView(ListView):
         return sorted(queryset, key=lambda instance: instance.created_at, reverse=True)
 
     def render_to_response(self, context):
-        if bool(self.request.GET):
-
-            print self.request.GET.keys()[0]
-            print self.request.GET.keys()[1]
-
-            if ("link-repost-button" in self.request.GET.keys()[0]):
-                link_id = int(self.request.GET.keys()[0][19:])
-                username = self.request.GET['tag1']
-                users = User.objects.filter(username=username)
-
-                if not self.request.user.is_anonymous():
-                    link = Link.objects.get(pk=link_id)
-                    link.hotness = link.hotness + 1
-                    link.save()
-
-                    if username != "":
-                        users = User.objects.filter(username=username)
-                        print users
-
-                        if users:
-                            Repost.objects.create_repost(link, self.request.user, users[0])
-                            repost_notification = Notification.objects.create_notification('reposted', link.posted_by, self.request.user)
-                            repost_notification.save()
-                            tag_notification = Notification.objects.create_notification('tagged', users[0], self.request.user)
-                            tag_notification.save()
-                        else:
-                            print "dag"
-                            #insert error message user not found
-                    else:
-                        Repost.objects.create_repost(link, self.request.user)
-                        repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
-                        repost_notification.save()                        
-
-            if ("repost-repost-button" in self.request.GET.keys()[0]):
-                repost_id = int(self.request.GET.keys()[0][21:])
-                username = self.request.GET['tag1']
-
-                if not self.request.user.is_anonymous():
-                    repost = Repost.objects.get(pk=repost_id)
-                    repost.original.hotness = repost.original.hotness + 1
-                    repost.original.save()
-
-                    if username != "":
-                        users = User.objects.filter(username=username)
-                        print users
-
-                        if users:
-                            Repost.objects.create_repost(repost.original, self.request.user, users[0], repost)
-                            repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
-                            repost_notification.save()
-                            tag_notification = Notification.objects.create_notification('tagged', users[0], self.request.user)
-                            tag_notification.save()
-                        else:
-                            print "dag"
-                            #insert error message user not found
-                    else:
-                        Repost.objects.create_repost(repost.original, self.request.user, repost)
-                        repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
-                        repost_notification.save()                        
-
-
         return super(HomeView, self).render_to_response(context)
-
 
 class HotView(HomeView):
     template_name = "hot.html"
