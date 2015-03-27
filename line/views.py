@@ -112,7 +112,7 @@ class HomeView(BasicLinkListView):
 class HotView(HomeView):
     def get_queryset(self):
         hotness_threshold = 90
-        queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
+        queryset = sorted(Link.objects.all(), key=lambda instance: instance.created_at, reverse=True)
         hot_queryset = []
         for post in queryset:
             if post.get_hotness_percent() > hotness_threshold:
