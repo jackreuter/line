@@ -29,15 +29,20 @@
 
 
 <div style="height:75px;" class="centered">
-    <form action="#" method="get">
-    <button class="resize nopadding" value="FOLLOW" name="follow-button"id="follow">
+  <form action="#" method="get">
+    {% if user_object in user.following.all %}
+    <button class="resize nopadding" value="UNFOLLOW" name="unfollow-button"id="follow"> unfollow
     </button>
-    <style>
-      #follow{
-      background-image: url({{ STATIC_URL }}img/Plus.png);
-      background-size: 100%;
-      }
-    </style>
+    {% else %}
+    <button class="resize nopadding" value="FOLLOW" name="follow-button"id="follow"> follow
+    </button>
+    {% endif %}
+    <!-- <style> -->
+    <!--   #follow{ -->
+    <!--   background-image: url({{ STATIC_URL }}img/Plus.png); -->
+    <!--   background-size: 100%; -->
+    <!--   } -->
+    <!-- </style> -->
   </form>
 </div>
 
@@ -68,7 +73,6 @@
         <a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
       <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40">
       </a>  
-
 
     {% endif %}
     </div>
