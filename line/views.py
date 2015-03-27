@@ -110,8 +110,6 @@ class HomeView(BasicLinkListView):
         return super(HomeView, self).render_to_response(context)
 
 class HotView(HomeView):
-    template_name = "hot.html"
-
     def get_queryset(self):
         hotness_threshold = 90
         queryset = sorted(chain(Link.objects.all(),Repost.objects.all()), key=lambda instance: instance.created_at, reverse=True)
