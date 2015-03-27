@@ -47,10 +47,10 @@ class Link(models.Model):
     def get_hotness_percent(self):
         lm = LinkManager()
         maxh = lm.get_max_hotness()
-        if (maxh==0):
-            return 0
-        else:
-            return float(self.hotness) / float(maxh) * 100
+        hotness = 20.0
+        if (maxh!=0 and self.hotness!=0):
+            hotness = float(self.hotness) / float(maxh) * 100
+        return hotness
 
     def is_link(self):
         return True

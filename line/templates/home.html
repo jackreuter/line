@@ -13,17 +13,17 @@
 
 
 
-<div class="followbox" style="margin-top:5%; margin-left:83%;">
-  <h2 class="centered">People to follow</h2>
-  {% for x in user.get_number_of_recs_as_str %}
-  {% with user.get_recommended_user as recommended_user %}
-  <li>
-    <a href="{{ recommended_user.get_profile_page_url }}">{{ recommended_user }}
-    </a>
-  </li>
-  {% endwith %}
-  {% endfor %}
-</div>
+<!-- <div class="followbox" style="margin-top:5%; margin-left:83%;"> -->
+<!--   <h2 class="centered">People to follow</h2> -->
+<!--   {% for x in user.get_number_of_recs_as_str %} -->
+<!--   {% with user.get_recommended_user as recommended_user %} -->
+<!--   <li> -->
+<!--     <a href="{{ recommended_user.get_profile_page_url }}">{{ recommended_user }} -->
+<!--     </a> -->
+<!--   </li> -->
+<!--   {% endwith %} -->
+<!--   {% endfor %} -->
+<!-- </div> -->
 
 <div style="padding-top:7%;">
 {% for post in post_list %}
