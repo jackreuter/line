@@ -52,12 +52,15 @@ class HomeView(ListView):
                             Repost.objects.create_repost(link, self.request.user, users[0]).save()
                             Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
                             Notification.objects.create_notification('tagged', users[0], self.request.user).save()
+                            context['repost_message']="successfully reposted :)"
                         else:
-                            print "dag"
-                            #insert error message user not found
+                            context['repost_message']="user not found"
                     else:
                         Repost.objects.create_repost(link, self.request.user).save()
                         Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
+                        context['repost_message']="successfully reposted :)"
+                else:
+                    context['repost_message']="must be logged in to repost"
 
 
             if ("repost-repost-button" in self.request.GET.keys()[button]):
@@ -77,13 +80,15 @@ class HomeView(ListView):
                             Repost.objects.create_repost(repost.original, self.request.user, users[0], repost).save()
                             Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user).save()
                             Notification.objects.create_notification('tagged', users[0], self.request.user).save()
+                            context['repost_message']="successfully reposted :)"
                         else:
-                            print "dag"
-                            #insert error message user not found
+                            context['repost_message']="user not found"
                     else:
                         Repost.objects.create_repost(repost.original, self.request.user, None, repost).save()
                         Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user).save()
-
+                        context['repost_message']="successfully reposted :)"
+                else:
+                    context['repost_message']="must be logged in to repost"
 
         return context
     
