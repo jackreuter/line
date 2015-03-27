@@ -1,9 +1,13 @@
 {% extends '_layouts/base.html' %}
 
-{% block page_title %}Links | {% endblock %}
-
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/profile.css">
+{% endblock %}
 {% block page_content %}
 
+<head>
+<script type="text/javascript" src="{{ STATIC_URL }}js/profile.js"></script>
+</head>
 
 <!-- ADD funtionality to buttons
 <button type="submit" style="font-size:10px; margin-left:5%;">Upload Picture</button>
@@ -93,22 +97,22 @@
     <!--CENTER --> 
 
 <div class="col-sm-6" style="margin-left:-5%;"> 
-       <!--For some reason this only works for the first post --> 
 
-      <a id="summary-button">
-      <button class="pull-right" style="margin-top:10px; margin-right:-5%;" >
+       <div class="summary-button" id="summary-button{{ forloop.counter }}" style="margin-top:10px; margin-left:10%;margin-bottom:5%;"> 
+            
+      <button style="margin-left:90.5%; margin-top:-7%;">
         ↓
       </button>
-      </a>
+      </div>
       
-      <div id="summary">
+      <div id="summary" class="summary">
       <a href="{{ post.get_url }}" class="embedly-card"></a>    
       </div>
 
 
      <!--Link name --> 
     <div>
-      <h1 style="margin-top:10px; margin-right:80%;" >
+      <h1 style="margin-top:10px;">
       <a href="{{ post.get_url }}">  
       <!--This doesn't pull from the DB properly or load-->
       {{ post.title }} 
@@ -118,26 +122,134 @@
       <!-- progress bar; need to add counting variable -->
 
 <span>
-      <div style="width: {{ post.get_hotness_percent }}%;">
+      <div style="width:90%;">
           <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="90" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
           </div>
       </div>
 
 
-      <div>
-       <form>
-            <a >
-                  <button id="plus" class="btn btn-default" name="{{ post.get_repost_button_name }}"  data-toggle="modal" data-target="#tagfriends" style="margin-left:100%; margin-top:-7%;">
-                  +
+<!--- PATE this is where the plus options starts; this is what you should dropdown -->
+      <div id="plus{{ forloop.counter }}"class="plus">
+        <a>
+                  <button class="btn btn-default resizeplus" style="margin-left:90.5%; margin-top:-7%;">
+                  <img src="{{ STATIC_URL }}img/Plus.png" class="resizeicon"> 
+
                   </button>
-          <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
-          <div class="modal-dialog">
-  <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
-                 <button name="{{ post.get_repost_button_name }}">
-                </button>
+                </a>
+
+      </div>
+
+
+
+
+          <div class ="share-post-0" id="share-post-0{{forloop.counter}}">
+                    
+<!--             <div class="input-group input-group-sm" style="margin-right:50%;">
+ -->                              
+
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+              
+              <!--   <button type="button" id="trigger-share-1{{forloop.counter}}" class="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button> -->
+               <button type="submit" name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <!-- </div> -->
+
 
           </div>
+
+
+    <!--      
+          <div id="share-post-1{{forloop.counter}}" class="share-post-1">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">     
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>    
+            </div>
+        </div>
+
+
+           <div id="share-post-2{{forloop.counter}}" class="share-post-2">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">              
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>           
+            </div>
           </div>
+
+          <div class="share-post-3"id="share-post-3{{forloop.counter}}">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">    
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>             
+            </div>
+          </div>
+
+           <div class="share-post-4"id="share-post-4{{forloop.counter}}">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">        
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>              
+            </div>
+          </div>
+
+
+           <div id="share-post-5{{forloop.counter}}" class="share-post-5">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>
+            </div>
+
+       </div> -->
+
+        <!-- and this is where it ends --> 
+
+          <!-- <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+
+  <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
+
+                              <!-- this is the code for the 'tag your friends box' on the 'add new link page' it doesn't work as is and needs to be re-appropriated 
+           <div id="share-post-0">
+            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+              {{ form.tag2.errors }}
+              <input type="text" id="id_tag2" name="tag2" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+              <span class="input-group-addon" id="sizing-addon3">
+                <button type="button" id="trigger-share-2" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                 >
+                </button>
+              </span>
+            </div>
+          </div>
+          -->
+
+
+               
+
+       
        <!--  <style>
         #plus{
   background-image: url({{ STATIC_URL }}img/Plus.png);
@@ -145,15 +257,10 @@
           pull-image:right;
 }
 </style> --> 
-           </a>
-      </form>
-    </div>
 </span>
-
+</div>
 
     </div>
-
-</div>
  
 
     <!-- RIGHT--> 

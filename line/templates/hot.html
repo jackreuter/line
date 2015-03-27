@@ -2,9 +2,13 @@
 
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/home.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/hot.css">
 {% endblock %}
 {% block page_content %}
+
+<head>
+<script type="text/javascript" src="{{ STATIC_URL }}js/hot.js"></script>
+</head>
 
 <h3 class="centered" style="font-size:100px;">
   Hot Page 
@@ -26,17 +30,19 @@
     
     <!-- EVEN MORE RIGHT -->
     <div div class="col-sm-1" style="margin-left:-10px; margin-top:10px; padding-bottom:80px;">
-    {% if not post.is_link %}
+   <!--  {% if not post.is_link %}
       <span style="margin-left:50px; padding-top:90px;">
         <img src="{{ STATIC_URL }}img/Reline.png" class="resizeicon"> 
       </span>
       <img src={{ post.original.posted_by.get_image_url }} class="img-circle"  width="40">
-    {% endif %}
+    {% endif %} -->
     </div>
 
     <!-- RIGHT --> 
     <div class="col-sm-2">
-      
+       <a href="{{ post.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.posted_by.get_long_name }}" data-placement="bottom">
+      <img src="{{ post.posted_by.get_image_url }}" class="img-circle" width="90">
+        </a>
       <img src={{ post.posted_by.get_image_url }} class="img-circle pull-left" width="90"> 
 
       <span>
@@ -48,55 +54,211 @@
     </div>
 
     <!--CENTER --> 
-    <div class="col-sm-6" style="margin-left:-80px; margin-top:10px; padding-bottom:80px;">
+<div class="col-sm-6" style="margin-left:-5%;"> 
+
+       <div class="summary-button" id="summary-button{{ forloop.counter }}" style="margin-top:10px; margin-left:10%;margin-bottom:5%;"> 
+            
+      <button style="margin-left:90.5%; margin-top:-7%;">
+        ↓
+      </button>
+      </div>
       
-      <h1 style="margin-top:10px;" >
-        {{ post.get_title }} 
-      </h1> 
-      
-        <blockquote class="embedly-card">
-          <h4><a href="{{ post.get_url }}"></a></h4>
-        </blockquote>
+      <div id="summary" class="summary">
+      <a href="{{ post.get_url }}" class="embedly-card"></a>    
+      </div>
+
+
+     <!--Link name --> 
+    <div>
+      <h1 style="margin-top:10px;">
+      <a href="{{ post.get_url }}">  
+      <!--This doesn't pull from the DB properly or load-->
+      {{ post.title }} 
+      </a>
+      </h1>
 
       <!-- progress bar; need to add counting variable -->
-      
-      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
+
+<span>
+      <div style="width:90%;">
+          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="90" style="width: {{ post.get_hotness_percent }}%; height: 10px;">
+          </div>
       </div>
+
+
+<!--- PATE this is where the plus options starts; this is what you should dropdown -->
+      <div id="plus{{ forloop.counter }}"class="plus">
+        <a>
+                  <button class="btn btn-default resizeplus" style="margin-left:90.5%; margin-top:-7%;">
+                  <img src="{{ STATIC_URL }}img/Plus.png" class="resizeicon"> 
+
+                  </button>
+                </a>
+
+      </div>
+
+
+
+
+          <div class ="share-post-0" id="share-post-0{{forloop.counter}}">
+                    
+<!--             <div class="input-group input-group-sm" style="margin-right:50%;">
+ -->                              
+
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+              
+              <!--   <button type="button" id="trigger-share-1{{forloop.counter}}" class="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button> -->
+               <button type="submit" name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <!-- </div> -->
+
+
+          </div>
+
+
+    <!--      
+          <div id="share-post-1{{forloop.counter}}" class="share-post-1">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">     
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>    
+            </div>
+        </div>
+
+
+           <div id="share-post-2{{forloop.counter}}" class="share-post-2">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">              
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>           
+            </div>
+          </div>
+
+          <div class="share-post-3"id="share-post-3{{forloop.counter}}">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">    
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>             
+            </div>
+          </div>
+
+           <div class="share-post-4"id="share-post-4{{forloop.counter}}">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">        
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>              
+            </div>
+          </div>
+
+
+           <div id="share-post-5{{forloop.counter}}" class="share-post-5">
+                     <button name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <div class="input-group input-group-sm" style="margin-right:50%;">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+                <button type="button" id="trigger-share-1" style="width:30px;height:29px;">
+                 >
+                </button>
+            </div>
+
+       </div> -->
+
+        <!-- and this is where it ends --> 
+
+          <!-- <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+
+  <!--INSERT TAGGING FRIENDS CODE HERE, this button reposts for now-->
+
+                              <!-- this is the code for the 'tag your friends box' on the 'add new link page' it doesn't work as is and needs to be re-appropriated 
+           <div id="share-post-0">
+            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:750px; margin-top:3%;">
+              {{ form.tag2.errors }}
+              <input type="text" id="id_tag2" name="tag2" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
+              <span class="input-group-addon" id="sizing-addon3">
+                <button type="button" id="trigger-share-2" style=" margin-top:-50px; margin-left:-17px; margin-right:-20px; margin-bottom:-20px;">
+                 >
+                </button>
+              </span>
+            </div>
+          </div>
+          -->
+
+
+               
+
+       
+       <!--  <style>
+        #plus{
+  background-image: url({{ STATIC_URL }}img/Plus.png);
+          background-size: 100%;
+          pull-image:right;
+}
+</style> --> 
+</span>
+</div>
+
     </div>
 
 
     <!-- LEFT--> 
-    <div class="col-sm-3">
+    <!-- <div class="col-sm-2" style="margin-left:66%; margin-top:-8%; margin-bottom:5%;">
 
 
-      <div style="margin-top:30px;">
+      <div style="margin-top:30px; margin-left:100px;">
         {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+          <a href="{{ post.tag1.get_profile_page_url}}" data-toggle="tooltip" title="{{ post.tag1.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="margin-left:10" >
+        </a>
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag2 %}
+         <a href="{{ post.tag2.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag2.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
+        </a>
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag3 %}
+        <a href="{{ post.tag3.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag3.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
+        </a>
         {% endif %}
-        {% if post.tag1 %}
-        <img src={{ post.tag1.get_image_url }} class="img-circle pull-right" width="40" style="margin-left:20px;">
+        {% if post.tag4 %}
+         <a href="{{ post.tag4.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag4.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
+        </a>
         {% endif %}
-
+         {% if post.tag5 %}
+         <a href="{{ post.tag5.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag5.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
+        </a>
+        {% endif %}
+         {% if post.tag5 %}
+         <a href="{{ post.tag6.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag6.username }}" data-placement="bottom" id="tag">
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
+        </a>
+        {% endif %}
       </div>
-      <form>
-      <a>
-        <button class="btn btn-default center-block resize nopadding" name="{{ post.get_repost_button_name }}" id="plus">
-        </button>
-        <style>
-          #plus{
-          background-image: url({{ STATIC_URL }}img/Plus.png);
-          background-size: 100%;
-          }
-        </style>
-      </a>
-      </form>
-    </div>
+     
+    </div> -->
 
     <div class="span">
       <form action="#" method="get">
