@@ -30,9 +30,14 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
+            
         if bool(self.request.GET):
-            if ("link-repost-button" in self.request.GET.keys()[0]):
-                link_id = int(self.request.GET.keys()[0][19:])
+            button = 1
+            if ('button' in self.request.GET.keys()[0]):
+                button = 0
+
+            if ("link-repost-button" in self.request.GET.keys()[button]):
+                link_id = int(self.request.GET.keys()[button][19:])
                 username = self.request.GET['tag1']
                 users = User.objects.filter(username=username)
 
@@ -44,21 +49,19 @@ class HomeView(ListView):
                     if username != "":
                         users = User.objects.filter(username=username)
                         if users:
-                            Repost.objects.create_repost(link, self.request.user, users[0])
-                            repost_notification = Notification.objects.create_notification('reposted', link.posted_by, self.request.user)
-                            repost_notification.save()
-                            tag_notification = Notification.objects.create_notification('tagged', users[0], self.request.user)
-                            tag_notification.save()
+                            Repost.objects.create_repost(link, self.request.user, users[0]).save()
+                            Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
+                            Notification.objects.create_notification('tagged', users[0], self.request.user).save()
                         else:
                             print "dag"
                             #insert error message user not found
                     else:
-                        Repost.objects.create_repost(link, self.request.user)
-                        repost_notification = Notification.objects.create_notification('reposted', link.posted_by, self.request.user)
-                        repost_notification.save()                        
+                        Repost.objects.create_repost(link, self.request.user).save()
+                        Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
 
-            if ("repost-repost-button" in self.request.GET.keys()[0]):
-                repost_id = int(self.request.GET.keys()[0][21:])
+
+            if ("repost-repost-button" in self.request.GET.keys()[button]):
+                repost_id = int(self.request.GET.keys()[button][21:])
                 username = self.request.GET['tag1']
 
                 if not self.request.user.is_anonymous():
@@ -71,18 +74,16 @@ class HomeView(ListView):
                         print users
 
                         if users:
-                            Repost.objects.create_repost(repost.original, self.request.user, users[0], repost)
-                            repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
-                            repost_notification.save()
-                            tag_notification = Notification.objects.create_notification('tagged', users[0], self.request.user)
-                            tag_notification.save()
+                            Repost.objects.create_repost(repost.original, self.request.user, users[0], repost).save()
+                            Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user).save()
+                            Notification.objects.create_notification('tagged', users[0], self.request.user).save()
                         else:
                             print "dag"
                             #insert error message user not found
                     else:
-                        Repost.objects.create_repost(repost.original, self.request.user, repost)
-                        repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
-                        repost_notification.save()                        
+                        Repost.objects.create_repost(repost.original, self.request.user, None, repost).save()
+                        Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user).save()
+
 
         return context
     
