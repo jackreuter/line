@@ -25,7 +25,6 @@
 <!--   {% endfor %} -->
 <!-- </div> -->
 
-<div style="padding-top:7%;">
 {% for post in post_list %}
 
 
@@ -69,11 +68,10 @@
 <div class="col-sm-6" style="margin-left:-5%;"> 
 
        <div class="summary-button" id="summary-button{{ forloop.counter }}" style="margin-top:10px; margin-left:10%;margin-bottom:5%;"> 
-            <a >
+            
       <button class="pull-right">
         ↓
       </button>
-      </a>
       </div>
       
       <div id="summary" class="summary">
@@ -243,7 +241,7 @@
       <div style="margin-top:30px;">
         {% if post.tag1 %}
           <a href="{{ post.tag1.get_profile_page_url}}" data-toggle="tooltip" title="{{ post.tag1.username }}" data-placement="bottom" id="tag">
-        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="" >
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="margin-left:10%;" >
         </a>
         {% endif %}
         {% if post.tag2 %}
