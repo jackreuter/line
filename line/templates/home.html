@@ -110,27 +110,29 @@
 
       </div>
 
-<div class="repost-tags">
+
+
+
           <div class ="share-post-0" id="share-post-0{{forloop.counter}}">
-                     <button name="{{ post.get_repost_button_name }}">
-                    REPOST
-                    </button>
-            <div class="input-group input-group-sm" style="margin-right:50%;">
-                              
+                    
+<!--             <div class="input-group input-group-sm" style="margin-right:50%;">
+ -->                              
 
               <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 100px">
               
-                <button type="button" id="trigger-share-1{{forloop.counter}}" class="trigger-share-1" style="width:30px;height:29px;">
+              <!--   <button type="button" id="trigger-share-1{{forloop.counter}}" class="trigger-share-1" style="width:30px;height:29px;">
                  >
-                </button>
-              
-            </div>
+                </button> -->
+               <button type="submit" name="{{ post.get_repost_button_name }}">
+                    REPOST
+                    </button>
+            <!-- </div> -->
 
 
           </div>
 
 
-         
+    <!--      
           <div id="share-post-1{{forloop.counter}}" class="share-post-1">
                      <button name="{{ post.get_repost_button_name }}">
                     REPOST
@@ -192,9 +194,8 @@
                 </button>
             </div>
 
-       </div>
+       </div> -->
 
- </div>
         <!-- and this is where it ends --> 
 
           <!-- <div class="modal fade" id="tagfriends" role="dialog" aria-hidden="true">
@@ -227,12 +228,11 @@
           pull-image:right;
 }
 </style> --> 
-         
+  </div>       
 </span>
 
 
     </div>
-
 </div>
  
 
