@@ -27,26 +27,10 @@ class HomeView(ListView):
     model = Link
     template_name = "home.html"
     context_object_name = 'post_list'
-    
-    def get_queryset(self):
-        if self.request.user.is_anonymous():
-            queryset = chain(Link.objects.all(),Repost.objects.all())
-        else:
-            following = self.request.user.following.all()
-            if following is None:
-                queryset = chain(Link.objects.all(),Repost.objects.all())
-            else:
-                queryset = chain()
-                for user in following:
-                    queryset = chain(queryset,user.links.all(),user.reposts.all())
-        return sorted(queryset, key=lambda instance: instance.created_at, reverse=True)
 
-    def render_to_response(self, context):
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
         if bool(self.request.GET):
-
-            print self.request.GET.keys()[0]
-            print self.request.GET.keys()[1]
-
             if ("link-repost-button" in self.request.GET.keys()[0]):
                 link_id = int(self.request.GET.keys()[0][19:])
                 username = self.request.GET['tag1']
@@ -59,8 +43,6 @@ class HomeView(ListView):
 
                     if username != "":
                         users = User.objects.filter(username=username)
-                        print users
-
                         if users:
                             Repost.objects.create_repost(link, self.request.user, users[0])
                             repost_notification = Notification.objects.create_notification('reposted', link.posted_by, self.request.user)
@@ -72,7 +54,7 @@ class HomeView(ListView):
                             #insert error message user not found
                     else:
                         Repost.objects.create_repost(link, self.request.user)
-                        repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
+                        repost_notification = Notification.objects.create_notification('reposted', link.posted_by, self.request.user)
                         repost_notification.save()                        
 
             if ("repost-repost-button" in self.request.GET.keys()[0]):
@@ -102,9 +84,23 @@ class HomeView(ListView):
                         repost_notification = Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user)
                         repost_notification.save()                        
 
+        return context
+    
+    def get_queryset(self):
+        if self.request.user.is_anonymous():
+            queryset = chain(Link.objects.all(),Repost.objects.all())
+        else:
+            following = self.request.user.following.all()
+            if following is None:
+                queryset = chain(Link.objects.all(),Repost.objects.all())
+            else:
+                queryset = chain()
+                for user in following:
+                    queryset = chain(queryset,user.links.all(),user.reposts.all())
+        return sorted(queryset, key=lambda instance: instance.created_at, reverse=True)
 
+    def render_to_response(self, context):
         return super(HomeView, self).render_to_response(context)
-
 
 class HotView(HomeView):
     template_name = "hot.html"
