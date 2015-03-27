@@ -17,6 +17,11 @@ def logout_page(request):
 
 class WelcomeView(TemplateView):
     template_name = "landing_page.html"
+    def render_to_response(self, context):
+        if not self.request.user.is_anonymous():
+            return HttpResponseRedirect('/home')
+        else:
+            return super(WelcomeView, self).render_to_response(context)
 
 class HomeView(ListView):
     model = Link
@@ -63,6 +68,7 @@ class HomeView(ListView):
                     repost_notification.save()
 
         return super(HomeView, self).render_to_response(context)
+
 
 class HotView(HomeView):
     template_name = "hot.html"
