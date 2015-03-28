@@ -4,10 +4,13 @@ from django.views.generic import ListView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 
+from itertools import chain
+
 from line.views import BasicLinkListView
 from users.forms import UserSignUpForm
 from users.models import User
 from links.models import Link
+from reposts.models import Repost
 from notifications.models import Notification
 
 class UserRegisterView(FormView):
@@ -32,10 +35,9 @@ class UserProfileView(BasicLinkListView):
     context_object_name = 'post_list'
 
     def get_queryset(self):
-        queryset = super(UserProfileView, self).get_queryset()
         user = User.objects.get(slug=self.kwargs['slug'])
-        queryset = queryset.filter(posted_by=user)
-        return queryset
+        queryset = chain(Link.objects.filter(posted_by=user),Repost.objects.filter(posted_by=user))
+        return sorted(queryset, key=lambda instance: instance.created_at, reverse=True)
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data(**kwargs)
