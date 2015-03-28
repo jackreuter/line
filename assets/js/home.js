@@ -5,6 +5,13 @@ $(document).ready(function() {
     $(this).next().slideToggle('slow');
 });
    });
+  $(".post").each(function(){
+    $(this).hover(function(){
+      $(this).css("background-color", "#E4F1FE");
+    },function(){
+      $(this).css("background-color","white");
+    });    
+  });
   $('.plus').each(function() {
     $(this).click(function() {
   	$(this).next().slideToggle('slow');
