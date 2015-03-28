@@ -10,7 +10,7 @@ class FeedbackForm(forms.ModelForm):
         model = Feedback
         fields = ('text',)
 
-    def save(self, user, commit=True):
+    def save(self, user=None, commit=True):
         feedback = super(FeedbackForm, self).save(commit=False)
         feedback.posted_by = user
 

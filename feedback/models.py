@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class FeedbackManager(models.Manager):
-    def create_feedback(self, text, user):
+    def create_feedback(self, text, user=None):
             
         feedback = self.model(
             text=text,
@@ -15,4 +15,4 @@ class FeedbackManager(models.Manager):
 class Feedback(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     text = models.TextField()
-    posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='feedback_posts')
+    posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='feedback_posts', null=True)

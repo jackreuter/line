@@ -14,5 +14,5 @@ class FeedbackView(FormView):
         if not self.request.user.is_anonymous():
             form.save(self.request.user)
         else: 
-            print "Must be logged in to give feedback"
+            form.save()
         return super(FeedbackView, self).form_valid(form)
