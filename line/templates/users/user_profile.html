@@ -28,7 +28,7 @@
 
 <div style="padding-top:3%">
 <h1 class="centered" style="color:#BABABA;">
-  Young adult novel enthusiast
+  I'm a Line alpha user!
 </h1>
 </div>
 
@@ -76,7 +76,7 @@
 
         <!--change href to link to user's profile, change title to short_name when implemented -->
         <a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
-      <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40">
+      <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40" height="40">
       </a>  
 
     {% endif %}
@@ -86,7 +86,7 @@
     <div class="col-sm-2" id="hide">
      <!--change href to link to user's profile, change title to short_name when implemented -->
        <a href="{{ post.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.posted_by.get_long_name }}" data-placement="bottom">
-      <img src="{{ post.posted_by.get_image_url }}" class="img-circle" width="90">
+      <img src="{{ post.posted_by.get_image_url }}" class="img-circle" width="90" height="90">
         </a>
       <span>
         <h4>
@@ -98,7 +98,7 @@
 
     <!--CENTER --> 
 
-<div class="col-sm-6" style="margin-left:-5%;"> 
+<div class="col-sm-6 box:hover" style="margin-left:-5%;"> 
 
        <div class="summary-button" id="summary-button{{ forloop.counter }}" style="margin-top:10px; margin-left:10%;margin-bottom:5%;"> 
             
@@ -268,7 +268,7 @@
       <div style="margin-top:30px;">
         {% if post.tag1 %}
           <a href="{{ post.tag1.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.tag1.username }}" data-placement="bottom" id="tag">
-        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" style="" >
+        <img src={{ post.tag1.get_image_url }} class="img-circle" width="40" height="40" style="" >
         </a>
         {% endif %}
         {% if post.tag2 %}
