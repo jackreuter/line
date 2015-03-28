@@ -38,7 +38,7 @@
 
         <!--change href to link to user's profile, change title to short_name when implemented -->
         <a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
-      <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40">
+      <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40" height="40">
       </a>  
 
 
@@ -237,7 +237,7 @@
       <div style="margin-top:30px; margin-left:100px;">
         {% if post.tag1 %}
           <a href="{{ post.tag1.get_profile_page_url}}" data-toggle="tooltip" title="{{ post.tag1.username }}" data-placement="bottom" id="tag">
-        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" style="margin-left:10" >
+        <img src="{{ post.tag1.get_image_url }}" class="img-circle" width="40" height="40" style="margin-left:10" >
         </a>
         {% endif %}
         {% if post.tag2 %}
