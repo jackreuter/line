@@ -1,6 +1,16 @@
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+{% endblock %}
+
+<div class="centered greyboxaddlink" style="margin-left:15%; margin-top:5%;">
+
 <form action="" method="post">
     {% csrf_token %}
     <label for="id_text">hit us with the dagger:</label>
-    <textarea cols="40" id="id_text" name="text" rows="10"></textarea>
-    <input type="submit" value="Submit"></input>
+    <textarea cols="150" id="id_text" name="text" rows="29"></textarea>
+<div>
+</div>
+    <input type="submit" value="Submit" class="centered"  style="height:50px; width:50px;"></input>
 </form>
+
+</div>
