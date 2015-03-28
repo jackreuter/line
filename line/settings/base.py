@@ -41,7 +41,7 @@ ALLOWED_HOSTS = [
     '.myline.io',
 ]
 
-# database
+
 DATABASES = {
     'default': dj_database_url.config()
 }
@@ -68,6 +68,7 @@ LOCAL_APPS = (
     'notifications',
     'reposts',
     'search',
+    'feedback',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
