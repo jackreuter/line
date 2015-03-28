@@ -21,12 +21,12 @@
 </h3>
 
 <div class="centered">
-  <img src={{ user_object.get_image_url }} class="img-circle" width="200">
+  <img src={{ user_object.get_image_url }} class="img-circle" width="180" height="180">
 </div>
 
 
 
-
+<div style="padding-top:3%">
 <h1 class="centered" style="color:#BABABA;">
   Young adult novel enthusiast
 </h1>
@@ -36,10 +36,10 @@
 <div style="height:75px;" class="centered">
   <form action="#" method="get">
     {% if user_object in user.following.all %}
-    <button class="resize nopadding" value="UNFOLLOW" name="unfollow-button"id="follow"> unfollow
+    <button class="followbutton nopadding" value="UNFOLLOW" name="unfollow-button"id="follow"> unfollow
     </button>
     {% else %}
-    <button class="resize nopadding" value="FOLLOW" name="follow-button"id="follow"> follow
+    <button class="followbutton nopadding" value="FOLLOW" name="follow-button"id="follow"> follow
     </button>
     {% endif %}
     <!-- <style> -->

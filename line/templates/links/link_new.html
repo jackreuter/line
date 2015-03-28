@@ -17,8 +17,8 @@ f{% extends "_layouts/base.html" %}
     <!-- POST A LINK -->
 
     {{ form.url.errors }}
-    <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; margin-top:5%;">
-      <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1"  style="width:890px;">
+    <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; margin-top:5%;width:90%;">
+      <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1">
     </div>
 
     <!-- INCLUDE CUSTOM TITLE  -->
@@ -32,8 +32,8 @@ f{% extends "_layouts/base.html" %}
           {{ form.title.errors }}
         </div>
 
-      <div class="input-group" style="margin-right:360px; margin-left:50px; margin-top:5%;">
-          <input type="text" id="id_title" maxlength="255" name="title" class="form-control" placeholder="Input a Custom Title" aria-describedby="sizing-addon2" style="width:890px;">
+      <div class="input-group" style="margin-right:360px; margin-left:50px; margin-top:5%; width:90%;">
+          <input type="text" id="id_title" maxlength="255" name="title" class="form-control" placeholder="Input a Custom Title" aria-describedby="sizing-addon2">
              <!-- there is currently a space inbetween the box and the arrow; i think it has something to do with the id or type assigned to the button because i can't seem to do anything with style manipulation --> 
       </div>
       </div>
@@ -57,9 +57,9 @@ f{% extends "_layouts/base.html" %}
       <!-- {% endfor %} -->
 
        <div id="share-post-0">
-            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:50px; margin-top:5%;">
+            <div class="input-group input-group-sm" style="margin-right:360px; margin-left:50px; margin-top:5%;width:90%;">
               {{ form.tag1.errors }}
-              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" style="width: 890px">
+              <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" >
             </div>
           </div>
 
