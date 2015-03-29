@@ -2,10 +2,6 @@
 
 {% block page_content %}
 
-<head>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/home.js"></script>
-</head>
-
 <!-- <div class="followbox" style="margin-top:5%; margin-left:83%;"> -->
 <!--   <h2 class="centered">People to follow</h2> -->
 <!--   {% for x in user.get_number_of_recs_as_str %} -->
@@ -30,18 +26,8 @@
     
     <!-- EVEN MORE left-->
     <div div class="col-sm-1" style="margin-left:-10px; margin-top:10px; padding-bottom:80px;">
-      {% if not post.is_link %}
-      <span style="margin-left:42px;">
-        <img src="{{ STATIC_URL }}img/Reline.png" class="resizeicon"> 
-      </span>
-
-      <!--change href to link to user's profile, change title to short_name when implemented -->
-      <a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
-        <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40" height="40">
-      </a>  
-
-
-      {% endif %}
+      {% block far_left %}
+      {% endblock %}
     </div>
 
     <!-- LEFT --> 
