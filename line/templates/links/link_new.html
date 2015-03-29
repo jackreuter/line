@@ -12,11 +12,11 @@ f{% extends "_layouts/base.html" %}
 <body> 
 
 <div class="greyboxaddlink" style="margin-left:18%;">
+  {{ form.errors }}
   <form action="" method="post">{% csrf_token %}
 
     <!-- POST A LINK -->
 
-    {{ form.url.errors }}
     <div class="input-group input-group-lg"style="margin-right:360px; margin-left:50px; margin-top:5%;width:90%;">
       <input type="url" id="id_url" class="form-control" maxlength="200" name="url" placeholder="Post a Link" aria-describedby="sizing-addon1">
     </div>
@@ -29,7 +29,6 @@ f{% extends "_layouts/base.html" %}
         {% endif %}
 
         <div style="margin-right:360px; margin-left:85px; margin-top:3%;">
-          {{ form.title.errors }}
         </div>
 
       <div class="input-group" style="margin-right:360px; margin-left:50px; margin-top:5%; width:90%;">
@@ -58,7 +57,6 @@ f{% extends "_layouts/base.html" %}
 
        <div id="share-post-0">
             <div class="input-group input-group-sm" style="margin-right:360px; margin-left:50px; margin-top:5%;width:90%;">
-              {{ form.tag1.errors }}
               <input type="text" id="id_tag1" name="tag1" class="form-control" placeholder="Share with ..." aria-describedby="sizing-addon3" >
             </div>
           </div>

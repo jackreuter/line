@@ -34,7 +34,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    first_name = models.CharField(max_length=255, unique=True)
+    first_name = models.CharField(max_length=255, null=True)
     username = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
@@ -51,10 +51,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         return sorted(self.notifications.all(), key=lambda instance: instance.created_at, reverse=True)
 
     def get_short_name(self):
-        return self.first_name
+        return self.username
 
     def get_long_name(self):
-        return self.username
+        return self.email
 
     def get_image_url(self):
         if self.image and hasattr(self.image, 'url'):

@@ -1,12 +1,15 @@
+{% extends "_layouts/base.html" %}
+
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 {% endblock %}
 
+{% block page_content %}
 <div class="centered greyboxaddlink" style="margin-left:15%; margin-top:5%;">
 
 <form action="" method="post">
     {% csrf_token %}
-    <label for="id_text">hit us with the dagger/ leave your feedback here. Any and all helps!</label>
+    <label for="id_text">Leave your feedback here. Any and all helps!</label>
     <textarea cols="150" id="id_text" name="text" rows="29"></textarea>
 <div>
 </div>
@@ -14,3 +17,4 @@
 </form>
 
 </div>
+{% endblock %}

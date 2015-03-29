@@ -10,7 +10,8 @@
   </head>
   <body>
     <div class="greybox" style="margin-left:40%; margin-top:7%;">
-
+     
+      {{ form.errors }}
       <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <!-- EMAIL-->
