@@ -34,6 +34,7 @@
 
 
 <div style="height:75px;" class="centered">
+  {% if user_object != user %}
   <form action="#" method="get">
     {% if user_object in user.following.all %}
     <button class="followbutton nopadding" value="UNFOLLOW" name="unfollow-button"id="follow"> unfollow
@@ -49,6 +50,7 @@
     <!--   } -->
     <!-- </style> -->
   </form>
+  {% endif %}
 </div>
 
 <div class="horizontalline centered" style="margin-left:130px; margin-bottom:20px;">

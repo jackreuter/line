@@ -24,10 +24,11 @@ class UserRegisterView(FormView):
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
-
+        
         form.save()
         new_user = authenticate(username=self.request.POST['username'], password=self.request.POST['password1'])
         login(self.request, new_user)
+        new_user.following.add(new_user)
         return super(UserRegisterView, self).form_valid(form)
 
 class UserProfileView(BasicLinkListView):
