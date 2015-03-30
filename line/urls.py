@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 
     url(r"^$", views.WelcomeView.as_view(), name="welcome"),
     url(r"^home/", views.HomeView.as_view(), name="home"),
-    url(r"^hot/", views.HotView.as_view(), name="hot"),
+    url(r"^top/", views.TopView.as_view(), name="top"),
     url(r"^all/", views.AllView.as_view(), name="all"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', 'django.contrib.auth.views.login'),

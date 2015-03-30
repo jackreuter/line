@@ -109,7 +109,7 @@ class HomeView(BasicLinkListView):
     def render_to_response(self, context):
         return super(HomeView, self).render_to_response(context)
 
-class HotView(HomeView):
+class TopView(HomeView):
     template_name = "hot.html"
 
     def get_queryset(self):
