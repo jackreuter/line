@@ -77,6 +77,7 @@
 
 
           <!--- PATE this is where the plus options starts; this is what you should dropdown -->
+          {% if post.posted_by != user %}
           <div id="plus{{ forloop.counter }}"class="plus">
  				    <a>
               <button class="btn btn-default resizeplus" style="margin-left:90.5%; margin-top:-7%;">
@@ -84,8 +85,9 @@
 
               </button>
             </a>
-
           </div>
+          {% endif %}
+
           <div class ="share-post-0" id="share-post-0{{forloop.counter}}">
             
             <!--             <div class="input-group input-group-sm" style="margin-right:50%;">
