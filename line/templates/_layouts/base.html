@@ -107,8 +107,15 @@
             
             <li class="dropdown">
 
-              <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle" id="notification-dropdown">
                 <img src="{{ STATIC_URL }}img/notifications.png" class="center-block resizeicon ">
+                {% if user.has_active_notifications %}
+                <style>
+                  #notification-dropdown {
+                  background-color: #FF0000
+                  }
+                </style>
+                {% endif %}
               </a>
 
               <ul class="dropdown-menu"> 
