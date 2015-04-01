@@ -120,30 +120,36 @@
 
               <ul class="dropdown-menu"> 
 
-                {% for notification in user.get_notification_list %}                            
+                {% for notification in user.get_notification_list %}
                 {% if "following" in notification.title %}
-                <li>
+                <li id="notification-{{ forloop.counter }}">
                   <a href={{ notification.from_user.get_profile_page_url }}>  {{ notification.from_user }} is following you.
                   </a> 
                 </li>
 
                 {% elif "repost" in notification.title %}
-                <li>
+                <li id="notification-{{ forloop.counter }}">
                   <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} reposted your link</a>
                 </li>
 
                 {% else %}
-                <li>
+                <li id="notification-{{ forloop.counter }}">
                   <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} tagged you in a link</a>
                 </li>
                 {% endif %}
+                
+                {% if notification.is_active %}
+                <style>
+                    #notification-{{ forloop.counter }} {
+                    background-color: #FF99FF;
+                    }
+                </style>
+                {% endif %}
 
-                <p hidden>{{ notification.set_inactive }}</p>
                 {% empty %}
                 <li>No notifications.</li>
 
                 {% endfor %}
-                
                 <li>
                   <a href="/notifications/">See all</a>
                 </li>
