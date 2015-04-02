@@ -17,12 +17,12 @@ class LinkNewForm(forms.ModelForm):
 
     class Meta:
         model = Link
-        fields = ('title', 'url', 'tag1')
+        fields = ('url', 'tag1')
 
     def clean(self):
         data = self.data
         cleaned_data = {}
-        cleaned_data['title'] = data['title']
+        #cleaned_data['title'] = data['title']
         cleaned_data['url'] = data['url']
 
         for x in range(1,2):
