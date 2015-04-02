@@ -3,7 +3,6 @@
 
 {% block page_content %}
 
-<div style="padding-top:10%;">
 <h1>Search Results</h1>
 
 {% for item in search_results %}
@@ -20,6 +19,10 @@
   <a href={{ item.url }}>{{ item.title }}</a> -- repost posted by {{ item.posted_by }}
 </li>
 {% endif %}
+
+{% empty %}
+
+<li>None!</li>
 
 {% endfor %}
 </div>

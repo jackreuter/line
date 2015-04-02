@@ -66,3 +66,9 @@ class UsersIndexView(ListView):
     model = User
     template_name = "users/index.html"
     context_object_name = 'user_list'
+
+    def get_queryset(self):
+        queryset = super(UsersIndexView, self).get_queryset()
+        queryset = sorted(queryset, key=lambda instance: instance.created_at, reverse=True)
+        return queryset
+    

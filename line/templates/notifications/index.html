@@ -9,7 +9,16 @@
 <div class="container col-sm-12">
 
 {% for notification in notification_list %}
-<div class="col-sm-8">
+<div class="col-sm-8" id="notification-{{ forloop.counter }}">
+
+{% if notification.is_active %}
+<style>
+  #notification-{{ forloop.counter }} {
+  background-color: #FF99FF;
+  }
+</style>
+{% endif %}
+
 <div class="col-sm-2">
         <h2>{{ notification.created_at }}</h2>
 </div>
@@ -33,6 +42,7 @@
   {% endif %}
 </div>
 </div>
+<p hidden>{{ notification.set_inactive }}</p>
 {% empty %}
 <li>No notifications</li>
 {% endfor %}

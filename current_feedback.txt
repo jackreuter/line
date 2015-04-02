@@ -1,0 +1,5 @@
+Running `python manage.py get_feedback` attached to terminal... up, run.7366
+0 "lol -from ani" ani
+1 "this feedback form is a dag!" jack
+2 "This shit is fucked up haha" wob
+3 "This website is flippin' sweet.  Honestly there are some small aspects of the UI that I think could be improved but it's so clean and simple and I think it has so much potential." merceus

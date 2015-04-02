@@ -54,7 +54,7 @@ class Repost(models.Model):
         return "repost-repost-button-%s" % self.pk
 
     def __unicode__(self):
-        return self.original
+        return self.original.__unicode__()
 
     def save(self, *args, **kwargs):
         super(Repost, self).save(*args, **kwargs)

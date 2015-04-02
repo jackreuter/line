@@ -47,6 +47,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_user(self):
         return True
 
+    def has_active_notifications(self):
+        notifications = self.get_notification_list()
+        has = False
+        i = 0
+        while not has and i<len(notifications):
+            if notifications[i].is_active:
+                has = True
+            i = i+1
+        return has
+
     def get_notification_list(self):
         return sorted(self.notifications.all(), key=lambda instance: instance.created_at, reverse=True)
 

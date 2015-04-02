@@ -1,13 +1,13 @@
 {% extends '_layouts/base.html' %}
 
-{% block page_title %}Users | {% endblock %}
 
 {% block page_content %}
+<h3>Users</h3>
 
 <div style="padding-top: 5%">
 <ul>
   {% for user in user_list %}
-  <li><a href={{ user.get_profile_page_url }}>{{ user.name }}</a> -- {{ user.created_at }}</li>
+  <li><a href={{ user.get_profile_page_url }}>{{ user.username }}</a> -- {{ user.created_at }}</li>
   {% empty %}
   <li>No users.</li>
   {% endfor %}

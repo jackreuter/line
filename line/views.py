@@ -39,10 +39,13 @@ class BasicLinkListView(ListView):
                     if username != "":
                         users = User.objects.filter(username=username)
                         if users:
-                            Repost.objects.create_repost(link, self.request.user, users[0]).save()
-                            Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
-                            Notification.objects.create_notification('tagged', users[0], self.request.user).save()
-                            context['repost_message']="successfully reposted :)"
+                            if users[0] != self.request.user:
+                                Repost.objects.create_repost(link, self.request.user, users[0]).save()
+                                Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
+                                Notification.objects.create_notification('tagged', users[0], self.request.user).save()
+                                context['repost_message']="successfully reposted :)"
+                            else:
+                                context['repost_message']="you can't tag yourself"
                         else:
                             context['repost_message']="user not found"
                     else:
@@ -67,10 +70,13 @@ class BasicLinkListView(ListView):
                         print users
 
                         if users:
-                            Repost.objects.create_repost(repost.original, self.request.user, users[0], repost).save()
-                            Notification.objects.create_notification('reposted', repost.original.posted_by, self.request.user).save()
-                            Notification.objects.create_notification('tagged', users[0], self.request.user).save()
-                            context['repost_message']="successfully reposted :)"
+                            if users[0] != self.request.user:
+                                Repost.objects.create_repost(link, self.request.user, users[0]).save()
+                                Notification.objects.create_notification('reposted', link.posted_by, self.request.user).save()
+                                Notification.objects.create_notification('tagged', users[0], self.request.user).save()
+                                context['repost_message']="successfully reposted :)"
+                            else:
+                                context['repost_message']="you can't tag yourself"
                         else:
                             context['repost_message']="user not found"
                     else:
@@ -109,7 +115,7 @@ class HomeView(BasicLinkListView):
     def render_to_response(self, context):
         return super(HomeView, self).render_to_response(context)
 
-class HotView(HomeView):
+class TopView(HomeView):
     template_name = "hot.html"
 
     def get_queryset(self):

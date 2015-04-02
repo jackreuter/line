@@ -24,7 +24,7 @@
 
     <script src="js/less-1.3.3.min.js"></script>
 	  
-    <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/img/favicon.ico"/>
+    <!--<link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/img/favicon.ico">-->
 
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
@@ -107,36 +107,49 @@
             
             <li class="dropdown">
 
-              <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle" id="notification-dropdown">
                 <img src="{{ STATIC_URL }}img/notifications.png" class="center-block resizeicon ">
+                {% if user.has_active_notifications %}
+                <style>
+                  #notification-dropdown {
+                  background-color: #FF0000
+                  }
+                </style>
+                {% endif %}
               </a>
 
               <ul class="dropdown-menu"> 
 
-                {% for notification in user.get_notification_list %}                            
+                {% for notification in user.get_notification_list %}
                 {% if "following" in notification.title %}
-                <li>
+                <li id="notification-{{ forloop.counter }}">
                   <a href={{ notification.from_user.get_profile_page_url }}>  {{ notification.from_user }} is following you.
                   </a> 
                 </li>
 
                 {% elif "repost" in notification.title %}
-                <li>
+                <li id="notification-{{ forloop.counter }}">
                   <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} reposted your link</a>
                 </li>
 
                 {% else %}
-                <li>
+                <li id="notification-{{ forloop.counter }}">
                   <a href={{ notification.from_user.get_profile_page_url }}>{{ notification.from_user }} tagged you in a link</a>
                 </li>
                 {% endif %}
+                
+                {% if notification.is_active %}
+                <style>
+                    #notification-{{ forloop.counter }} {
+                    background-color: #FF99FF;
+                    }
+                </style>
+                {% endif %}
 
-                <p hidden>{{ notification.set_inactive }}</p>
                 {% empty %}
                 <li>No notifications.</li>
 
                 {% endfor %}
-                
                 <li>
                   <a href="/notifications/">See all</a>
                 </li>
@@ -153,7 +166,7 @@
 
             <!-- HOTPAGE -->
             <li>
-              <a href='/hot' class="btn" >
+              <a href='/top' class="btn" >
                 <img src="{{ STATIC_URL }}img/Hot.png" class="center-block resizeicon" >
               </a>
             </li>
@@ -247,7 +260,6 @@
              <!-- there is currently a space inbetween the box and the arrow; i think it has something to do with the id or type assigned to the button because i can't seem to do anything with style manipulation --> 
     <!--   </div>
       </div> -->
- -->
 
       
       <!-- SHARE THE FUCKING THING -->                         
@@ -368,10 +380,10 @@
   </div>
 </div> -->
 
-<div style="padding-top:3%;">
-</div>
 <div class="tocenter">
+  <div style="padding-top: 10%">
   {% block page_content %}{% endblock %}
+  </div>
 </div>
 
 
