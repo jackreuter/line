@@ -17,7 +17,7 @@
 </span>
 
 <!--change href to link to user's profile, change title to short_name when implemented -->
-<a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_long_name }}" data-placement="bottom">
+<a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_username }}" data-placement="bottom">
   <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40" height="40">
 </a>  
 

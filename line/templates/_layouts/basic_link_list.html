@@ -1,4 +1,9 @@
 {% extends "_layouts/base.html" %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/basic_link_list.css">
+{% endblock %}
+
+
 
 {% block page_content %}
 
@@ -16,6 +21,9 @@
 {{ repost_message }}
 
 {% block title %}
+<head>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/basic_link_list.js"></script>
+</head>
 {% endblock %}
 
 {% for post in post_list %}
@@ -33,7 +41,7 @@
     <!-- LEFT --> 
     <div class="col-sm-2" id="hide">
       <!--change href to link to user's profile, change title to short_name when implemented -->
-      <a href="{{ post.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.posted_by.get_long_name }}" data-placement="bottom">
+      <a href="{{ post.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.posted_by.get_username }}" data-placement="bottom">
         <img src="{{ post.posted_by.get_image_url }}" class="img-circle" width="90" height="90">
       </a>
       <span>
@@ -47,25 +55,12 @@
     <!--CENTER --> 
 
     <div class="col-sm-6" style="margin-left:-5%;"> 
-
-      <div class="summary-button" id="summary-button{{ forloop.counter }}" style="margin-top:10px; margin-left:10%;margin-bottom:5%;"> 
-        <button style="margin-left:90.5%; margin-top:-7%;">
-
-        </button>
-      </div>
-      
-      <div id="summary" class="summary">
+           
         <a href="{{ post.get_url }}" class="embedly-card"></a>    
-      </div>
+
 
       <!--Link name --> 
       <div>
-        <h1 style="margin-top:10px;">
-          <a href="{{ post.get_url }}">  
-            <!--This doesn't pull from the DB properly or load-->
-            {{ post.title }} 
-          </a>
-        </h1>
 
         <!-- progress bar; need to add counting variable -->
 
