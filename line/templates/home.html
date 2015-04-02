@@ -9,3 +9,20 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/home.js"></script>
 </head>
 {% endblock %}
+<<<<<<< HEAD
+
+{% block far_left %}
+{% if not post.is_link %}
+<span style="margin-left:42px;">
+  <img src="{{ STATIC_URL }}img/Reline.png" class="resizeicon"> 
+</span>
+
+<!--change href to link to user's profile, change title to short_name when implemented -->
+<a href="{{ post.original.posted_by.get_profile_page_url }}" data-toggle="tooltip" title="{{ post.original.posted_by.get_username }}" data-placement="bottom">
+  <img  src="{{ post.original.posted_by.get_image_url }}" class="img-circle"  width="40" height="40">
+</a>  
+
+{% endif %}
+{% endblock %}
+=======
+>>>>>>> 3674d6f2c40d3666f923982e22cd2ff83de2b0b0
