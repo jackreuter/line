@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from line.views import logout_page
+from django.views.generic.base import RedirectView
 
 from . import views
 
@@ -21,6 +22,8 @@ urlpatterns = patterns('',
     url(r'^links/', include("links.urls", namespace="links")),
     url(r'^notifications/', include("notifications.urls", namespace="notifications")),
     url(r'^search/', include("search.urls", namespace="search")),
-    url(r'^feedback/', include("feedback.urls", namespace="feedback"))
+    url(r'^feedback/', include("feedback.urls", namespace="feedback")),
+
+    url(r'^favicon\.ico', RedirectView.as_view(url='/static/favicon.ico'))
                 
 )
