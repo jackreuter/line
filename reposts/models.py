@@ -18,7 +18,7 @@ class RepostManager(models.Manager):
 class Repost(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now_add=True, editable=False)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, null=True)
     original = models.ForeignKey(Link, related_name='reposts')
     reposted_from = models.ForeignKey('self', related_name='reposts', null=True)
     posted_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='reposts')
