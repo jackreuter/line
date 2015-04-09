@@ -10,6 +10,8 @@ class UserSignUpForm(forms.ModelForm):
                                 widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat your password',
                                 widget=forms.PasswordInput)
+    alpha_code = forms.CharField(label='Alpha signup code',
+                                widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -22,6 +24,12 @@ class UserSignUpForm(forms.ModelForm):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError('Passwords do not match')
         return password2
+
+    def clean_alpha_code(self):
+        alpha_code = self.cleaned_data.get('alpha_code')
+        if alpha_code != 'daggeroni':
+            raise forms.ValidationError('Wrong code')
+        return alpha_code
 
     def save(self, commit=True):
         user = super(UserSignUpForm, self).save(commit=False)

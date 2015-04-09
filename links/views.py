@@ -8,14 +8,13 @@ from users.models import User
 class LinkNewView(FormView):
     template_name = "links/link_new.html"
     form_class = LinkNewForm
-    success_url = '/'
 
     def get_success_url(self):
         if not self.request.user.is_anonymous():
             user_slug = self.request.user.slug
             return '/users/%s' % user_slug
         else:
-            return '/home/'
+            return '/login/'
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.

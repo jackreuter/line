@@ -1,5 +1,15 @@
-Running `python manage.py get_feedback` attached to terminal... up, run.7366
+Running `python manage.py get_feedback` attached to terminal... up, run.4748
 0 "lol -from ani" ani
 1 "this feedback form is a dag!" jack
 2 "This shit is fucked up haha" wob
 3 "This website is flippin' sweet.  Honestly there are some small aspects of the UI that I think could be improved but it's so clean and simple and I think it has so much potential." merceus
+4 "its kinda weird that we have no way of talking about the link, or recognizing the link as something we saw, or enjoyed, or whatever beyond reposting. also i feel weird having to come up with titles. also i pretty much always click the summary button. 
+
+this is chill though.
+--pate" pate
+5 "I think this website is great and an awesome idea. i only have a few concerns (and keep in mind, i am an idiot when it comes to computers, websites, etc.) 
+1. It wasn't clear how i "tag you," like how you said in the facebook message. But i posted a link to a really cool website that shows the mechanism of action, via animation, of certain substances in the brain. 
+2. I dont understand the search bar's function. Is it to look up anything, or simply look up recent posts, or users? 
+3. This may just be a general question, but how does something become a "top link?" is it like voting or following?" Zitchboy20
+6 " How do I change my name? I thought of a better one. " ASSMAN69
+7 "So as far as I can tell, this is a social media app that allows users to post links from the internet. This is an interesting idea, but how is your website better than Facebook which does this already and so much more? In other words, why should we care that you are carving out a space to only share links? Also it's not immediately apparent that this is whole point of the site. When you log onto Facebook, it says "welcome to Facebook where you can connect with friends, post photos, etc." It would be helpful if you gave users a little more guidance. " jnucci
